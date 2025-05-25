@@ -9,18 +9,43 @@ import { motion } from "framer-motion"
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 import { useState } from "react"
+import { useRouter } from 'next/navigation'
 
 const navItems = [
-  { name: "Solutions", href: "/solutions" },
-  { name: "Services", href: "/services" },
-  { name: "Industries", href: "/industries" },
-  { name: "Careers", href: "/careers" },
-  { name: "Blogs", href: "/blog" },
+  { name: "Solutions", href: "/#solutions", isSection: true },
+  { name: "Services", href: "/#services", isSection: true },
+  { name: "Industries", href: "/#industries", isSection: true },
+  { name: "Careers", href: "/careers", isSection: false },
+  { name: "Blogs", href: "/blog", isSection: false },
 ]
 
 export default function Navbar() {
   const pathname = usePathname()
+  const router = useRouter()
   const [isOpen, setIsOpen] = useState(false)
+
+  const handleNavClick = async (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
+    if (item.isSection) {
+      e.preventDefault()
+      if (pathname !== '/') {
+        // If we're not on the home page, navigate to home first
+        await router.push('/')
+        // Wait for a brief moment to ensure the page has loaded
+        setTimeout(() => {
+          const element = document.getElementById(item.name.toLowerCase())
+          if (element) {
+            element.scrollIntoView({ behavior: 'smooth' })
+          }
+        }, 100)
+      } else {
+        // If we're already on the home page, just scroll
+        const element = document.getElementById(item.name.toLowerCase())
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' })
+        }
+      }
+    }
+  }
 
   return (
     <motion.header
@@ -48,15 +73,15 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center justify-end space-x-8 flex-1 ml-8">
+        {/* Desktop Navigation - Centered */}
+        <nav className="hidden md:flex items-center justify-center flex-1 ml-8">
           {navItems.map((item) => (
             <Link
               key={item.name}
               href={item.href}
-              // Use text-foreground for default, text-primary for active
-              className={`text-sm font-medium transition-colors hover:text-primary hover:underline-offset-4 hover:underline ${
-                pathname === item.href ? "text-primary" : "text-foreground/80" // Use foreground for better contrast, or muted-foreground if links are less prominent
+              onClick={(e) => handleNavClick(e, item)}
+              className={`text-sm font-medium transition-colors hover:text-primary hover:underline-offset-4 hover:underline mx-4 ${
+                (pathname === item.href || (pathname === '/' && item.isSection)) ? "text-primary" : "text-foreground/80"
               }`}
             >
               {item.name}

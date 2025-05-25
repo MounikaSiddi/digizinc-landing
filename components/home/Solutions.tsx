@@ -24,7 +24,7 @@ const staggerContainer = {
 
 const Solutions = () => {
   return (
-    <section className="py-24 md:py-40 bg-background"> {/* Use bg-background for consistency */}
+    <section id="solutions" className="py-24 md:py-40 bg-background"> {/* Use bg-background for consistency */}
       <div className="container px-4 md:px-6">
         <motion.div
           className="text-center mb-20"
