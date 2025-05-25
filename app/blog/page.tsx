@@ -1,5 +1,6 @@
 
-import { getAllPosts } from "@/lib/getposts"
+
+import { getAllPosts } from "@/lib/getPosts"
 import BlogClient from "./BlogClient"
  // We'll create this below
 
