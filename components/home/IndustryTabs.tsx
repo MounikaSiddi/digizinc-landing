@@ -6,6 +6,8 @@ import {
   Home, ShoppingCart, Users, Landmark, FilmIcon, Triangle
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
+import ContactUs from '../Contactus'
+ // Adjust the import path if your ContactUs.tsx is elsewhere
 
 interface Industry {
   id: string
@@ -135,14 +137,30 @@ const industries: Industry[] = [
     image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600'
   }
 ]
+
 const IndustryTabs = () => {
   const [activeIndustry, setActiveIndustry] = useState('education')
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [modalIndustry, setModalIndustry] = useState<string | undefined>(undefined) // State to hold the industry name for the modal
+
   const selectedIndustry = industries.find(ind => ind.id === activeIndustry) || industries[0]
   const { theme } = useTheme()
 
   const isDark = theme === "dark"
   const overlayGradientFrom = isDark ? "from-secondary-900/70" : "from-primary/70"
   const overlayGradientTo = isDark ? "to-secondary-700/40" : "to-primary/40"
+
+  // Function to open the modal and set the industry
+  const handleGetSolutionsClick = (industryName: string) => {
+    setModalIndustry(industryName);
+    setIsModalOpen(true);
+  };
+
+  // Function to close the modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+    setModalIndustry(undefined); // Clear the industry when closing
+  };
 
   return (
     <section id="industries" className="py-16 md:py-24 bg-background transition-colors duration-300">
@@ -183,7 +201,7 @@ const IndustryTabs = () => {
         {/* Selected Industry Content */}
         <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            
+
             {/* Text Content */}
             <div className="p-6 md:p-8 order-2 lg:order-1">
               <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
@@ -207,12 +225,13 @@ const IndustryTabs = () => {
                 ))}
               </ul>
 
-              <a
-                href="#contact"
+              {/* Button to open the ContactUs modal */}
+              <button
+                onClick={() => handleGetSolutionsClick(selectedIndustry.name)} // Pass the industry name
                 className="inline-flex items-center justify-center px-6 py-3 bg-gradient-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg"
               >
                 Get {selectedIndustry.name} Solutions
-              </a>
+              </button>
             </div>
 
             {/* Image & Overlay */}
@@ -234,8 +253,17 @@ const IndustryTabs = () => {
 
           </div>
         </div>
-        
+
       </div>
+
+      {/* Render the ContactUs Modal conditionally */}
+      {isModalOpen && (
+        <ContactUs
+          isModal={true}
+          defaultIndustry={modalIndustry} // Pass the selected industry name
+          onClose={handleCloseModal}     // Pass the close handler
+        />
+      )}
     </section>
   )
 }
