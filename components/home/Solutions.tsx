@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { Search, Zap, Smartphone, Share2, Mail, Users, BarChart3, Award } from "lucide-react"
 import { Card, CardContent } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
+import { useContactModal } from "../ClientWrapper";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -23,6 +24,7 @@ const staggerContainer = {
 }
 
 const Solutions = () => {
+  const { openContactModal } = useContactModal();
   return (
     <section id="solutions" className="py-16 md:py-24 bg-background"> {/* Use bg-background for consistency */}
       <div className="container px-2 md:px-4">
@@ -153,6 +155,7 @@ const Solutions = () => {
             // Ensure button uses your gradient and foreground text
             className="rounded-full bg-gradient-primary to-secondary hover:opacity-90 transition-opacity shadow-lg text-primary-foreground"
             size="xl"
+            onClick={() => openContactModal(undefined)} 
           >
             Book A Call For Free
           </Button>
