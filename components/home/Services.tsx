@@ -1,6 +1,7 @@
 'use client'; // Required for client-side state like useState
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
+
 import {
   Brush, Image, Laptop, Layout, MessageSquare, FilmIcon,
   PenTool, Palette, Wand2, BarChart3
@@ -16,6 +17,8 @@ interface Service {
 }
 
 const Services: React.FC = () => {
+  const contentRef = useRef<HTMLDivElement>(null);
+
   const [activeTab, setActiveTab] = useState('branding');
 
   const services: Service[] = [
@@ -156,7 +159,16 @@ const Services: React.FC = () => {
   ];
 
   const activeService = services.find(service => service.id === activeTab) || services[0];
-
+  useEffect(() => {
+    const isMobileOrTablet = window.innerWidth < 1024;
+    if (isMobileOrTablet && contentRef.current) {
+      contentRef.current.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      });
+    }
+  }, [activeTab]);
+  
   return (
     <section id="services" className="py-16 md:py-24 bg-white dark:bg-dark">
       <div className="container mx-auto px-4 md:px-6">
@@ -171,7 +183,7 @@ const Services: React.FC = () => {
 
         <div className="flex flex-col lg:flex-row gap-8 min-h-[600px]"> {/* Added min-height for consistency */}
           <div className="lg:w-1/3 flex flex-col">
-            <div className="bg-secondary-900 rounded-xl p-4 sticky top-24 flex-1"> {/* Added flex-1 */}
+            <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-xl p-4 sticky top-24 flex-1">
               <h3 className="font-heading text-lg font-semibold text-white mb-4">
                 Service Categories
               </h3>
@@ -194,48 +206,58 @@ const Services: React.FC = () => {
             </div>
           </div>
 
-          <div className="lg:w-2/3 flex flex-col">
-            <div className="bg-secondary-900 rounded-xl p-6 md:p-8 shadow-md border border-gray-100 dark:border-secondary-800 flex-1"> {/* Added flex-1 */}
-              <div className="flex items-center mb-6">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform">
-                  {activeService.icon}
-                </div>
-                <div>
-                  <h3 className="text-xl font-semibold text-white mb-1">{activeService.title}</h3>
-                  <p className="text-gray-400">{activeService.description}</p>
-                </div>
-              </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {activeService.items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="p-4 rounded-lg bg-secondary-800/50 hover:bg-secondary-800 transition-colors
-                      border border-secondary-700/50 hover:border-primary-600/30
-                      group hover:shadow-lg hover:scale-[1.02] transition-all duration-200"
-                  >
-                    <div className="flex items-center space-x-2">
-                      <div className="w-2 h-2 rounded-full bg-primary-600/50 group-hover:bg-primary-600 transition-colors"></div>
-                      <p className="text-gray-300 group-hover:text-white transition-colors">{item}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+          <div ref={contentRef} className="lg:w-2/3 flex flex-col">
 
-              <div className="mt-8 flex justify-end">
-                <Link
-                  href={`/services#${activeService.id}`}
-                  className="inline-flex items-center px-4 py-2 rounded-lg bg-gradient-primary text-white
-                    hover:shadow-lg hover:scale-105 transition-all duration-200"
-                >
-                  Learn more about {activeService.title}
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
+  <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
+    
+    <div className="flex items-start mb-8">
+      <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm">
+        {activeService.icon}
+      </div>
+      <div className="space-y-1">
+        <h3 className="text-2xl font-semibold font-heading text-white">
+          {activeService.title}
+        </h3>
+        <p className="text-gray-400 font-medium text-base leading-relaxed">
+          {activeService.description}
+        </p>
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+      {activeService.items.map((item, index) => (
+        <div
+          key={index}
+          className="p-5 rounded-xl bg-secondary-800/60 hover:bg-secondary-700
+            border border-secondary-700/50 hover:border-primary-500
+            group hover:shadow-xl hover:scale-[1.025] transition-all duration-300"
+        >
+          <div className="flex items-center space-x-3">
+            <div className="w-2.5 h-2.5 rounded-full bg-primary-600/50 group-hover:bg-primary-600 transition-colors"></div>
+            <p className="text-gray-300 group-hover:text-white transition-colors text-sm">
+              {item}
+            </p>
           </div>
+        </div>
+      ))}
+    </div>
+
+    <div className="mt-4 flex justify-end">
+      <Link
+        href={`/services#${activeService.id}`}
+        className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-primary text-white font-medium
+          hover:shadow-lg hover:scale-105 transition-all duration-300"
+      >
+        Learn more about {activeService.title}
+        <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+        </svg>
+      </Link>
+    </div>
+  </div>
+</div>
+
         </div>
       </div>
     </section>
