@@ -64,13 +64,18 @@ const Hero = () => {
   const [mounted, setMounted] = useState(false)
   const isDark = theme === "dark"
 
-  // useEffect to ensure theme is resolved on client-side before rendering
   useEffect(() => {
     setMounted(true)
   }, [])
 
   return (
-    <section className="relative py-24 md:py-40 overflow-hidden bg-white dark:bg-gradient-to-b dark:from-secondary-950 dark:to-secondary-800 dark:bg-opacity-[0.06]">
+    <section className="relative py-16 md:py-20 overflow-hidden bg-white dark:bg-gradient-to-b dark:from-secondary-950 dark:to-secondary-800 dark:bg-opacity-[0.06] rounded-b-lg">
+      {/* Background image with low opacity */}
+      <div 
+        className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat opacity-[0.03] dark:opacity-[0.02]"
+        style={{ mixBlendMode: 'multiply' }}
+      ></div>
+
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
       
@@ -85,11 +90,10 @@ const Hero = () => {
           animate="visible"
           variants={fadeIn}
         >
-          <h1 className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight mb-6"> {/* Use text-foreground */}
+          <h1 className="font-heading text-5xl md:text-6xl lg:text-7xl font-bold text-foreground leading-[80px] md:leading-[90px] mb-8"> {/* Increased text size and line height */}
             Transform Your{" "}
             <span
-              className="text-transparent bg-clip-text bg-gradient-primary " // Gradient colors
-              
+              className="text-transparent bg-clip-text bg-gradient-primary"
             >
               Digital
               <br /> Presence
@@ -121,15 +125,15 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        {/* Trusted By Section */}
+        {/* Trusted By Section - Adjusted positioning */}
         <motion.div
-          className="mt-24"
+          className="mt-16 pb-4" /* Reduced top margin and added bottom padding */
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
         >
-          <div className="text-center mb-8">
-            <p className="text-sm font-medium text-foreground uppercase tracking-wider"> {/* Use text-foreground/60 */}
+          <div className="text-center mb-6"> {/* Reduced bottom margin */}
+            <p className="text-sm font-medium text-foreground uppercase tracking-wider">
               Trusted by Industry Leaders
             </p>
           </div>

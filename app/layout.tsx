@@ -1,14 +1,17 @@
 // app/layout.tsx (Server Component)
 import type { Metadata } from "next"
-import { Inter } from "next/font/google"
+import { Inter, Bricolage_Grotesque } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import ClientWrapper from "@/components/ClientWrapper"
-// <--- you'll create this
 
 const inter = Inter({ subsets: ["latin"] })
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  variable: '--font-bricolage',
+})
 
 export const metadata: Metadata = {
   title: "Digizinc - Transform Your Digital Presence with AI",
@@ -23,12 +26,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} min-h-screen bg-background`}>
+      <body className={`${inter.className} ${bricolage.variable} min-h-screen bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <Navbar />
           <main>{children}</main>
           <Footer />
-          <ClientWrapper /> {/* Client side logic moved here */}
+          <ClientWrapper />
         </ThemeProvider>
       </body>
     </html>
