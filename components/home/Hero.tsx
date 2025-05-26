@@ -69,12 +69,14 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden bg-white dark:bg-gradient-to-b dark:from-secondary-950 dark:to-secondary-800 dark:bg-opacity-[0.06] rounded-b-lg">
+    <section className="relative py-16 md:py-20 overflow-hidden bg-white/10 dark:bg-gradient-to-b dark:from-secondary-950 dark:to-secondary-800 dark:bg-opacity-[0.04] rounded-b-[20px]">
+
       {/* Background image with low opacity */}
       <div 
-        className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat opacity-[0.03] dark:opacity-[0.02]"
-        style={{ mixBlendMode: 'multiply' }}
-      ></div>
+  className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat opacity-100 dark:opacity-100"
+  style={{ mixBlendMode: 'overlay' }}
+></div>
+
 
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>

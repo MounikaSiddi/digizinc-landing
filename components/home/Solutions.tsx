@@ -24,8 +24,8 @@ const staggerContainer = {
 
 const Solutions = () => {
   return (
-    <section id="solutions" className="py-24 md:py-40 bg-background"> {/* Use bg-background for consistency */}
-      <div className="container px-4 md:px-6">
+    <section id="solutions" className="py-16 md:py-24 bg-background"> {/* Use bg-background for consistency */}
+      <div className="container px-2 md:px-4">
         <motion.div
           className="text-center mb-20"
           initial="hidden"
@@ -33,10 +33,11 @@ const Solutions = () => {
           viewport={{ once: true, margin: "-100px" }}
           variants={fadeIn}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 leading-tight text-foreground"> {/* Use text-foreground for the general heading text */}
-            <span className="bg-gradient-primary to-secondary text-transparent bg-clip-text">Intelligent Solutions</span> for Your Business
+          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight text-foreground"> {/* Use text-foreground for the general heading text */}
+            <span className="bg-gradient-primary to-secondary text-transparent bg-clip-text">Intelligent Solutions</span> for Your
+            <br /> Business
           </h2>
-          <p className="text-foreground text-lg md:text-xl max-w-3xl mx-auto leading-relaxed">
+          <p className="text-foreground text-lg md:text-xl max-w-5xl mx-auto leading-relaxed">
             Digizinc provides comprehensive digital marketing solutions to help your business grow and succeed online.
           </p>
         </motion.div>
@@ -93,7 +94,6 @@ const Solutions = () => {
           ].map((solution, index) => (
             <motion.div key={index} variants={fadeIn}>
               <Card
-                // Use card background and border variables
                 className="group relative  dark:bg-card backdrop-blur-md
                 border border-primary-600/20 dark:border-border
                 hover:border-primary-800/40 dark:hover:border-primary/40
@@ -105,24 +105,20 @@ const Solutions = () => {
                 transition-all duration-300 ease-out
                 hover:scale-[1.02] hover:-translate-y-1
                 h-full overflow-hidden
-                before:absolute before:inset-0 before:bg-gradient-to-b before:from-primary-600/5 before:to-secondary-600/5 dark:before:from-primary/5 dark:before:to-secondary/5 before:opacity-0 hover:before:opacity-100 before:transition-opacity before:duration-300"
+                before:absolute before:inset-0 before:bg-gradient-to-b before:from-[#401967] before:to-[#7F32CD] before:opacity-0 hover:before:opacity-10 before:transition-opacity before:duration-300"
               >
                 <CardContent className="p-8 flex flex-col h-full">
                   <div
-                    // Icon container background and border using primary/secondary
-                    className="relative mb-6 w-16 h-16 rounded-2xl bg-gradient-primary to-secondary p-0.5 group-hover:scale-110 transition-all duration-300"
+                    className="relative mb-6 w-14 h-14 rounded-2xl bg-gradient-primary to-secondary p-0.5 group-hover:scale-110 transition-all duration-300"
                   >
                     <div
-                      // Inner gradient overlay
                       className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] opacity-20 rounded-2xl group-hover:opacity-30 transition-opacity duration-300"
                     ></div>
                     <div
-                      // Inner icon background
-                      className="relative h-full w-full flex items-center justify-center bg-primary-300 rounded-2xl" // Use background for the inner circle
+                      className="relative h-full w-full flex items-center justify-center bg-background/80 rounded-2xl"
                     >
                       <div
-                        // Icon color
-                        className="text-primary group-hover:text-primary-800-foreground transition-colors duration-300" // Icon becomes foreground color on hover
+                        className="text-primary group-hover:text-primary-800-foreground transition-colors duration-300"
                       >
                         {solution.icon}
                       </div>
@@ -130,7 +126,7 @@ const Solutions = () => {
                   </div>
                   <h3
                     // Title text gradient
-                    className="text-2xl font-semibold mb-4 bg-gradient-to-r from-[var(--foreground)] to-[var(--foreground)]/90 text-transparent bg-clip-text"
+                    className="text-2xl font-semibold font-heading mb-4 text-foreground  bg-clip-text"
                   >
                     {solution.title}
                   </h3>
