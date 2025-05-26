@@ -1,15 +1,14 @@
 // components/ContactUs.tsx
-'use client'; // Required for client-side state
+'use client';
 
 import React, { useState, useEffect } from 'react';
 import { CheckCircle } from 'lucide-react';
 import Modal from './Modal';
- // Import the new Modal component
 
 interface ContactUsProps {
-  defaultIndustry?: string; // Optional prop to pre-fill the industry
-  onClose?: () => void; // Optional: function to close the modal if it's used as one
-  isModal?: boolean; // Optional: flag to indicate if it's being used as a modal
+  defaultIndustry?: string;
+  onClose?: () => void;
+  isModal?: boolean;
 }
 
 const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal }) => {
@@ -17,10 +16,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
   const [company, setCompany] = useState('');
-  const [industry, setIndustry] = useState(defaultIndustry || ''); // Initialize with prop or empty
+  const [industry, setIndustry] = useState(defaultIndustry || '');
   const [message, setMessage] = useState('');
 
-  // Update industry state if defaultIndustry prop changes
   useEffect(() => {
     if (defaultIndustry) {
       setIndustry(defaultIndustry);
@@ -29,7 +27,6 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
     console.log({
       firstName,
       lastName,
@@ -38,13 +35,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
       industry,
       message,
     });
-    // Add your form submission logic here (e.g., API call)
-
-    // Optionally close the modal after submission
     if (isModal && onClose) {
       onClose();
     }
-    // You might want to show a success message or clear the form
   };
 
   const formContent = (
@@ -59,7 +52,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
             id="first-name"
             value={firstName}
             onChange={(e) => setFirstName(e.target.value)}
-            className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+            className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
             placeholder="John"
             required
           />
@@ -73,7 +66,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
             id="last-name"
             value={lastName}
             onChange={(e) => setLastName(e.target.value)}
-            className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+            className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
             placeholder="Doe"
             required
           />
@@ -89,7 +82,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
           id="email"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
-          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
           placeholder="john@example.com"
           required
         />
@@ -104,7 +97,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
           id="company"
           value={company}
           onChange={(e) => setCompany(e.target.value)}
-          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
           placeholder="Your Company"
         />
       </div>
@@ -119,7 +112,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
           list="industry-options"
           value={industry}
           onChange={(e) => setIndustry(e.target.value)}
-          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
           placeholder="Select or type industry"
         />
         <datalist id="industry-options">
@@ -155,7 +148,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
           rows={4}
           value={message}
           onChange={(e) => setMessage(e.target.value)}
-          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
+          className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200 resize-none"
           placeholder="Tell us about your project or needs..."
         ></textarea>
       </div>
@@ -163,24 +156,136 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
       <div>
         <button
           type="submit"
-          className="w-full bg-gradient-primary text-white font-medium py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300"
+          className="w-full bg-gradient-primary text-white font-medium py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          Get Started with Savi AI
+          Get Started with SaaVik AI
         </button>
       </div>
     </form>
   );
 
-  if (isModal) {
-    return (
-      <Modal isOpen={true} onClose={onClose!} title={`Contact Us for ${defaultIndustry || 'Savi AI Solutions'}`}>
-        {formContent}
-      </Modal>
-    );
-  }
+  // Mobile-optimized modal content (form only)
+  const mobileModalContent = (
+    <div className="p-6">
+      {/* Mobile header */}
+      <div className="mb-6">
+        <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium mb-3">
+          <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2"></span>
+          {defaultIndustry ? `${defaultIndustry} Solutions` : 'Let\'s work together'}
+        </div>
+        
+        <h3 className="font-heading text-xl font-bold text-gray-900 dark:text-white mb-2">
+          Ready to get started?
+        </h3>
+        
+        <p className="text-sm text-gray-600 dark:text-gray-300">
+          Fill out the form below and we'll be in touch shortly.
+        </p>
+      </div>
 
-  // Original standalone section rendering
-  return (
+      {formContent}
+
+      {/* Mobile trust indicators */}
+      <div className="mt-6 pt-6 border-t border-gray-200 dark:border-secondary-700">
+        <div className="flex items-center justify-center space-x-4">
+          <div className="flex -space-x-2">
+            <img
+              src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Client"
+              className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+            />
+            <img
+              src="https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Client"
+              className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+            />
+            <img
+              src="https://images.pexels.com/photos/3776939/pexels-photo-3776939.jpeg?auto=compress&cs=tinysrgb&w=1600"
+              alt="Client"
+              className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+            />
+          </div>
+          <div className="text-xs text-gray-600 dark:text-gray-400">
+            <span className="text-primary-500 font-semibold">100+</span> businesses trust us
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Desktop modal content (full layout)
+  const desktopModalContent = (
+    <div className="max-w-4xl mx-auto">
+      <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+        {/* Left side content */}
+        <div className="p-8 flex flex-col justify-center">
+          <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
+            <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
+            Let's work together
+          </div>
+
+          <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span>?
+          </h2>
+
+          <p className="text-gray-600 dark:text-gray-300 mb-6">
+            Get started with our AI-powered solutions tailored to your industry needs.
+          </p>
+
+          <div className="space-y-3 mb-6">
+            <div className="flex items-start">
+              <CheckCircle className="h-5 w-5 text-primary-500 mr-3 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Personalized consultation</span> to understand your needs
+              </p>
+            </div>
+            <div className="flex items-start">
+              <CheckCircle className="h-5 w-5 text-primary-500 mr-3 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Custom AI solution</span> for your industry
+              </p>
+            </div>
+            <div className="flex items-start">
+              <CheckCircle className="h-5 w-5 text-primary-500 mr-3 flex-shrink-0 mt-0.5" />
+              <p className="text-sm text-gray-700 dark:text-gray-300">
+                <span className="font-semibold">Comprehensive support</span> throughout implementation
+              </p>
+            </div>
+          </div>
+
+          <div className="flex items-center space-x-4">
+            <div className="flex -space-x-2">
+              <img
+                src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Client"
+                className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+              />
+              <img
+                src="https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Client"
+                className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+              />
+              <img
+                src="https://images.pexels.com/photos/3776939/pexels-photo-3776939.jpeg?auto=compress&cs=tinysrgb&w=1600"
+                alt="Client"
+                className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+              />
+            </div>
+            <div className="text-xs text-gray-600 dark:text-gray-400">
+              <span className="text-primary-500 font-semibold">100+</span> businesses trust SaaVik AI
+            </div>
+          </div>
+        </div>
+
+        {/* Right side form */}
+        <div className="bg-gray-50 dark:bg-secondary-800 p-8 flex flex-col justify-center">
+          {formContent}
+        </div>
+      </div>
+    </div>
+  );
+
+  const fullContactContent = (
     <section id="contact" className="py-12 md:py-16 relative overflow-hidden min-h-[80vh] flex items-center">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-dark dark:to-secondary-950 -z-10"></div>
@@ -190,6 +295,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-6xl mx-auto bg-white dark:bg-secondary-900 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-secondary-800">
           <div className="grid grid-cols-1 lg:grid-cols-2">
+            {/* Left side content */}
             <div className="p-8 md:p-12">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
@@ -197,7 +303,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
               </div>
 
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with Savi AI?
+                Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with SaaVik AI?
               </h2>
 
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
@@ -244,11 +350,12 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
                   />
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
-                  <span className="text-primary-500 font-semibold">100+</span> businesses already using Savi AI
+                  <span className="text-primary-500 font-semibold">100+</span> businesses already using SaaVik AI
                 </div>
               </div>
             </div>
 
+            {/* Right side form */}
             <div className="bg-gray-50 dark:bg-secondary-800 p-8 md:p-12">
               {formContent}
             </div>
@@ -257,6 +364,22 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
       </div>
     </section>
   );
+
+  if (isModal) {
+    return (
+      <Modal isOpen={true} onClose={onClose!} title={`Contact Us for ${defaultIndustry || 'SaaVik AI Solutions'}`}>
+        {/* Show mobile-optimized content on small screens, desktop content on larger screens */}
+        <div className="md:hidden">
+          {mobileModalContent}
+        </div>
+        <div className="hidden md:block">
+          {desktopModalContent}
+        </div>
+      </Modal>
+    );
+  }
+
+  return fullContactContent;
 };
 
 export default ContactUs;

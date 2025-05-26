@@ -28,10 +28,12 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${bricolage.variable} min-h-screen bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <Navbar />
-          <main>{children}</main>
-          <Footer />
-          <ClientWrapper />
+          {/* Wrap Navbar, main (children), and Footer with ClientWrapper */}
+          <ClientWrapper>
+            <Navbar />
+            <main>{children}</main>
+            <Footer />
+          </ClientWrapper>
         </ThemeProvider>
       </body>
     </html>

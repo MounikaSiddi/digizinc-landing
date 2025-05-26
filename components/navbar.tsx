@@ -1,4 +1,5 @@
-"use client"
+// components/navbar.tsx
+'use client'
 
 import Link from "next/link"
 import Image from "next/image"
@@ -10,27 +11,28 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet"
 import { Menu } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
+import { useContactModal } from './ClientWrapper'; // Import the custom hook
 
 const navItems = [
   { name: "Solutions", href: "/#solutions", isSection: true },
-  { name: "Services", href: "/#services", isSection: true },
+  { name: "Services", href:"/#services", isSection: true },
   { name: "Industries", href: "/#industries", isSection: true },
   { name: "Careers", href: "/careers", isSection: false },
   { name: "Blogs", href: "/blog", isSection: false },
 ]
 
-export default function Navbar() {
+export default function Navbar() { // No props needed here anymore
   const pathname = usePathname()
   const router = useRouter()
-  const [isOpen, setIsOpen] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
+  const { openContactModal } = useContactModal(); // Use the hook here!
 
   const handleNavClick = async (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
     if (item.isSection) {
       e.preventDefault()
+      setIsMobileMenuOpen(false)
       if (pathname !== '/') {
-        // If we're not on the home page, navigate to home first
         await router.push('/')
-        // Wait for a brief moment to ensure the page has loaded
         setTimeout(() => {
           const element = document.getElementById(item.name.toLowerCase())
           if (element) {
@@ -38,19 +40,19 @@ export default function Navbar() {
           }
         }, 100)
       } else {
-        // If we're already on the home page, just scroll
         const element = document.getElementById(item.name.toLowerCase())
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
       }
+    } else {
+      setIsMobileMenuOpen(false)
     }
   }
 
   return (
     <motion.header
-      // Use bg-background for the base, and border-border for the bottom border
-      className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm"
+      className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-sm"
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.5 }}
@@ -73,7 +75,6 @@ export default function Navbar() {
           />
         </Link>
 
-        {/* Desktop Navigation - Centered */}
         <nav className="hidden md:flex items-center justify-center flex-1 ml-8">
           {navItems.map((item) => (
             <Link
@@ -87,20 +88,17 @@ export default function Navbar() {
           ))}
         </nav>
 
-        {/* Right side buttons */}
         <div className="flex items-center gap-4 ml-4">
           <ModeToggle />
           <Button
-            
             variant={'gradient'}
-            // Use your primary and secondary colors for the gradient
-            className="hidden sm:flex rounded-full  hover:opacity-90 transition-opacity shadow-lg text-primary-foreground" // Ensure text is white on the gradient
+            className="hidden sm:flex rounded-full hover:opacity-90 transition-opacity shadow-lg text-primary-foreground"
+            onClick={() => openContactModal(undefined)} // Use the openContactModal from context
           >
             Get Started
           </Button>
 
-          {/* Mobile Menu */}
-          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+          <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
               <Button variant="ghost" size="lg" className="shrink-0 p-2">
                 <Menu className="h-6 w-6 text-foreground" />
@@ -108,25 +106,32 @@ export default function Navbar() {
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-80 bg-card border-border" // Use bg-card and border-border
+              className="w-80 bg-card border-border"
             >
               <nav className="flex flex-col gap-4 mt-8">
                 {navItems.map((item) => (
                   <Link
                     key={item.name}
                     href={item.href}
-                    onClick={() => setIsOpen(false)}
+                    onClick={(e) => {
+                      handleNavClick(e, item);
+                      setIsMobileMenuOpen(false);
+                    }}
                     className={`text-lg font-medium transition-colors p-2 rounded-lg ${
                       pathname === item.href
-                        ? "text-primary bg-primary/10" // Active link styling
-                        : "text-foreground hover:bg-accent hover:text-accent-foreground" // Use foreground, then accent for hover
+                        ? "text-primary bg-primary/10"
+                        : "text-foreground hover:bg-accent hover:text-accent-foreground"
                     }`}
                   >
                     {item.name}
                   </Link>
                 ))}
                 <Button
-                  className="mt-4 w-full rounded-full bg-gradient-primary hover:opacity-90 transition-opacity shadow-lg text-primary-foreground" // Ensure text is white on the gradient
+                  className="mt-4 w-full rounded-full bg-gradient-primary hover:opacity-90 transition-opacity shadow-lg text-primary-foreground"
+                  onClick={() => {
+                    openContactModal(undefined); // Use the openContactModal from context
+                    setIsMobileMenuOpen(false);
+                  }}
                 >
                   Get Started
                 </Button>

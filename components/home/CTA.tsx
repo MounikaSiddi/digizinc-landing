@@ -27,7 +27,7 @@ const CTA = () => {
             style={{ animationDelay: '0.2s' }}
           >
             <span className="h-4 w-4 text-primary motion-safe:animate-pulse">⚡</span>
-            <span className="text-sm font-medium text-primary-foreground">Transform with AI</span>
+            <span className="text-sm font-medium text-foreground">Transform with AI</span>
           </div>
 
           {/* FIX: Use 'text-primary-foreground' for the main heading */}

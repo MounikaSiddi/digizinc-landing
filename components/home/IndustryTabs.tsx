@@ -1,3 +1,4 @@
+// components/IndustryTabs.tsx
 'use client'
 
 import React, { useState } from 'react'
@@ -6,8 +7,8 @@ import {
   Home, ShoppingCart, Users, Landmark, FilmIcon, Triangle
 } from 'lucide-react'
 import { useTheme } from 'next-themes'
-import ContactUs from '../Contactus'
- // Adjust the import path if your ContactUs.tsx is elsewhere
+import { useContactModal } from '../ClientWrapper'
+ // Import the custom hook
 
 interface Industry {
   id: string
@@ -19,6 +20,7 @@ interface Industry {
 }
 
 const industries: Industry[] = [
+  // ... your industries array ...
   {
     id: 'education',
     icon: <GraduationCap size={24} />,
@@ -138,10 +140,9 @@ const industries: Industry[] = [
   }
 ]
 
-const IndustryTabs = () => {
+export default function IndustryTabs() { // No props needed here anymore
   const [activeIndustry, setActiveIndustry] = useState('education')
-  const [isModalOpen, setIsModalOpen] = useState(false)
-  const [modalIndustry, setModalIndustry] = useState<string | undefined>(undefined) // State to hold the industry name for the modal
+  const { openContactModal } = useContactModal(); // Use the hook here!
 
   const selectedIndustry = industries.find(ind => ind.id === activeIndustry) || industries[0]
   const { theme } = useTheme()
@@ -150,23 +151,14 @@ const IndustryTabs = () => {
   const overlayGradientFrom = isDark ? "from-secondary-900/70" : "from-primary/70"
   const overlayGradientTo = isDark ? "to-secondary-700/40" : "to-primary/40"
 
-  // Function to open the modal and set the industry
   const handleGetSolutionsClick = (industryName: string) => {
-    setModalIndustry(industryName);
-    setIsModalOpen(true);
-  };
-
-  // Function to close the modal
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setModalIndustry(undefined); // Clear the industry when closing
+    openContactModal(industryName); // Call the openContactModal from context
   };
 
   return (
     <section id="industries" className="py-16 md:py-24 bg-background transition-colors duration-300">
       <div className="container mx-auto px-4 md:px-6">
 
-        {/* Section Heading */}
         <div className="max-w-3xl mx-auto text-center mb-16">
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
             Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span>
@@ -176,7 +168,6 @@ const IndustryTabs = () => {
           </p>
         </div>
 
-        {/* Industry Selector Tabs */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3 mb-12">
           {industries.map(industry => {
             const isActive = activeIndustry === industry.id
@@ -198,11 +189,9 @@ const IndustryTabs = () => {
           })}
         </div>
 
-        {/* Selected Industry Content */}
         <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all">
           <div className="grid grid-cols-1 lg:grid-cols-2">
 
-            {/* Text Content */}
             <div className="p-6 md:p-8 order-2 lg:order-1">
               <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
                 {selectedIndustry.name}
@@ -225,16 +214,14 @@ const IndustryTabs = () => {
                 ))}
               </ul>
 
-              {/* Button to open the ContactUs modal */}
               <button
-                onClick={() => handleGetSolutionsClick(selectedIndustry.name)} // Pass the industry name
+                onClick={() => handleGetSolutionsClick(selectedIndustry.name)}
                 className="inline-flex items-center justify-center px-6 py-3 bg-gradient-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg"
               >
                 Get {selectedIndustry.name} Solutions
               </button>
             </div>
 
-            {/* Image & Overlay */}
             <div className="h-64 lg:h-auto relative order-1 lg:order-2">
               <img
                 src={selectedIndustry.image}
@@ -255,17 +242,7 @@ const IndustryTabs = () => {
         </div>
 
       </div>
-
-      {/* Render the ContactUs Modal conditionally */}
-      {isModalOpen && (
-        <ContactUs
-          isModal={true}
-          defaultIndustry={modalIndustry} // Pass the selected industry name
-          onClose={handleCloseModal}     // Pass the close handler
-        />
-      )}
+      {/* Remove the modal rendering from here as it's now in ClientWrapper */}
     </section>
   )
 }
-
-export default IndustryTabs
