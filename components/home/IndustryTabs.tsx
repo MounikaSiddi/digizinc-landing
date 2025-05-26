@@ -135,104 +135,109 @@ const industries: Industry[] = [
     image: 'https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600'
   }
 ]
-
 const IndustryTabs = () => {
   const [activeIndustry, setActiveIndustry] = useState('education')
   const selectedIndustry = industries.find(ind => ind.id === activeIndustry) || industries[0]
-  const { theme } = useTheme(); // Get current theme
+  const { theme } = useTheme()
 
-  // Determine the shadow color based on the theme for the image overlay
-  const isDark = theme === "dark";
-  const overlayGradientFrom = isDark ? "from-secondary-900/70" : "from-primary/70"; // Example: use primary for light, secondary for dark
-  const overlayGradientTo = isDark ? "to-secondary-700/40" : "to-primary/40";
-
+  const isDark = theme === "dark"
+  const overlayGradientFrom = isDark ? "from-secondary-900/70" : "from-primary/70"
+  const overlayGradientTo = isDark ? "to-secondary-700/40" : "to-primary/40"
 
   return (
-    <section id="industries" className="py-16 md:py-24 bg-background transition-colors duration-300"> {/* Use bg-background */}
+    <section id="industries" className="py-16 md:py-24 bg-background transition-colors duration-300">
       <div className="container mx-auto px-4 md:px-6">
+
+        {/* Section Heading */}
         <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4"> {/* Use text-foreground */}
-            Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span> {/* Dynamic gradient for "Transform" */}
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+            Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span>
           </h2>
-          <p className="text-foreground text-lg"> {/* Use text-foreground/80 for a softer look */}
+          <p className="text-foreground text-lg">
             Savi AI creates custom solutions for a wide range of industries
           </p>
         </div>
 
+        {/* Industry Selector Tabs */}
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3 mb-12">
-          {industries.map(industry => (
-            <button
-              key={industry.id}
-              onClick={() => setActiveIndustry(industry.id)}
-              className={`flex flex-col items-center justify-center p-4 rounded-lg transition-colors border border-transparent
-                ${activeIndustry === industry.id
-                  ? 'bg-gradient-primary text-primary-foreground shadow-md' // Active state with dynamic gradient
-                  : 'bg-card text-foreground hover:bg-accent hover:text-accent-foreground border-border' // Inactive state with theme colors
-                }`}
-            >
-              <span className="mb-2">{industry.icon}</span>
-              <span className="text-sm font-medium text-center">{industry.name}</span>
-            </button>
-          ))}
+          {industries.map(industry => {
+            const isActive = activeIndustry === industry.id
+            return (
+              <button
+                key={industry.id}
+                onClick={() => setActiveIndustry(industry.id)}
+                aria-pressed={isActive}
+                className={`relative flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-300 border-2
+                  ${isActive
+                    ? 'bg-gradient-primary text-white border-transparent shadow-lg shadow-primary/20'
+                    : 'bg-card text-foreground border-primary/30 dark:border-primary/20 hover:border-transparent hover:bg-gradient-primary hover:text-white hover:shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10'
+                  }`}
+              >
+                <span className="mb-2">{industry.icon}</span>
+                <span className="text-sm font-medium text-center">{industry.name}</span>
+              </button>
+            )
+          })}
         </div>
 
-        <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all"> {/* Use bg-card and border-border */}
+        {/* Selected Industry Content */}
+        <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all">
           <div className="grid grid-cols-1 lg:grid-cols-2">
+            
+            {/* Text Content */}
             <div className="p-6 md:p-8 order-2 lg:order-1">
-              <h3 className="font-heading text-2xl font-bold text-foreground mb-4"> {/* Use text-foreground */}
+              <h3 className="font-heading text-2xl font-bold text-foreground mb-4">
                 {selectedIndustry.name}
               </h3>
-              <p className="text-foreground mb-6"> {/* Keep text-muted-foreground for description */}
+              <p className="text-foreground mb-6">
                 {selectedIndustry.description}
               </p>
-              <h4 className="font-heading text-lg font-semibold text-foreground mb-4"> {/* Use text-foreground */}
-                How Savi AI Helps:
+
+              <h4 className="font-heading text-lg font-semibold text-foreground mb-4">
+                How We Help:
               </h4>
               <ul className="space-y-3 mb-8">
                 {selectedIndustry.benefits.map((benefit, index) => (
                   <li key={index} className="flex items-start">
-                    <span className="text-primary mr-3 mt-1 shrink-0"> {/* Use text-primary for the icon */}
+                    <span className="text-primary mr-3 mt-1 shrink-0">
                       <Triangle size={12} fill="currentColor" />
                     </span>
-                    <span className="text-foreground"> {/* Use text-foreground for benefit text */}
-                      {benefit}
-                    </span>
+                    <span className="text-foreground">{benefit}</span>
                   </li>
                 ))}
               </ul>
+
               <a
                 href="#contact"
-                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg" // Dynamic gradient button
+                className="inline-flex items-center justify-center px-6 py-3 bg-gradient-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg"
               >
                 Get {selectedIndustry.name} Solutions
               </a>
             </div>
 
+            {/* Image & Overlay */}
             <div className="h-64 lg:h-auto relative order-1 lg:order-2">
               <img
                 src={selectedIndustry.image}
                 alt={`${selectedIndustry.name} industry`}
                 className="absolute inset-0 w-full h-full object-cover"
               />
-              {/* Dynamic gradient overlay using `overlayGradientFrom` and `overlayGradientTo` */}
               <div className={`absolute inset-0 bg-gradient-to-r ${overlayGradientFrom} ${overlayGradientTo} mix-blend-multiply`}></div>
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="text-white text-center p-6">
-                  <span className="text-4xl mb-2 inline-block">
-                    {selectedIndustry.icon}
-                  </span>
-                  <h3 className="text-2xl font-bold font-heading">
-                    {selectedIndustry.name}
-                  </h3>
+                  <span className="text-4xl mb-2 inline-block">{selectedIndustry.icon}</span>
+                  <h3 className="text-2xl font-bold font-heading">{selectedIndustry.name}</h3>
                   <span className="text-sm text-white/80">Powered by Savi AI</span>
                 </div>
               </div>
             </div>
+
           </div>
         </div>
+        
       </div>
     </section>
   )
 }
 
-export default IndustryTabs;
+export default IndustryTabs
