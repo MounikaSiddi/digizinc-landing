@@ -80,9 +80,7 @@ export default function Navbar() {
               key={item.name}
               href={item.href}
               onClick={(e) => handleNavClick(e, item)}
-              className={`text-sm font-medium transition-colors hover:text-primary hover:underline-offset-4 hover:underline mx-4 ${
-                (pathname === item.href || (pathname === '/' && item.isSection)) ? "text-primary" : "text-foreground/80"
-              }`}
+              className="text-sm font-medium transition-colors hover:text-foreground/80 hover:underline-offset-4 hover:underline mx-4 text-foreground/60"
             >
               {item.name}
             </Link>
@@ -93,9 +91,10 @@ export default function Navbar() {
         <div className="flex items-center gap-4 ml-4">
           <ModeToggle />
           <Button
-            size="sm"
+            
+            variant={'gradient'}
             // Use your primary and secondary colors for the gradient
-            className="hidden sm:flex rounded-full bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] hover:opacity-90 transition-opacity shadow-lg text-primary-foreground" // Ensure text is white on the gradient
+            className="hidden sm:flex rounded-full  hover:opacity-90 transition-opacity shadow-lg text-primary-foreground" // Ensure text is white on the gradient
           >
             Get Started
           </Button>
@@ -103,8 +102,8 @@ export default function Navbar() {
           {/* Mobile Menu */}
           <Sheet open={isOpen} onOpenChange={setIsOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon" className="shrink-0">
-                <Menu className="h-5 w-5 text-foreground" /> {/* Ensure icon color respects theme */}
+              <Button variant="ghost" size="lg" className="shrink-0 p-2">
+                <Menu className="h-6 w-6 text-foreground" />
               </Button>
             </SheetTrigger>
             <SheetContent
