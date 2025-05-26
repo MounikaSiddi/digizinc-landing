@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion"
+import { useContactModal } from "../ClientWrapper";
 
 const CTA = () => {
+  const { openContactModal } = useContactModal();
   return (
     // FIX: Use 'bg-secondary' and 'text-secondary-foreground' for theme integration
     <section className="relative py-24 md:py-40 overflow-hidden bg-white dark:bg-gradient-to-b dark:from-secondary-800 dark:to-secondary-950 dark:bg-opacity-[0.06]">
@@ -46,6 +48,7 @@ const CTA = () => {
             <Button
               className="px-8 py-3 rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-lg hover:opacity-90 transition-opacity transform hover:scale-105"
               size="lg"
+              onClick={() => openContactModal(undefined)} 
             >
               Get Started
             </Button>
