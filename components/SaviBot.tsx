@@ -18,7 +18,7 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      text: "Hi there! I'm Saavee, your AI assistant. How can I help you with digital marketing, content creation, or industry-specific AI solutions?",
+      text: "Hi there! I'm SaaVik AI, your AI assistant. How can I help you with digital marketing, content creation, or industry-specific AI solutions?",
       sender: 'bot'
     }
   ]);

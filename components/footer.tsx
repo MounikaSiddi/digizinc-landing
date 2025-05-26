@@ -5,40 +5,40 @@ const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="dark:bg-secondary-900 bg-gray-50 text-gray-600 dark:text-gray-400 py-12 md:py-16 lg:py-20 transition-colors duration-200">
-      <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-sm md:text-base">
+    <footer className="dark:bg-secondary-900 bg-gray-50 text-gray-600 dark:text-gray-200 py-10 md:py-16 lg:py-20 transition-colors duration-200 min-h-[50vh] flex items-center">
+      <div className="container mx-auto px-4 md:px-6 flex flex-col items-center text-sm md:text-base font-sans">
         <div className="mb-8 md:mb-10 text-center">
-          <h4 className="text-xl md:text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-200">IN SEARCH FOR SOME ACTION</h4>
-          <ul className="flex flex-wrap gap-6 justify-center">
+          <h4 className="text-xl md:text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-400 font-heading">IN SEARCH FOR SOME ACTION</h4>
+          <ul className="flex flex-wrap gap-6 justify-center pt-16 font-sans">
             <li>
-              <Link href="https://linkedin.com/" target="_blank" rel="noopener noreferrer">
-                LinkedIn
+              <Link href="https://dribbble.com/digizinc_" target="_blank" rel="noopener noreferrer">
+                Dribbble
               </Link>
             </li>
             <li>
-              <Link href="https://youtube.com/" target="_blank" rel="noopener noreferrer">
-                YouTube
+              <Link href="https://medium.com/@digizinc_" target="_blank" rel="noopener noreferrer">
+                Medium
               </Link>
             </li>
             <li>
-              <Link href="https://instagram.com/" target="_blank" rel="noopener noreferrer">
+              <Link href="https://www.instagram.com/digizinc_" target="_blank" rel="noopener noreferrer">
                 Instagram
               </Link>
             </li>
             <li>
-              <Link href="https://facebook.com/" target="_blank" rel="noopener noreferrer">
-                Facebook
+              <Link href="https://www.behance.net/digizinc_" target="_blank" rel="noopener noreferrer">
+                Behance
               </Link>
             </li>
             <li>
-              <Link href="https://twitter.com/" target="_blank" rel="noopener noreferrer">
-                Twitter
+              <Link href="https://x.com/digizinc_" target="_blank" rel="noopener noreferrer">
+                X (Twitter)
               </Link>
             </li>
           </ul>
         </div>
 
-        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-4 md:gap-6">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-16 w-full gap-4 md:gap-6 font-sans">
           <div className="text-center md:text-left">
             &copy; {currentYear} SaaVik Solutions Pvt. Ltd. || All rights reserved.
           </div>

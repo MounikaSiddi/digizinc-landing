@@ -69,14 +69,12 @@ const Hero = () => {
   }, [])
 
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden bg-white/10 dark:bg-gradient-to-b dark:from-secondary-950 dark:to-secondary-800 dark:bg-opacity-[0.04] rounded-b-[20px]">
-
+    <section className="relative py-16 md:py-20 overflow-hidden bg-white dark:bg-gradient-to-b dark:from-secondary-950 dark:to-secondary-800 dark:bg-opacity-[0.06] rounded-b-lg">
       {/* Background image with low opacity */}
       <div 
-  className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat opacity-100 dark:opacity-100"
-  style={{ mixBlendMode: 'overlay' }}
-></div>
-
+        className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat opacity-[0.03] dark:opacity-[0.02]"
+        style={{ mixBlendMode: 'multiply' }}
+      ></div>
 
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
@@ -129,7 +127,7 @@ const Hero = () => {
 
         {/* Trusted By Section - Adjusted positioning */}
         <motion.div
-          className="mt-16 pb-4" /* Reduced top margin and added bottom padding */
+          className="mt-16 pb-8" /* Reduced top margin and added bottom padding */
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.5, duration: 0.5 }}
@@ -148,6 +146,7 @@ const Hero = () => {
 
             <div className="flex animate-marquee gap-16 opacity-80 hover:opacity-100 transition-opacity duration-500">
               {/* First set of logos */}
+              {/*
               {clientLogos.map((logo, i) => (
                 <div
                   key={`first-${i}`}
@@ -165,8 +164,10 @@ const Hero = () => {
                   )}
                 </div>
               ))}
+              */}
 
               {/* Duplicate set for seamless loop */}
+              {/*
               {clientLogos.map((logo, i) => (
                 <div
                   key={`second-${i}`}
@@ -184,6 +185,7 @@ const Hero = () => {
                   )}
                 </div>
               ))}
+              */}
             </div>
           </div>
         </motion.div>

@@ -154,7 +154,7 @@ const IndustryTabs = () => {
             Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span>
           </h2>
           <p className="text-foreground text-lg">
-            Savi AI creates custom solutions for a wide range of industries
+            SaaVik AI creates custom solutions for a wide range of industries
           </p>
         </div>
 
