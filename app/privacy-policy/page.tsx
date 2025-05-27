@@ -14,14 +14,14 @@ const PrivacyPolicy = () => {
         </h1>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.1. Introduction</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
           <p className="mb-4 leading-relaxed">
             Welcome to DigiZinc. Your privacy is very important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.digizinc.com" className="text-blue-600 hover:underline">Digizinc.com</a>.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.2. Information We Collect</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">2. Information We Collect</h2>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Personal Information:</h3>
           <p className="mb-4 leading-relaxed">
             When you interact with the Site (e.g., fill out a contact form or subscribe to a newsletter), we may ask for personal details such as your name, email address, phone number, or other identifiers.
@@ -37,7 +37,7 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.3. How We Use Your Information</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">3. How We Use Your Information</h2>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">To Provide Services:</h3>
           <p className="mb-4 leading-relaxed">
             We use your information to operate and improve the Site, respond to inquiries, and deliver the services you request.
@@ -57,7 +57,7 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.4. Information Sharing and Disclosure</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">4. Information Sharing and Disclosure</h2>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Service Providers:</h3>
           <p className="mb-4 leading-relaxed">
             We may share your data with third-party service providers who help us operate the Site (e.g., hosting, analytics, email communication). These providers are required to protect your data and use it only for the purposes for which it was disclosed.
@@ -73,14 +73,14 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.5. Cookies and Other Tracking Technologies</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">5. Cookies and Other Tracking Technologies</h2>
           <p className="mb-4 leading-relaxed">
-            For details on our use of cookies, please refer to our <a href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</a> (see below).
+            For details on our use of cookies, please refer to our <a href="/cookie-policy" className="text-blue-600 hover:underline">Cookie Policy</a>.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.6. Your Rights and Choices</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">6. Your Rights and Choices</h2>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Access and Correction:</h3>
           <p className="mb-4 leading-relaxed">
             You have the right to request a copy of your personal data or correct inaccurate information.
@@ -96,38 +96,41 @@ const PrivacyPolicy = () => {
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.7. Data Security</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">7. Data Security</h2>
           <p className="mb-4 leading-relaxed">
             We take reasonable measures to protect your information from unauthorized access, disclosure, alteration, and destruction. However, no transmission method over the Internet or electronic storage is 100% secure.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.8. Third-Party Links</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">8. Third-Party Links</h2>
           <p className="mb-4 leading-relaxed">
             Our Site may contain links to third-party websites. This Privacy Policy does not apply to those sites. We encourage you to read their respective privacy policies.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.9. Changes to This Privacy Policy</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">9. Changes to This Privacy Policy</h2>
           <p className="mb-4 leading-relaxed">
             We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated effective date.
           </p>
         </section>
 
         <section className="mb-8">
-          <h2 className="text-2xl font-bold text-gray-900 mb-4">1.10. Contact Us</h2>
+          <h2 className="text-2xl font-bold text-gray-900 mb-4">10. Contact Us</h2>
           <p className="mb-4 leading-relaxed">
-            If you have any questions about this Privacy Policy, please contact us at:
+            If you have any questions or comments about our Privacy Policy, please contact us at:
           </p>
           <p className="mb-2 leading-relaxed">
-            Email: <a href="mailto:privacy@digizinc.com" className="text-blue-600 hover:underline">privacy@digizinc.com</a>
+            Email: <a href="mailto:digizinc.studio@gmail.com" className="text-blue-600 hover:underline">privacy@digizinc.com</a>
           </p>
           <p className="mb-4 leading-relaxed">
-            Address: [Your Company Address]
+            Phone: <a href="tel:+919701563362" className="text-blue-600 hover:underline">‪+91 97015 63362</a>
           </p>
-          {/* Note: You should replace [your-email@yourdomain.com] and [Your Company Address] with actual contact details. */}
+          {/* <p className="mb-4 leading-relaxed">
+            Address: [Your Company Address]
+          </p> */}
+          {/* Remember to replace [Your Company Address] with your actual physical address. */}
         </section>
 
         <div className="text-sm text-gray-500 mt-12 text-center">
