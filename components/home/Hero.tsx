@@ -6,6 +6,8 @@ import { Search } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
 import { TypeAnimation } from 'react-type-animation';
+import { Button } from "@/components/ui/button"
+import { useContactModal } from "../ClientWrapper";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -65,6 +67,7 @@ const Hero = () => {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const isDark = theme === "dark"
+  const { openContactModal } = useContactModal();
 
   useEffect(() => {
     setMounted(true)
@@ -73,11 +76,23 @@ const Hero = () => {
   const typingPlaceholders = [
     'Help with SaaVik AI...',
     2000,
-    'How to achieve SEO optimization...',
-    2000,
-    'How to make my product have a digital presence...',
-    2000,
     'Automate content creation...',
+    2000,
+    'Boost your website ranking...',
+    2000,
+    'Enhance your online presence...',
+    2000,
+    'Unlock new opportunities...',
+    2000,
+    'Stay ahead of the competition...',
+    2000,
+    'Design stunning user experiences...',
+    2000,
+    'Plan marketing strategies with us..',
+    2000,
+    'Boost your online visibility...',
+    2000,
+    'Craft compelling brand stories...',
     2000,
   ];
 
@@ -100,46 +115,55 @@ const Hero = () => {
       <div className="container relative z-10 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Left Section: Text and Search Bar */}
         <motion.div
-          className="max-w-2xl text-center md:text-left space-y-8 md:w-1/2"
+          className="max-w-3xl text-center md:text-left space-y-8 md:w-1/2" // `md:text-left` will align text to left from medium screens up
           initial="hidden"
           animate="visible"
           variants={fadeIn}
         >
+          {/* Introducing Saavik AI assistant badge */}
+          <motion.div
+            variants={fadeIn}
+            className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-900/10 dark:bg-secondary-900/30 text-secondary-900 dark:text-secondary-300 text-sm font-medium mb-6"
+          >
+            <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
+            Introducing our Saavik AI assistant
+          </motion.div>
+
           <motion.h1
-            className="font-heading text-3xl md:text-4xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white"
+            className="font-heading text-left text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
             variants={fadeIn}
           >
             Transform Your{" "}
+         
             <span
-              className="text-transparent bg-clip-text bg-gradient-primary"
+              className="text-transparent bg-clip-text bg-gradient-primary animate-gradient bg-size-200"
             >
-              Digital
-              <br /> Presence
+              Digital Presence
             </span>{" "}
-            <br />
+           
             with AI
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mx-auto md:mx-0 leading-relaxed"
+            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mx-auto md:mx-0 leading-relaxed" // `md:mx-0` removes auto margin on md screens
             variants={fadeIn}
           >
             Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your
             business thrive in the digital era...
           </motion.p>
-          <motion.div variants={fadeIn} className="flex flex-col sm:flex-row justify-center md:justify-start gap-6 pt-8 px-0">
+          <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6 pt-8 px-0">
             <div className="relative w-full max-w-xl group">
               <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-primary-50/70 dark:text-[#FFD6FC]/70 group-hover:text-primary-50 dark:group-hover:text-[#FFD6FC] transition-colors duration-300 pointer-events-none" />
               <Input
                 className="w-full pl-16 pr-8 py-6 text-lg font-medium rounded-full
-                  bg-dark dark:bg-gradient-to-r dark:from-[#743E71] dark:to-[#2B0029]
-                  border-2 border-primary/20 dark:border-[#FFD6FC]/20
-                  hover:border-primary/40 dark:hover:border-[#FFD6FC]/40
-                  focus:border-primary/60 dark:focus:border-[#FFD6FC]/60
-                  focus:ring-4 focus:ring-primary/20 dark:focus:ring-[#FFD6FC]/20
+                  bg-dark dark:bg-gradient-to-r dark:from-[#3a0038] dark:to-[#1a0018]
+                  border-2 border-[#f22ee5]/20 dark:border-[#902ef2]/20
+                  hover:border-[#f22ee5]/40 dark:hover:border-[#902ef2]/40
+                  focus:border-[#f22ee5]/60 dark:focus:border-[#902ef2]/60
+                  focus:ring-4 focus:ring-[#f22ee5]/20 dark:focus:ring-[#902ef2]/20
                   focus:ring-offset-0
                   transition-all duration-300
                   shadow-xl shadow-primary/5
-                  placeholder:text-primary-50/50 dark:placeholder:text-[#FFD6FC]/40
+                  placeholder:text-[#f22ee5]/50 dark:placeholder:text-[#902ef2]/40
                   text-primary-50 dark:text-[#FFD6FC]"
               />
               <div className="absolute inset-y-0 left-16 right-8 flex items-center pointer-events-none">
@@ -152,6 +176,18 @@ const Hero = () => {
                 />
               </div>
             </div>
+            {/* "Get Started" button: Adjusted width for better alignment and responsiveness */}
+            <Button
+              variant={'gradient'}
+              className="w-full sm:w-auto px-10 py-6 rounded-full shadow-lg text-primary-foreground
+                         bg-gradient-to-r from-[#f22ee5] to-[#902ef2]
+                         hover:shadow-lg hover:shadow-[#f22ee5]/20 text-white
+                         transition-all duration-300 text-center font-medium
+                         flex-shrink-0" // Added flex-shrink-0 to prevent shrinking
+              onClick={() => openContactModal(undefined)}
+            >
+              Get Started
+            </Button>
           </motion.div>
         </motion.div>
 
@@ -259,4 +295,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default Hero;

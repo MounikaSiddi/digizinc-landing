@@ -92,7 +92,7 @@ export default function Navbar() { // No props needed here anymore
           <ModeToggle />
           <Button
             variant={'gradient'}
-            className="hidden sm:flex rounded-full hover:opacity-90 transition-opacity shadow-lg text-primary-foreground"
+            className="hidden sm:flex   shadow-lg text-primary-foreground bg-gradient-primary hover:shadow-lg hover:shadow-primary-500/20 text-white  py-3 px-6 rounded-full transition-all duration-300 text-center font-medium"
             onClick={() => openContactModal(undefined)} // Use the openContactModal from context
           >
             Get Started
