@@ -1,60 +1,101 @@
+'use client'
 import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion"
 import { useContactModal } from "../ClientWrapper";
+import Image from "next/image"; // Import Image for optimized avatars
+import { CheckCircle } from "lucide-react"; // Import CheckCircle icon
 
 const CTA = () => {
   const { openContactModal } = useContactModal();
+
   return (
-    // FIX: Use 'bg-secondary' and 'text-secondary-foreground' for theme integration
-    <section className="relative py-24 md:py-40 overflow-hidden bg-white dark:bg-gradient-to-b dark:from-secondary-800 dark:to-secondary-950 dark:bg-opacity-[0.06]">
+    <section className="relative py-8 md:py-16 overflow-hidden bg-white dark:bg-black transition-colors duration-200"> {/* Reduced vertical padding, simplified dark background */}
       {/* Optional: Subtle background gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-30 pointer-events-none"></div>
 
       <div className="container relative z-10">
         <motion.div
-          className="text-center max-w-3xl mx-auto"
+          className="text-center max-w-6xl mx-auto"
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          {/* Animated "Transform with AI" badge */}
-          <div
-            className={`
-              inline-flex items-center gap-2
-              bg-gradient-to-r from-[var(--primary)]/20 to-[var(--secondary)]/20
-              px-4 py-1 rounded-full mb-6
-              animate-fade-in-up transform-gpu translate-y-0
-            `} // Using backticks for multi-line string for className
-            style={{ animationDelay: '0.2s' }}
-          >
-            <span className="h-4 w-4 text-primary motion-safe:animate-pulse">⚡</span>
-            <span className="text-sm font-medium text-foreground">Transform with AI</span>
-          </div>
+          {/* New Content Start */}
+          <div className="p-4 sm:p-8 md:p-12 bg-white dark:bg-secondary-900/20  dark:border-secondary-800"> {/* Added padding, background, border, shadow */}
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
+              <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
+              Let's work together
+            </div>
 
-          {/* FIX: Use 'text-primary-foreground' for the main heading */}
-          <h2 className="text-3xl md:text-5xl font-bold mb-6 text-foreground leading-tight">
-            Ready to Revolutionize Your Digital Presence?
-          </h2>
+            <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
+              Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with SaaVik AI?
+            </h2>
 
-          {/* FIX: Use 'text-secondary-foreground/90' for the paragraph text */}
-          <p className="text-secondary-foreground/90 mb-8 text-lg md:text-xl max-w-2xl mx-auto">
-            Partner with SaaVik AI and leverage the power of AI to transform your business. Our team of experts is
-            ready to help you achieve your digital marketing goals.
-          </p>
+            <p className="text-lg text-left px-10 text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+              Get started with our AI-powered solutions tailored to your industry needs.
+            </p>
 
-          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <div className="space-y-4 max-w-5xl px-8 mb-8 text-left"> {/* Aligned list to left */}
+              <div className="flex items-start">
+                <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0" />
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Personalized consultation</span> to understand your specific needs
+                </p>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0" />
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Custom AI solution</span> designed for your industry
+                </p>
+              </div>
+              <div className="flex items-start">
+                <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0" />
+                <p className="text-gray-700 dark:text-gray-300">
+                  <span className="font-semibold">Comprehensive support</span> throughout implementation
+                </p>
+              </div>
+            </div>
+
+            <div className="flex items-center justify-center space-x-4 mb-8"> {/* Centered avatar section */}
+              <div className="flex -space-x-2">
+                <Image
+                  src="https://placehold.co/40x40/FFD6FC/902EF2?text=C1" // Placeholder for client 1
+                  alt="Client 1"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+                />
+                <Image
+                  src="https://placehold.co/40x40/FFD6FC/902EF2?text=C2" // Placeholder for client 2
+                  alt="Client 2"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+                />
+                <Image
+                  src="https://placehold.co/40x40/FFD6FC/902EF2?text=C3" // Placeholder for client 3
+                  alt="Client 3"
+                  width={40}
+                  height={40}
+                  className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+                />
+              </div>
+              <div className="text-sm text-gray-600 dark:text-gray-400">
+                <span className="text-primary-500 font-semibold">100+</span> businesses already using Savi AI
+              </div>
+            </div>
+
             {/* Primary Gradient Button */}
             <Button
               className="px-8 py-3 rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-lg hover:opacity-90 transition-opacity transform hover:scale-105"
               size="lg"
-              onClick={() => openContactModal(undefined)} 
+              onClick={() => openContactModal(undefined)}
             >
               Get Started
             </Button>
-            {/* Outline Button adapted to theme */}
-            
           </div>
+          {/* New Content End */}
         </motion.div>
       </div>
 
