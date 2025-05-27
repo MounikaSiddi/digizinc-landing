@@ -64,14 +64,14 @@ const Footer = () => {
             <Link href="/" aria-label="DigiZinc Home">
               {theme === "dark" ? (
                 <Image
-                  src="/digizinc-header-logo-dark.png"
+                  src="/digizinc-header-logo-light.png"
                   alt="DigiZinc Logo"
                   width={150}
                   height={40}
                 />
               ) : (
                 <Image
-                  src="/digizinc-header-logo-light.png"
+                  src="/digizinc-header-logo-dark.png"
                   alt="DigiZinc Logo"
                   width={150}
                   height={40}

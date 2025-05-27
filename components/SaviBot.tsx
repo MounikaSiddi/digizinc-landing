@@ -1,5 +1,5 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react'; // Import useEffect and useRef
+import React, { useState, useEffect, useRef } from 'react';
 import { X, SendHorizontal, Sparkles } from 'lucide-react';
 
 interface SaviBotProps {
@@ -23,7 +23,7 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
     }
   ]);
 
-  const messagesEndRef = useRef<HTMLDivElement>(null); // Ref for scrolling to the bottom
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   // Scroll to the bottom of the chat when messages update
   useEffect(() => {
@@ -66,8 +66,9 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 w-full max-w-md"> {/* Positioned to bottom-right */}
-      <div className="bg-white dark:bg-secondary-900 rounded-xl shadow-2xl h-[600px] flex flex-col overflow-hidden border border-gray-200 dark:border-secondary-700"> {/* Added border for definition */}
+    <div className="fixed bottom-4 right-4 z-50 p-2 sm:p-0 w-[calc(100vw-32px)] max-w-sm sm:max-w-md md:max-w-md"> {/* Adjusted width and max-width for responsiveness */}
+      <div className="bg-white dark:bg-secondary-900 rounded-xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-secondary-700
+                      h-[80vh] max-h-[600px] sm:h-[600px] sm:max-h-[600px]"> {/* Adjusted height for responsiveness */}
         <div className="bg-gradient-primary p-4 flex items-center justify-between">
           <div className="flex items-center">
             <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
@@ -115,7 +116,7 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
               )}
             </div>
           ))}
-          <div ref={messagesEndRef} /> {/* Element to scroll to */}
+          <div ref={messagesEndRef} />
         </div>
 
         <div className="p-4 border-t border-gray-100 dark:border-secondary-800">
@@ -136,21 +137,21 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
             </button>
           </div>
 
-          <div className="mt-3 flex flex-wrap gap-2"> {/* Changed to flex-wrap and gap-2 for better layout */}
+          <div className="mt-3 flex flex-wrap gap-2">
             <button
-              onClick={() => setInput("AI solutions")} // Added onClick to populate input
+              onClick={() => setInput("AI solutions")}
               className="bg-gray-100 dark:bg-secondary-800 hover:bg-gray-200 dark:hover:bg-secondary-700 text-xs px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 transition-colors"
             >
               AI solutions
             </button>
             <button
-              onClick={() => setInput("Video animation")} // Added onClick to populate input
+              onClick={() => setInput("Video animation")}
               className="bg-gray-100 dark:bg-secondary-800 hover:bg-gray-200 dark:hover:bg-secondary-700 text-xs px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 transition-colors"
             >
               Video animation
             </button>
             <button
-              onClick={() => setInput("Get a quote")} // Added onClick to populate input
+              onClick={() => setInput("Get a quote")}
               className="bg-gray-100 dark:bg-secondary-800 hover:bg-gray-200 dark:hover:bg-secondary-700 text-xs px-3 py-1 rounded-full text-gray-700 dark:text-gray-300 transition-colors"
             >
               Get a quote
