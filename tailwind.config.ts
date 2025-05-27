@@ -117,7 +117,7 @@ const config = {
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-        "gradient-primary": "linear-gradient(to right,  #902ef2, #f22ee5)",
+        "gradient-primary": "linear-gradient(to right, #f22ee5, #902ef2)",
       },
     },
   },

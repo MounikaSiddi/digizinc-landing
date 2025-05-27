@@ -130,7 +130,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1
-            className="font-heading text-left text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
+            className="font-heading  text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
             variants={fadeIn}
           >
             Transform Your{" "}

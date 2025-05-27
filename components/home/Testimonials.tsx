@@ -46,7 +46,7 @@ const StarRating = ({ rating }: { rating: number }) => {
 
 const Testimonials = () => {
   return (
-    <section className="py-24 md:py-32 bg-gradient-to-b from-background to-background/95 text-foreground relative overflow-hidden">
+    <section className="py-16 md:py-24 bg-gradient-to-b from-background to-background/95 text-foreground relative overflow-hidden">
       <div className="container px-4 md:px-6 relative z-10">
         <motion.div
           className="text-center mb-16"
