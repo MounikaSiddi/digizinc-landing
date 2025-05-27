@@ -36,7 +36,7 @@ const Solutions = () => {
           variants={fadeIn}
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight text-foreground"> {/* Use text-foreground for the general heading text */}
-            <span className="bg-gradient-primary to-secondary text-transparent bg-clip-text">Intelligent Solutions</span> for Your
+            <span className="bg-gradient-primary to-secondary text-transparent bg-clip-text">Saavik AI : Intelligent Solutions</span> for Your
             <br /> Business
           </h2>
           <p className="text-foreground text-lg md:text-xl max-w-5xl mx-auto leading-relaxed">
@@ -111,7 +111,7 @@ const Solutions = () => {
               >
                 <CardContent className="p-8 flex flex-col h-full">
                   <div
-                    className="relative mb-6 w-14 h-14 rounded-2xl bg-gradient-primary to-secondary p-0.5 group-hover:scale-110 transition-all duration-300"
+                    className="relative mb-6 w-10 h-10 rounded-2xl bg-gradient-primary to-secondary p-0.5 group-hover:scale-110 transition-all duration-300"
                   >
                     <div
                       className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] opacity-20 rounded-2xl group-hover:opacity-30 transition-opacity duration-300"
@@ -122,7 +122,7 @@ const Solutions = () => {
                       <div
                         className="text-primary group-hover:text-primary-800-foreground transition-colors duration-300"
                       >
-                        {solution.icon}
+                        {React.cloneElement(solution.icon, { className: "h-6 w-6" })}
                       </div>
                     </div>
                   </div>
