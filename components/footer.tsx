@@ -45,7 +45,7 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="text-gray-200 dark:text-gray-50 hover:text-purple-400 dark:hover:text-purple-500 transition-colors duration-300 transform hover:scale-110"
+                  className="text-gray-600 dark:text-gray-50 hover:text-purple-400 dark:hover:text-purple-500 transition-colors duration-300 transform hover:scale-110"
                 >
                   <link.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9" />
                 </Link>
