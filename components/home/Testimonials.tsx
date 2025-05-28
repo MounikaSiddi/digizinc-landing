@@ -9,21 +9,21 @@ const testimonials = [
     author: "Sarah Johnson",
     role: "CEO, TechVision Inc",
     rating: 5,
-    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
   },
   {
     content: "The AI-driven insights have helped us make better decisions and grow our business exponentially.",
     author: "Michael Chen",
     role: "CTO, InnovateCorp",
     rating: 5,
-    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
   },
   {
     content: "Outstanding service and cutting-edge solutions. SaaVik AI has been a game-changer for our team.",
     author: "Emily Rodriguez",
     role: "Director, FutureScale",
     rating: 5,
-    avatar: "https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2"
+    avatar: "https://cdn-icons-png.flaticon.com/512/149/149071.png"
   },
 ];
 
@@ -55,7 +55,7 @@ const Testimonials = () => {
           viewport={{ once: true }}
           transition={{ duration: 0.5 }}
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+          <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
             What Our Clients Say
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">

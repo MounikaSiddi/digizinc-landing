@@ -26,7 +26,7 @@ const staggerContainer = {
 const Solutions = () => {
   const { openContactModal } = useContactModal();
   return (
-    <section id="solutions" className="py-16 md:py-24 bg-background"> {/* Use bg-background for consistency */}
+    <section id="solutions" className="py-16 md:py-24 bg-gray-50 dark:bg-secondary-950"> {/* Use bg-background for consistency */}
       <div className="container px-2 md:px-4">
         <motion.div
           className="text-center mb-20"
@@ -36,8 +36,7 @@ const Solutions = () => {
           variants={fadeIn}
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight text-foreground"> {/* Use text-foreground for the general heading text */}
-            <span className="bg-gradient-primary to-secondary text-transparent bg-clip-text">Saavik AI : Intelligent Solutions</span> for Your
-            <br /> Business
+            SaaVik AI :<span className="bg-gradient-primary to-secondary text-transparent bg-clip-text"> Your Intelligent</span>  Partner
           </h2>
           <p className="text-foreground text-lg md:text-xl max-w-5xl mx-auto leading-relaxed">
             Digizinc provides comprehensive digital marketing solutions to help your business grow and succeed online.
@@ -96,7 +95,7 @@ const Solutions = () => {
           ].map((solution, index) => (
             <motion.div key={index} variants={fadeIn}>
               <Card
-                className="group relative  dark:bg-card backdrop-blur-md
+                className="group relative  bg-white dark:bg-secondary-900 backdrop-blur-md
                 border border-primary-600/20 dark:border-border
                 hover:border-primary-800/40 dark:hover:border-primary/40
                 ring-1 ring-secondary-600/20 dark:ring-0
@@ -120,9 +119,9 @@ const Solutions = () => {
                       className="relative h-full w-full flex items-center justify-center bg-background/80 rounded-2xl"
                     >
                       <div
-                        className="text-primary group-hover:text-primary-800-foreground transition-colors duration-300"
+                        className=" text-primary-500 group-hover:text-primary-800-foreground transition-colors duration-300"
                       >
-                        {React.cloneElement(solution.icon, { className: "h-6 w-6" })}
+                        {React.cloneElement(solution.icon, { className: "h-5 w-5" })}
                       </div>
                     </div>
                   </div>

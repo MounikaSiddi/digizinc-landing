@@ -60,21 +60,21 @@ const CTA = () => {
             <div className="flex items-center justify-center space-x-4 mb-8"> {/* Centered avatar section */}
               <div className="flex -space-x-2">
                 <Image
-                  src="https://placehold.co/40x40/FFD6FC/902EF2?text=C1" // Placeholder for client 1
+                 src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1600" 
                   alt="Client 1"
                   width={40}
                   height={40}
                   className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
                 />
                 <Image
-                  src="https://placehold.co/40x40/FFD6FC/902EF2?text=C2" // Placeholder for client 2
+                   src="https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1600" 
                   alt="Client 2"
                   width={40}
                   height={40}
                   className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
                 />
                 <Image
-                  src="https://placehold.co/40x40/FFD6FC/902EF2?text=C3" // Placeholder for client 3
+                 src="https://images.pexels.com/photos/3776939/pexels-photo-3776939.jpeg?auto=compress&cs=tinysrgb&w=1600" 
                   alt="Client 3"
                   width={40}
                   height={40}

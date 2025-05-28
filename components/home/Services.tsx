@@ -3,7 +3,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Brush, Image, Laptop, Layout, MessageSquare, FilmIcon,
-  PenTool, Palette, Wand2, BarChart3
+  PenTool, Palette, Wand2, BarChart3,
+  CheckCircle
 } from 'lucide-react';
 import ContactUs from '../Contactus';
 
@@ -95,8 +96,8 @@ const Services: React.FC = () => {
           </div>
 
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
-            <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
-              <div className="flex items-start mb-8">
+            <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
+              <div className="flex  justify-center items-center mb-8">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm">
                   {activeService.icon}
                 </div>
@@ -104,13 +105,13 @@ const Services: React.FC = () => {
                   <h3 className="text-2xl font-semibold font-heading text-white">
                     {activeService.title}
                   </h3>
-                  <p className="text-gray-400 font-medium text-base leading-relaxed">
-                    {activeService.description}
-                  </p>
                 </div>
               </div>
+                  <p className="text-gray-400 p-3 px-8 font-medium text-base leading-relaxed w-full">
+                    {activeService.description}
+                  </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-10">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-6 mb-10">
                 {activeService.items.map((item, index) => (
                   <div
                     key={index}
@@ -119,7 +120,7 @@ const Services: React.FC = () => {
                       group hover:shadow-xl hover:scale-[1.025] transition-all duration-300"
                   >
                     <div className="flex items-center space-x-3">
-                      <div className="w-2.5 h-2.5 rounded-full bg-primary-600/50 group-hover:bg-primary-600 transition-colors"></div>
+                     <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0 group-hover:text-white transition-colors" />
                       <p className="text-gray-300 group-hover:text-white transition-colors text-sm">
                         {item}
                       </p>

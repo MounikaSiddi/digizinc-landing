@@ -75,7 +75,7 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
               <Sparkles className="h-5 w-5 text-white" />
             </div>
             <div>
-              <h3 className="text-white font-medium">Saavee AI Assistant</h3>
+              <h3 className="text-white font-medium">SaaVik AI Assistant</h3>
               <p className="text-white/80 text-sm">Online</p>
             </div>
           </div>
@@ -126,7 +126,7 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
               value={input}
               onChange={e => setInput(e.target.value)}
               onKeyDown={e => e.key === 'Enter' && handleSendMessage()}
-              placeholder="Ask Saavee anything..."
+              placeholder="Ask SaaVik anything..."
               className="flex-1 bg-gray-100 dark:bg-secondary-800 border-none rounded-l-full py-3 px-4 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400"
             />
             <button
