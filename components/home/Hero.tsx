@@ -125,7 +125,7 @@ const Hero = () => {
             variants={fadeIn}
             className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-900/10 dark:bg-secondary-900/30 text-secondary-900 dark:text-secondary-300 text-sm font-medium mb-6"
           >
-            <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
+            <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2 animate-pulse"></span>
             Introducing our Saavik AI assistant
           </motion.div>
 
