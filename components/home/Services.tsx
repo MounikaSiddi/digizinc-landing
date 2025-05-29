@@ -21,6 +21,8 @@ const Services: React.FC = () => {
   const [activeTab, setActiveTab] = useState('branding');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIndustry, setModalIndustry] = useState<string | undefined>(undefined);
+  // NEW STATE: Tracks if a tab has been clicked
+  const [tabClicked, setTabClicked] = useState(false); 
 
   const handleLearnMoreClick = (title: string) => {
     setModalIndustry(title);
@@ -49,14 +51,22 @@ const Services: React.FC = () => {
   const activeService = services.find(service => service.id === activeTab) || services[0];
 
   useEffect(() => {
-    const isMobileOrTablet = window.innerWidth < 1024;
-    if (isMobileOrTablet && contentRef.current) {
-      contentRef.current.scrollIntoView({
-        behavior: 'smooth',
-        block: 'start',
-      });
+    // Only scroll if a tab has been explicitly clicked
+    if (tabClicked) { 
+      const isMobileOrTablet = window.innerWidth < 1024;
+      if (isMobileOrTablet && contentRef.current) {
+        contentRef.current.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+        });
+      }
     }
-  }, [activeTab]);
+  }, [activeTab, tabClicked]); // Add tabClicked to dependency array
+
+  const handleTabClick = (serviceId: string) => {
+    setActiveTab(serviceId);
+    setTabClicked(true); // Set tabClicked to true when a tab is clicked
+  };
 
   return (
     <section id="services" className="py-16 md:py-24 bg-white dark:bg-dark">
@@ -65,7 +75,7 @@ const Services: React.FC = () => {
           <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
             Our <span className="text-transparent bg-clip-text bg-gradient-primary">Services</span>
           </h2>
-          <p className="text-lg -gray-300">
+          <p className="text-lg text-gray-700 dark:text-gray-300"> {/* Fixed text-gray-300 in dark mode */}
             Comprehensive end-to-end media solutions powered by AI for every industry
           </p>
         </div>
@@ -80,7 +90,7 @@ const Services: React.FC = () => {
                 {services.map(service => (
                   <button
                     key={service.id}
-                    onClick={() => setActiveTab(service.id)}
+                    onClick={() => handleTabClick(service.id)} 
                     className={`flex items-center px-4 py-3 rounded-lg text-left transition-all duration-200 ${
                       activeTab === service.id
                         ? 'bg-gradient-primary text-white shadow-lg scale-[1.02]'
@@ -97,7 +107,7 @@ const Services: React.FC = () => {
 
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
             <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
-              <div className="flex  justify-center items-center mb-8">
+              <div className="flex justify-center items-center mb-8">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm">
                   {activeService.icon}
                 </div>
@@ -107,9 +117,9 @@ const Services: React.FC = () => {
                   </h3>
                 </div>
               </div>
-                  <p className="text-gray-400 p-3 px-8 font-medium text-base leading-relaxed w-full">
-                    {activeService.description}
-                  </p>
+              <p className="text-gray-400 p-3 px-8 font-medium text-base leading-relaxed w-full">
+                {activeService.description}
+              </p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-6 mb-10">
                 {activeService.items.map((item, index) => (
@@ -129,7 +139,7 @@ const Services: React.FC = () => {
                 ))}
               </div>
 
-              <div className="mt-4 flex justify-end pt-28">
+              <div className="mt-4 flex justify-end px-6 pt-10 md:pt-28"> {/* Added px-6 for consistency, adjusted pt */}
                 <button
                   onClick={() => handleLearnMoreClick(activeService.title)}
                   className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-primary text-white font-medium
