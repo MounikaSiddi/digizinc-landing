@@ -100,10 +100,7 @@ const Hero = () => {
     <section className={`relative py-16 md:py-20 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
       bg-white dark:bg-black transition-colors duration-300`}>
       {/* Background image with low opacity */}
-      <div
-        className="absolute inset-0 bg-[url('/hero-bg.png')] bg-cover bg-center bg-no-repeat opacity-[0.03] dark:opacity-[0.02]"
-        style={{ mixBlendMode: 'multiply' }}
-      ></div>
+      
 
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
