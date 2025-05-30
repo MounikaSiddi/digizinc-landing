@@ -97,7 +97,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className={`relative py-16 md:py-20 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
+    <section className={`relative pt-0 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
       bg-white dark:bg-black transition-colors duration-300`}>
       {/* Background image with low opacity */}
       
@@ -120,28 +120,24 @@ const Hero = () => {
           {/* Introducing Saavik AI assistant badge */}
           <motion.div
             variants={fadeIn}
-            className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-900/10 dark:bg-secondary-900/30 text-secondary-900 dark:text-secondary-300 text-sm font-medium mb-6"
+            className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-900/10 dark:bg-secondary-900/30 text-secondary-900 dark:text-secondary-300 text-sm font-medium -mb-2"
           >
             <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2 animate-pulse"></span>
             Introducing our Saavik AI assistant
           </motion.div>
 
           <motion.h1
-            className="font-heading  text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
+            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
             variants={fadeIn}
           >
             Transform Your{" "}
-         
-            <span
-              className="text-transparent bg-clip-text bg-gradient-primary animate-gradient bg-size-200"
-            >
+            <span className="text-transparent bg-clip-text bg-gradient-primary animate-gradient bg-size-200">
               Digital Presence
             </span>{" "}
-           
             with AI
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-gray-700 dark:text-gray-300 mx-auto md:mx-0 leading-relaxed" // `md:mx-0` removes auto margin on md screens
+            className="text-lg md:text-xl text-black dark:text-white mx-auto md:mx-0 leading-relaxed" // `md:mx-0` removes auto margin on md screens
             variants={fadeIn}
           >
             Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your

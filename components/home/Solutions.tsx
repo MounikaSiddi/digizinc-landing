@@ -26,10 +26,10 @@ const staggerContainer = {
 const Solutions = () => {
   const { openContactModal } = useContactModal();
   return (
-    <section id="solutions" className="py-16 md:py-24 bg-gray-50 dark:bg-secondary-950"> {/* Use bg-background for consistency */}
+    <section id="solutions" className="py-12 md:py-16 bg-gray-50 dark:bg-secondary-950"> {/* Reduced from py-16 md:py-24 */}
       <div className="container px-2 md:px-4">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-8" /* Reduced from mb-12 */
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: "-100px" }}

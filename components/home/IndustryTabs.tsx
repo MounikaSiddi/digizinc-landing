@@ -156,11 +156,11 @@ export default function IndustryTabs() { // No props needed here anymore
   };
 
   return (
-    <section id="industries" className="py-16 md:py-24 bg-background transition-colors duration-300">
+    <section id="industries" className="py-12 md:py-16 bg-background transition-colors duration-300 bg-gray-50 dark:bg-secondary-950"> {/* Reduced from py-16 md:py-24 */}
       <div className="container mx-auto px-4 md:px-6">
 
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10"> {/* Reduced from mb-16 */}
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-foreground mb-3"> {/* Reduced from mb-4 */}
             Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span>
           </h2>
           <p className="text-foreground text-lg">
@@ -168,7 +168,7 @@ export default function IndustryTabs() { // No props needed here anymore
           </p>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-3 mb-12">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 lg:grid-cols-9 gap-2 mb-8"> {/* Reduced gap-3 to gap-2 and mb-12 to mb-8 */}
           {industries.map(industry => {
             const isActive = activeIndustry === industry.id
             return (
@@ -176,7 +176,7 @@ export default function IndustryTabs() { // No props needed here anymore
                 key={industry.id}
                 onClick={() => setActiveIndustry(industry.id)}
                 aria-pressed={isActive}
-                className={`relative flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-300 border-2
+                className={`relative flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-300 border-2 bg-gray-50 dark:bg-secondary-900
                   ${isActive
                     ? 'bg-gradient-primary text-white border-transparent shadow-lg shadow-primary/20'
                     : 'bg-card text-foreground border-primary/30 dark:border-primary/20 hover:border-transparent hover:bg-gradient-primary hover:text-white hover:shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10'
@@ -189,7 +189,7 @@ export default function IndustryTabs() { // No props needed here anymore
           })}
         </div>
 
-        <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all">
+        <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all bg-gray-50 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD]">
           <div className="grid grid-cols-1 lg:grid-cols-2">
 
             <div className="p-6 md:p-8 order-2 lg:order-1">

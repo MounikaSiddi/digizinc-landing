@@ -81,7 +81,7 @@ export default function Navbar() { // No props needed here anymore
               key={item.name}
               href={item.href}
               onClick={(e) => handleNavClick(e, item)}
-              className="text-sm font-medium transition-colors hover:text-foreground/80 hover:underline-offset-4 hover:underline mx-4 text-foreground/60"
+              className="text-sm font-medium transition-colors hover:text-foreground/80 hover:underline-offset-4 hover:underline mx-4 text-black dark:text-white"
             >
               {item.name}
             </Link>
