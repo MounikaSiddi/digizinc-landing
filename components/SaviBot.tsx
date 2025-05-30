@@ -66,9 +66,9 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed bottom-4 right-4 z-50 p-2 sm:p-0 w-[calc(100vw-32px)] max-w-sm sm:max-w-md md:max-w-md"> {/* Adjusted width and max-width for responsiveness */}
+    <div className="fixed bottom-4 right-4 z-50 p-2 sm:p-0 w-[calc(100vw-32px)] max-w-sm sm:max-w-md md:max-w-md">
       <div className="bg-white dark:bg-secondary-900 rounded-xl shadow-2xl flex flex-col overflow-hidden border border-gray-200 dark:border-secondary-700
-                      h-[80vh] max-h-[600px] sm:h-[600px] sm:max-h-[600px]"> {/* Adjusted height for responsiveness */}
+                      h-[60vh] max-h-[500px] sm:h-[500px] sm:max-h-[500px]">
         <div className="bg-gradient-primary p-4 flex items-center justify-between">
           <div className="flex items-center">
             <div className="h-10 w-10 rounded-full bg-white/20 flex items-center justify-center mr-3">
@@ -102,8 +102,8 @@ const SaviBot: React.FC<SaviBotProps> = ({ isOpen, onClose }) => {
               <div
                 className={`max-w-[80%] rounded-2xl p-4 ${
                   message.sender === 'user'
-                    ? 'bg-primary-50 dark:bg-primary-900/30 rounded-tr-none text-gray-800 dark:text-gray-200'
-                    : 'bg-white dark:bg-secondary-800 rounded-tl-none text-gray-700 dark:text-gray-300'
+                    ? 'bg-primary-50 dark:bg-primary-900/30 rounded-tr-none text-white'
+                    : 'bg-white dark:bg-secondary-800 rounded-tl-none text-black dark:text-white'
                 }`}
               >
                 {message.text}

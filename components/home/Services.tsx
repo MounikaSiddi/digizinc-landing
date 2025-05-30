@@ -69,21 +69,21 @@ const Services: React.FC = () => {
   };
 
   return (
-    <section id="services" className="py-16 md:py-24 bg-white dark:bg-dark">
+    <section id="services" className="py-12 md:py-16 bg-white dark:bg-dark"> {/* Reduced from py-16 md:py-24 */}
       <div className="container mx-auto px-4 md:px-6">
-        <div className="max-w-3xl mx-auto text-center mb-16">
-          <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+        <div className="max-w-3xl mx-auto text-center mb-10"> {/* Reduced from mb-16 */}
+          <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3"> {/* Reduced from mb-4 */}
             Our <span className="text-transparent bg-clip-text bg-gradient-primary">Services</span>
           </h2>
-          <p className="text-lg text-gray-700 dark:text-gray-300"> {/* Fixed text-gray-300 in dark mode */}
+          <p className="text-lg text-black dark:text-white"> {/* Fixed text-gray-300 in dark mode */}
             Comprehensive end-to-end media solutions powered by AI for every industry
           </p>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-8 min-h-[600px]">
+        <div className="flex flex-col lg:flex-row gap-8 min-h-[400px]"> {/* Changed from min-h-[600px] */}
           <div className="lg:w-1/3 flex flex-col">
-            <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-xl p-4 sticky top-24 flex-1">
-              <h3 className="font-heading text-lg font-semibold text-white mb-4">
+            <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-xl p-4 sticky top-24 flex-1">
+              <h3 className="font-heading text-lg font-semibold dark:text-white mb-4 text-black">
                 Service Categories
               </h3>
               <nav className="flex flex-col space-y-1">
@@ -91,7 +91,7 @@ const Services: React.FC = () => {
                   <button
                     key={service.id}
                     onClick={() => handleTabClick(service.id)} 
-                    className={`flex items-center px-4 py-3 rounded-lg text-left transition-all duration-200 ${
+                    className={`flex items-center px-4 py-3 rounded-lg text-left transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-800 ${
                       activeTab === service.id
                         ? 'bg-gradient-primary text-white shadow-lg scale-[1.02]'
                         : 'text-gray-300 hover:bg-secondary-800 hover:scale-[1.01]'
@@ -106,18 +106,18 @@ const Services: React.FC = () => {
           </div>
 
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
-            <div className="bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
+            <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
               <div className="flex justify-center items-center mb-8">
                 <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm">
                   {activeService.icon}
                 </div>
                 <div className="space-y-1">
-                  <h3 className="text-2xl font-semibold font-heading text-white">
+                  <h3 className="text-2xl font-semibold font-heading text-black dark:text-white">
                     {activeService.title}
                   </h3>
                 </div>
               </div>
-              <p className="text-gray-400 p-3 px-8 font-medium text-base leading-relaxed w-full">
+              <p className="text-black dark:text-white p-3 px-8 font-medium text-base leading-relaxed w-full">
                 {activeService.description}
               </p>
 
@@ -125,13 +125,13 @@ const Services: React.FC = () => {
                 {activeService.items.map((item, index) => (
                   <div
                     key={index}
-                    className="p-5 rounded-xl bg-secondary-800/60 hover:bg-secondary-700
+                    className="p-5 rounded-xl bg-gray-50 dark:bg-secondary-800/60 hover:bg-secondary-700
                       border border-primary-500 hover:border-primary-500
                       group hover:shadow-xl hover:scale-[1.025] transition-all duration-300"
                   >
                     <div className="flex items-center space-x-3">
                      <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0 group-hover:text-white transition-colors" />
-                      <p className="text-gray-300 group-hover:text-white transition-colors text-sm">
+                      <p className="text-black dark:text-white group-hover:text-white transition-colors text-sm">
                         {item}
                       </p>
                     </div>
@@ -139,11 +139,11 @@ const Services: React.FC = () => {
                 ))}
               </div>
 
-              <div className="mt-4 flex justify-end px-6 pt-10 md:pt-28"> {/* Added px-6 for consistency, adjusted pt */}
+              <div className="mt-4 flex justify-left px-6 pt-10 md:pt-28"> {/* Added px-6 for consistency, adjusted pt */}
                 <button
                   onClick={() => handleLearnMoreClick(activeService.title)}
                   className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-primary text-white font-medium
-                    hover:shadow-lg hover:scale-105 transition-all duration-300"
+                    hover:shadow-lg hover:scale-105 transition-all duration-300 "
                 >
                   Learn more about {activeService.title}
                   <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
