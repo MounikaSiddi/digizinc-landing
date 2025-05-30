@@ -104,7 +104,7 @@ export default function BlogClient({ posts }: { posts: any[] }) {
                     <div className="relative h-48 w-full">
                       <Image
                         src={post.image || "/placeholder.svg"}
-                        alt={post.title}
+                        alt={post.title || "blogs picture"}
                         fill
                         className="object-cover"
                       />

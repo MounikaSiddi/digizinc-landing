@@ -66,12 +66,36 @@ const clientLogos = [
 const Hero = () => {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const [inputValue, setInputValue] = useState('') // Add state for input value
+  const [isTyping, setIsTyping] = useState(false) // Add state to track if user is typing
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null) // Add state for timeout
   const isDark = theme === "dark"
   const { openContactModal } = useContactModal();
 
   useEffect(() => {
     setMounted(true)
   }, [])
+
+  // Handle input change
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const value = e.target.value
+    setInputValue(value)
+    setIsTyping(true)
+    
+    // Clear any existing timeout
+    if (typingTimeout) {
+      clearTimeout(typingTimeout)
+    }
+    
+    // Set a new timeout to detect when user stops typing
+    const timeout = setTimeout(() => {
+      if (value === '') { // Only resume autotyping if input is empty
+        setIsTyping(false)
+      }
+    }, 2000) // Wait 2 seconds after user stops typing
+    
+    setTypingTimeout(timeout)
+  }
 
   const typingPlaceholders = [
     'Help with SaaVik AI...',
@@ -112,7 +136,7 @@ const Hero = () => {
       <div className="container relative z-10 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-12">
         {/* Left Section: Text and Search Bar */}
         <motion.div
-          className="max-w-3xl text-center md:text-left space-y-8 md:w-1/2" // `md:text-left` will align text to left from medium screens up
+          className="max-w-3xl text-center md:text-left space-y-8 md:w-1/2"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -158,25 +182,29 @@ const Hero = () => {
                   shadow-xl shadow-primary/5
                   placeholder:text-[#f22ee5]/50 dark:placeholder:text-[#902ef2]/40
                   text-primary-50 dark:text-[#FFD6FC]"
+                value={inputValue}
+                onChange={handleInputChange}
               />
-              <div className="absolute inset-y-0 left-16 right-8 flex items-center pointer-events-none">
-                <TypeAnimation
-                  sequence={typingPlaceholders}
-                  wrapper="span"
-                  cursor={true}
-                  repeat={Infinity}
-                  className="text-primary-50/50 dark:text-[#FFD6FC]/40 text-lg font-medium"
-                />
-              </div>
+              {!isTyping && inputValue === '' && (
+                <div className="absolute inset-y-0 left-16 right-8 flex items-center pointer-events-none">
+                  <TypeAnimation
+                    sequence={typingPlaceholders}
+                    wrapper="span"
+                    cursor={true}
+                    repeat={Infinity}
+                    className="text-primary-50/50 dark:text-[#FFD6FC]/40 text-lg font-medium"
+                  />
+                </div>
+              )}
             </div>
-            {/* "Get Started" button: Adjusted width for better alignment and responsiveness */}
+            {/* "Get Started" button */}
             <Button
               variant={'gradient'}
               className="w-full sm:w-auto px-10 py-6 rounded-full shadow-lg text-primary-foreground
-                         bg-gradient-to-r from-[#f22ee5] to-[#902ef2]
-                         hover:shadow-lg hover:shadow-[#f22ee5]/20 text-white
-                         transition-all duration-300 text-center font-medium
-                         flex-shrink-0" // Added flex-shrink-0 to prevent shrinking
+                       bg-gradient-to-r from-[#f22ee5] to-[#902ef2]
+                       hover:shadow-lg hover:shadow-[#f22ee5]/20 text-white
+                       transition-all duration-300 text-center font-medium
+                       flex-shrink-0"
               onClick={() => openContactModal(undefined)}
             >
               Get Started

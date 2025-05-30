@@ -14,7 +14,7 @@ const bricolage = Bricolage_Grotesque({
 })
 
 export const metadata: Metadata = {
-  title: "Digizinc - Transform Your Digital Presence with AI",
+  title: "Digizinc | Transform Your Digital Presence with AI",
   description:
     "Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your business thrive in the digital era.",
 }
