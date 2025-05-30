@@ -2,8 +2,9 @@
 import { memo } from "react";
 import {
   FaLocationDot,
-  FaBriefcase,
   FaArrowUpRightFromSquare,
+  FaClock,
+  FaCalendarDays,
 } from "react-icons/fa6";
 import { Raleway, Cedarville_Cursive } from "next/font/google"; // Corrected import for Raleway
 
@@ -46,7 +47,12 @@ const JobCard = memo(({ title, location, type }: JobCardProps) => (
         <FaLocationDot className="text-green-700" /> {location}
       </span>
       <span className="flex items-center gap-1">
-        <FaBriefcase className="text-primary-500" /> {type}
+        {type === "Part-Time" ? (
+          <FaClock className="text-pink-400" />
+        ) : (
+          <FaCalendarDays className="text-pink-400" />
+        )}{" "}
+        {type}
       </span>
       <FaArrowUpRightFromSquare className="text-primary- cursor-pointer text-base sm:text-lg" />
     </div>
@@ -64,7 +70,7 @@ const Careers = () => {
       {/* Main Content Wrapper for Consistency */}
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center z-10">
         {/* Header Section */}
-        <div className="text-center mt-24 px-4 relative z-10">
+        <div className="text-center mt-20 px-4 relative z-10">
           <h1 className={`${raleway.variable} font-sans text-4xl md:text-5xl lg:text-6xl font-extrabold uppercase text-foreground leading-tight mt-9`}>
             Not just a job, but your next <br />
             <span

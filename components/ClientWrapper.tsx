@@ -4,7 +4,7 @@
 import React, { useState, createContext, useContext } from 'react';
 import ContactUs from './Contactus';
 import SaviBot from './SaviBot';
- // Adjust path if necessary
+import WhatsappButton from './Whatsapp'; // Import the WhatsApp component
 
 // Define the shape of our context
 interface ContactModalContextType {
@@ -56,6 +56,14 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
           onClose={closeContactModal}
         />
       )}
+      
+      {/* WhatsApp Button - positioned above the SaviBot button */}
+      <div className="fixed bottom-24 right-6 z-40">
+        <div className="bg-white dark:bg-secondary-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
+          <WhatsappButton />
+        </div>
+      </div>
+      
       <button
         onClick={() => setShowBot(!showBot)}
         className="fixed bottom-6 right-6 bg-gradient-primary p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 z-40"
