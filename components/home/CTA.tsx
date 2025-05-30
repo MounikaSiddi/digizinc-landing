@@ -82,7 +82,7 @@ const CTA = () => {
                 />
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                <span className="text-primary-500 font-semibold">100+</span> businesses already using Savi AI
+                <span className="text-primary-500 font-semibold">100+</span> businesses already using SaaVik AI
               </div>
             </div>
 

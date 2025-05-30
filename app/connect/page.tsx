@@ -1,11 +1,10 @@
-// components/DigitalBusinessCard.tsx
 'use client';
 
 import React from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Linkedin, Twitter, Mail } from 'lucide-react'; // Added Mail for email, and icons for socials
+import { Phone, MapPin, Linkedin, Twitter, Mail } from 'lucide-react';
 
 const DigitalBusinessCard = () => {
   const { theme } = useTheme();
@@ -13,26 +12,27 @@ const DigitalBusinessCard = () => {
 
   // Founder and Company Details (Replace with your actual information)
   const founder = {
-    name: "John Doe", // Replace with founder's name
-    title: "Founder & CEO, Digizinc",
-    photo: "/founder-photo.jpg", // Replace with path to founder's photo in public folder
+    name: "Bhargava Raj", // Replace with founder's name
+    title: "Founder & CEO, SaaVik Solutions",
+    photo: "/founder-photo.jpg", // Replace with path to founder's photo in public folder (e.g., /images/john-doe.jpg)
     social: {
-      twitter: "https://twitter.com/johndoe_ai", // Replace with founder's Twitter
-      linkedin: "https://www.linkedin.com/in/johndoe", // Replace with founder's LinkedIn
-      email: "john.doe@digizinc.com", // Replace with founder's email
+      twitter: "https://twitter.com/raj", // Replace with founder's Twitter
+      linkedin: "https://www.linkedin.com/in/raj", // Replace with founder's LinkedIn
+      email: "Raj@digizinc.com", // Replace with founder's email
     },
   };
 
   const company = {
     name: "Digizinc",
-    logoLight: "/digizinc-logo-light.svg", // Replace with path to light logo
-    logoDark: "/digizinc-logo-dark.svg",   // Replace with path to dark logo
+    logoLight: "/digizinc-header-logo-dark.png", // Replace with path to light logo in public folder
+    logoDark: "/digizinc-header-logo-light.png",   // Replace with path to dark logo in public folder
     address: "123 AI Street, Tech City, 500081 Hyderabad, Telangana, India",
     phone: "+91 98765 43210", // Replace with actual phone number
     social: {
       twitter: "https://twitter.com/digizinc_ai", // Replace with Digizinc Twitter
       linkedin: "https://www.linkedin.com/company/digizinc", // Replace with Digizinc LinkedIn
       email: "info@digizinc.com", // Replace with Digizinc email
+      website:'https://saaviksolutins.com'
     },
   };
 
@@ -45,8 +45,8 @@ TITLE:${founder.title}
 TEL;TYPE=WORK,VOICE:${company.phone}
 ADR;TYPE=WORK,PREF:;;${company.address}
 EMAIL;TYPE=INTERNET,WORK,PREF:${founder.social.email}
-URL:${company.social.linkedin}
-URL:${founder.social.linkedin}
+URL;type=linkedin:${company.social.linkedin}
+URL;type=linkedin:${founder.social.linkedin}
 X-SOCIALPROFILE;type=twitter:${founder.social.twitter}
 X-SOCIALPROFILE;type=twitter:${company.social.twitter}
 END:VCARD`;
@@ -55,7 +55,7 @@ END:VCARD`;
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `${founder.name.replace(/\s/g, '_')}_Contact.vcf`); // Fixed template literal
+    link.setAttribute('download', `${founder.name.replace(/\s/g, '_')}_Contact.vcf`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -88,7 +88,7 @@ END:VCARD`;
         <motion.div variants={itemFadeIn} className="text-center mb-8">
           <Image
             src={isDark ? company.logoDark : company.logoLight}
-            alt={`${company.name} Logo`} // Fixed template literal
+            alt={`${company.name} Logo`}
             width={180}
             height={60}
             className="mx-auto h-auto object-contain"
@@ -116,13 +116,13 @@ END:VCARD`;
         <motion.div variants={itemFadeIn} className="space-y-4 mb-8">
           <div className="flex items-center justify-center text-gray-800 dark:text-gray-200">
             <Phone className="w-5 h-5 mr-3 text-primary-600 dark:text-primary-400" />
-            <a href={`tel:${company.phone}`} className="hover:underline transition-colors duration-200"> // Fixed template literal
+            <a href={`tel:${company.phone}`} className="hover:underline transition-colors duration-200">
               {company.phone}
             </a>
           </div>
           <div className="flex items-center justify-center text-gray-800 dark:text-gray-200">
             <Mail className="w-5 h-5 mr-3 text-primary-600 dark:text-primary-400" />
-            <a href={`mailto:${founder.social.email}`} className="hover:underline transition-colors duration-200"> // Fixed template literal
+            <a href={`mailto:${founder.social.email}`} className="hover:underline transition-colors duration-200">
               {founder.social.email}
             </a>
           </div>
@@ -184,7 +184,7 @@ END:VCARD`;
           )}
           {company.social.email && (
             <a
-              href={`mailto:${company.social.email}`} // Fixed template literal
+              href={`mailto:${company.social.email}`}
               className="text-gray-700 dark:text-gray-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors duration-200"
               aria-label="Digizinc Email"
             >
