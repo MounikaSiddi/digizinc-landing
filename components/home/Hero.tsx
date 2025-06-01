@@ -131,7 +131,7 @@ const Hero = () => {
   ];
 
   return (
-    <section className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
+    <section className={`relative py-16 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
       bg-white dark:bg-black transition-colors duration-300`}>
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
