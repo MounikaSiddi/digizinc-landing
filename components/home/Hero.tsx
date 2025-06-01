@@ -66,15 +66,33 @@ const clientLogos = [
 const Hero = () => {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [inputValue, setInputValue] = useState('') // Add state for input value
-  const [isTyping, setIsTyping] = useState(false) // Add state to track if user is typing
-  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null) // Add state for timeout
+  const [inputValue, setInputValue] = useState('')
+  const [isTyping, setIsTyping] = useState(false)
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null)
+  const [shouldAnimateType, setShouldAnimateType] = useState(true); // New state to control autotyping
   const isDark = theme === "dark"
   const { openContactModal } = useContactModal();
 
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    setMounted(true);
+
+    const checkWindowSize = () => {
+      const currentWidth = window.innerWidth;
+      // Autotyping should be OFF if width is between 767px and 940px
+      // It should also be OFF if the user has started typing
+      const disableAutotyping = (currentWidth >= 767 && currentWidth <= 940);
+      setShouldAnimateType(!disableAutotyping);
+    };
+
+    // Initial check
+    checkWindowSize();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', checkWindowSize);
+
+    // Clean up event listener
+    return () => window.removeEventListener('resize', checkWindowSize);
+  }, []);
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -82,17 +100,19 @@ const Hero = () => {
     setInputValue(value)
     setIsTyping(true)
     
-    // Clear any existing timeout
     if (typingTimeout) {
       clearTimeout(typingTimeout)
     }
     
-    // Set a new timeout to detect when user stops typing
     const timeout = setTimeout(() => {
-      if (value === '') { // Only resume autotyping if input is empty
+      if (value === '') {
         setIsTyping(false)
+        // Re-check window size to determine if autotyping should resume
+        const currentWidth = window.innerWidth;
+        const disableAutotyping = (currentWidth >= 767 && currentWidth <= 940);
+        setShouldAnimateType(!disableAutotyping);
       }
-    }, 2000) // Wait 2 seconds after user stops typing
+    }, 2000)
     
     setTypingTimeout(timeout)
   }
@@ -104,28 +124,15 @@ const Hero = () => {
     2000,
     'Boost your website ranking...',
     2000,
-    'Enhance your online presence...',
-    2000,
     'Unlock new opportunities...',
     2000,
-    'Stay ahead of the competition...',
-    2000,
-    'Design stunning user experiences...',
-    2000,
-    'Plan marketing strategies with us..',
-    2000,
     'Boost your online visibility...',
-    2000,
-    'Craft compelling brand stories...',
     2000,
   ];
 
   return (
-    <section className={`relative pt-0 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
+    <section className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
       bg-white dark:bg-black transition-colors duration-300`}>
-      {/* Background image with low opacity */}
-      
-
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
 
@@ -161,7 +168,7 @@ const Hero = () => {
             with AI
           </motion.h1>
           <motion.p
-            className="text-lg md:text-xl text-black dark:text-white mx-auto md:mx-0 leading-relaxed" // `md:mx-0` removes auto margin on md screens
+            className="text-lg md:text-xl text-black dark:text-white mx-auto md:mx-0 leading-relaxed"
             variants={fadeIn}
           >
             Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your
@@ -181,11 +188,13 @@ const Hero = () => {
                   transition-all duration-300
                   shadow-xl shadow-primary/5
                   placeholder:text-[#f22ee5]/50 dark:placeholder:text-[#902ef2]/40
-                  text-primary-50 dark:text-[#FFD6FC]"
+                  text-primary-50 dark:text-[#FFD6FC]
+                  sm:w-full lg:w-full xl:w-full"
                 value={inputValue}
                 onChange={handleInputChange}
               />
-              {!isTyping && inputValue === '' && (
+              {/* Conditional rendering for TypeAnimation based on new state */}
+              {!isTyping && inputValue === '' && shouldAnimateType && (
                 <div className="absolute inset-y-0 left-16 right-8 flex items-center pointer-events-none">
                   <TypeAnimation
                     sequence={typingPlaceholders}
@@ -201,10 +210,10 @@ const Hero = () => {
             <Button
               variant={'gradient'}
               className="w-full sm:w-auto px-10 py-6 rounded-full shadow-lg text-primary-foreground
-                       bg-gradient-to-r from-[#f22ee5] to-[#902ef2]
-                       hover:shadow-lg hover:shadow-[#f22ee5]/20 text-white
-                       transition-all duration-300 text-center font-medium
-                       flex-shrink-0"
+                        bg-gradient-to-r from-[#f22ee5] to-[#902ef2]
+                        hover:shadow-lg hover:shadow-[#f22ee5]/20 text-white
+                        transition-all duration-300 text-center font-medium
+                        flex-shrink-0"
               onClick={() => openContactModal(undefined)}
             >
               Get Started
@@ -229,57 +238,6 @@ const Hero = () => {
           />
         </motion.div>
       </div>
-
-      {/* Trusted By Section - COMMENTED OUT AS REQUESTED */}
-      {/*
-      <motion.div
-        className="mt-20 pb-8 container mx-auto px-4 md:px-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-      >
-        <div className="text-center mb-6">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-            Trusted by Industry Leaders
-          </p>
-        </div>
-
-        <div className="relative overflow-hidden">
-          <div className="flex animate-marquee gap-16 opacity-80 hover:opacity-100 transition-opacity duration-500 py-4">
-            {mounted && clientLogos.map((logo, i) => (
-              <div
-                key={`first-${i}`}
-                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
-              >
-                <Image
-                  src={isDark ? logo.darkLogo : logo.lightLogo}
-                  alt={`${logo.name} logo`}
-                  width={logo.width}
-                  height={logo.height}
-                  className="h-10 w-auto object-contain transition-all duration-300"
-                  priority={i < 3}
-                />
-              </div>
-            ))}
-
-            {mounted && clientLogos.map((logo, i) => (
-              <div
-                key={`second-${i}`}
-                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
-              >
-                <Image
-                  src={isDark ? logo.darkLogo : logo.lightLogo}
-                  alt={`${logo.name} logo`}
-                  width={logo.width}
-                  height={logo.height}
-                  className="h-10 w-auto object-contain transition-all duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-      */}
 
       {/* Custom CSS for marquee animation and gradient animation */}
       <style jsx>{`
