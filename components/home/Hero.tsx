@@ -66,9 +66,9 @@ const clientLogos = [
 const Hero = () => {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [inputValue, setInputValue] = useState('')
-  const [isTyping, setIsTyping] = useState(false)
-  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null)
+  const [inputValue, setInputValue] = useState('') // Add state for input value
+  const [isTyping, setIsTyping] = useState(false) // Add state to track if user is typing
+  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null) // Add state for timeout
   const [shouldAnimateType, setShouldAnimateType] = useState(true); // New state to control autotyping
   const isDark = theme === "dark"
   const { openContactModal } = useContactModal();
@@ -76,23 +76,9 @@ const Hero = () => {
   useEffect(() => {
     setMounted(true);
 
-    const checkWindowSize = () => {
-      const currentWidth = window.innerWidth;
-      // Autotyping should be OFF if width is between 767px and 940px
-      // It should also be OFF if the user has started typing
-      const disableAutotyping = (currentWidth >= 767 && currentWidth <= 940);
-      setShouldAnimateType(!disableAutotyping);
-    };
-
-    // Initial check
-    checkWindowSize();
-
-    // Add event listener for window resize
-    window.addEventListener('resize', checkWindowSize);
-
-    // Clean up event listener
-    return () => window.removeEventListener('resize', checkWindowSize);
+    
   }, []);
+
 
   // Handle input change
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -100,19 +86,21 @@ const Hero = () => {
     setInputValue(value)
     setIsTyping(true)
     
+    // Clear any existing timeout
     if (typingTimeout) {
       clearTimeout(typingTimeout)
     }
     
+    // Set a new timeout to detect when user stops typing
     const timeout = setTimeout(() => {
-      if (value === '') {
+      if (value === '') { // Only resume autotyping if input is empty
         setIsTyping(false)
         // Re-check window size to determine if autotyping should resume
         const currentWidth = window.innerWidth;
         const disableAutotyping = (currentWidth >= 767 && currentWidth <= 940);
         setShouldAnimateType(!disableAutotyping);
       }
-    }, 2000)
+    }, 2000) // Wait 2 seconds after user stops typing
     
     setTypingTimeout(timeout)
   }
@@ -124,15 +112,22 @@ const Hero = () => {
     2000,
     'Boost your website ranking...',
     2000,
+    
     'Unlock new opportunities...',
     2000,
+    
+  
     'Boost your online visibility...',
     2000,
+    
   ];
 
   return (
-    <section className={`relative py-16 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
+    <section className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
       bg-white dark:bg-black transition-colors duration-300`}>
+      {/* Background image with low opacity */}
+      
+
       {/* Background grid with adjusted opacity */}
       <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
 
@@ -140,10 +135,12 @@ const Hero = () => {
       <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 dark:bg-primary/5 rounded-full blur-3xl -z-10"></div>
       <div className="absolute top-40 -left-20 w-72 h-72 bg-secondary/5 dark:bg-secondary/5 rounded-full blur-3xl -z-10"></div>
 
-      <div className="container relative z-10 px-4 md:px-6 flex flex-col md:flex-row items-center justify-between gap-12">
+      {/* Changed `md:flex-row` to `lg:flex-row` and `md:px-6` to `lg:px-6` */}
+      <div className="container relative z-10 px-4 lg:px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
         {/* Left Section: Text and Search Bar */}
+        {/* Changed `md:text-left space-y-8 md:w-1/2` to `lg:text-left space-y-8 lg:w-1/2` */}
         <motion.div
-          className="max-w-3xl text-center md:text-left space-y-8 md:w-1/2"
+          className="max-w-3xl text-center lg:text-left space-y-8 lg:w-1/2"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -157,8 +154,9 @@ const Hero = () => {
             Introducing our Saavik AI assistant
           </motion.div>
 
+          {/* Changed `md:text-5xl lg:text-6xl` to `lg:text-5xl xl:text-6xl` for heading responsiveness */}
           <motion.h1
-            className="font-heading text-4xl md:text-5xl lg:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
+            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
             variants={fadeIn}
           >
             Transform Your{" "}
@@ -167,14 +165,16 @@ const Hero = () => {
             </span>{" "}
             with AI
           </motion.h1>
+          {/* Changed `md:text-xl text-black dark:text-white mx-auto md:mx-0` to `lg:text-xl text-black dark:text-white mx-auto lg:mx-0` */}
           <motion.p
-            className="text-lg md:text-xl text-black dark:text-white mx-auto md:mx-0 leading-relaxed"
+            className="text-lg lg:text-xl text-black dark:text-white mx-auto lg:mx-0 leading-relaxed" // `lg:mx-0` removes auto margin on lg screens
             variants={fadeIn}
           >
             Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your
             business thrive in the digital era...
           </motion.p>
-          <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center md:justify-start gap-6 pt-8 px-0">
+          {/* Changed `md:justify-start` to `lg:justify-start` */}
+          <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-8 px-0">
             <div className="relative w-full max-w-xl group">
               <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-primary-50/70 dark:text-[#FFD6FC]/70 group-hover:text-primary-50 dark:group-hover:text-[#FFD6FC] transition-colors duration-300 pointer-events-none" />
               <Input
@@ -188,12 +188,10 @@ const Hero = () => {
                   transition-all duration-300
                   shadow-xl shadow-primary/5
                   placeholder:text-[#f22ee5]/50 dark:placeholder:text-[#902ef2]/40
-                  text-primary-50 dark:text-[#FFD6FC]
-                  sm:w-full lg:w-full xl:w-full"
+                  text-primary-50 dark:text-[#FFD6FC]"
                 value={inputValue}
                 onChange={handleInputChange}
               />
-              {/* Conditional rendering for TypeAnimation based on new state */}
               {!isTyping && inputValue === '' && shouldAnimateType && (
                 <div className="absolute inset-y-0 left-16 right-8 flex items-center pointer-events-none">
                   <TypeAnimation
@@ -222,8 +220,9 @@ const Hero = () => {
         </motion.div>
 
         {/* Right Section: Header Image */}
+        {/* Changed `md:w-1/2 flex justify-center md:justify-end mt-12 md:mt-0` to `lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0` */}
         <motion.div
-          className="w-full md:w-1/2 flex justify-center md:justify-end mt-12 md:mt-0"
+          className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0"
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
@@ -238,6 +237,57 @@ const Hero = () => {
           />
         </motion.div>
       </div>
+
+      {/* Trusted By Section - COMMENTED OUT AS REQUESTED */}
+      {/*
+      <motion.div
+        className="mt-20 pb-8 container mx-auto px-4 md:px-6"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.5 }}
+      >
+        <div className="text-center mb-6">
+          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
+            Trusted by Industry Leaders
+          </p>
+        </div>
+
+        <div className="relative overflow-hidden">
+          <div className="flex animate-marquee gap-16 opacity-80 hover:opacity-100 transition-opacity duration-500 py-4">
+            {mounted && clientLogos.map((logo, i) => (
+              <div
+                key={`first-${i}`}
+                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
+              >
+                <Image
+                  src={isDark ? logo.darkLogo : logo.lightLogo}
+                  alt={`${logo.name} logo`}
+                  width={logo.width}
+                  height={logo.height}
+                  className="h-10 w-auto object-contain transition-all duration-300"
+                  priority={i < 3}
+                />
+              </div>
+            ))}
+
+            {mounted && clientLogos.map((logo, i) => (
+              <div
+                key={`second-${i}`}
+                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
+              >
+                <Image
+                  src={isDark ? logo.darkLogo : logo.lightLogo}
+                  alt={`${logo.name} logo`}
+                  width={logo.width}
+                  height={logo.height}
+                  className="h-10 w-auto object-contain transition-all duration-300"
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      </motion.div>
+      */}
 
       {/* Custom CSS for marquee animation and gradient animation */}
       <style jsx>{`
