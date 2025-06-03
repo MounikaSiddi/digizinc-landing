@@ -1,14 +1,18 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Linkedin, Twitter, Mail } from 'lucide-react';
+import { Phone, MapPin, Linkedin, Twitter, Mail, Share2 } from 'lucide-react';
 
 const DigitalBusinessCard = () => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
+
+  const [showSharePrompt, setShowSharePrompt] = useState(false);
+  const [sharerName, setSharerName] = useState('');
+  const [sharerPhone, setSharerPhone] = useState('');
 
   // Founder and Company Details (Replace with your actual information)
   const founder = {
@@ -25,7 +29,7 @@ const DigitalBusinessCard = () => {
   const company = {
     name: "Digizinc",
     logoLight: "/digizinc-header-logo-dark.png", // Replace with path to light logo in public folder
-    logoDark: "/digizinc-header-logo-light.png",   // Replace with path to dark logo in public folder
+    logoDark: "/digizinc-header-logo-light.png",   // Replace with path to dark logo in public folder
     address: "123 AI Street, Tech City, 500081 Hyderabad, Telangana, India",
     phone: "+91 98765 43210", // Replace with actual phone number
     social: {
@@ -61,6 +65,30 @@ END:VCARD`;
     document.body.removeChild(link);
     URL.revokeObjectURL(url);
   };
+
+  const handleShareContact = (e: React.FormEvent) => {
+    e.preventDefault();
+    // In a real application, you would send sharerName and sharerPhone to a backend
+    // or use Web Share API if applicable (though sharing VCF directly is complex)
+    console.log(`Sharing contact with Name: ${sharerName}, Phone: ${sharerPhone}`);
+    alert(`Thank you, ${sharerName}! We've noted your interest in sharing.`);
+    // Optionally, hide the prompt after sharing
+    setShowSharePrompt(false);
+    setSharerName('');
+    setSharerPhone('');
+  };
+
+  useEffect(() => {
+    // Automatically download VCF on component mount
+    generateVCard();
+
+    // Show the share prompt after a short delay
+    const timer = setTimeout(() => {
+      setShowSharePrompt(true);
+    }, 1500); // 1.5 seconds delay
+
+    return () => clearTimeout(timer); // Clean up the timer
+  }, []); // Empty dependency array means this runs once on mount
 
   const fadeIn = {
     hidden: { opacity: 0, y: 20 },
@@ -194,7 +222,7 @@ END:VCARD`;
         </motion.div>
 
         {/* Add to Contacts Button */}
-        <motion.div variants={itemFadeIn} className="text-center">
+        <motion.div variants={itemFadeIn} className="text-center mb-8">
           <button
             onClick={generateVCard}
             className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-[#f22ee5] to-[#902ef2] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 transform"
@@ -202,6 +230,55 @@ END:VCARD`;
             <Phone className="w-5 h-5 mr-3" /> Add to Contacts
           </button>
         </motion.div>
+
+        {/* Share Contact Prompt */}
+        {showSharePrompt && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="mt-8 p-6 bg-white/70 dark:bg-gray-800/70 rounded-2xl shadow-inner border border-white/30 dark:border-gray-700/50 backdrop-blur-md"
+          >
+            <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
+              Share My Contact
+            </h3>
+            <p className="text-center text-gray-700 dark:text-gray-300 mb-6">
+              Would you like to share your details so I can connect with you?
+            </p>
+            <form onSubmit={handleShareContact} className="space-y-4">
+              <div>
+                <label htmlFor="sharerName" className="sr-only">Your Name</label>
+                <input
+                  type="text"
+                  id="sharerName"
+                  placeholder="Your Name"
+                  className="w-full p-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-[#f22ee5] dark:focus:ring-[#902ef2] focus:outline-none text-gray-900 dark:text-white"
+                  value={sharerName}
+                  onChange={(e) => setSharerName(e.target.value)}
+                  required
+                />
+              </div>
+              <div>
+                <label htmlFor="sharerPhone" className="sr-only">Your Mobile Number</label>
+                <input
+                  type="tel"
+                  id="sharerPhone"
+                  placeholder="Your Mobile Number"
+                  className="w-full p-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-[#f22ee5] dark:focus:ring-[#902ef2] focus:outline-none text-gray-900 dark:text-white"
+                  value={sharerPhone}
+                  onChange={(e) => setSharerPhone(e.target.value)}
+                  required
+                />
+              </div>
+              <button
+                type="submit"
+                className="w-full inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-[#f22ee5] to-[#902ef2] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 transform"
+              >
+                <Share2 className="w-5 h-5 mr-3" /> Share My Contact
+              </button>
+            </form>
+          </motion.div>
+        )}
       </motion.div>
 
       {/* Custom CSS for blob animation */}
