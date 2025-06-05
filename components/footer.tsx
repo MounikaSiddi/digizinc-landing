@@ -82,7 +82,7 @@ const Footer = () => {
 
           {/* Copyright Information */}
           <div className="text-center text-sm md:text-base order-last md:order-none">
-            &copy; {currentYear} SaaVik Solutions Pvt. Ltd. || All rights reserved.
+            &copy;SaaVik Solutions Pvt. Ltd. || All rights reserved.
           </div>
 
           {/* Policy Links */}
