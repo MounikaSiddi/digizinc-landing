@@ -1,5 +1,5 @@
 'use client';
-
+import Link from "next/link"
 import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
@@ -114,15 +114,22 @@ END:VCARD`;
         variants={fadeIn}
       >
         {/* Company Logo */}
-        <motion.div variants={itemFadeIn} className="text-center mb-8">
+        <Link href="/" >
           <Image
-            src={isDark ? company.logoDark : company.logoLight}
-            alt={`${company.name} Logo`}
-            width={180}
-            height={60}
-            className="mx-auto h-auto object-contain"
+            src="/digizinc-header-logo-light.png"
+            alt="Digizinc Logo"
+            width={120}
+            height={30}
+            className="h-auto w-auto block dark:hidden mx-auto my-4 object-contain"
           />
-        </motion.div>
+          <Image
+            src="/digizinc-header-logo-dark.png"
+            alt="Digizinc Logo"
+            width={120}
+            height={30}
+            className=" w-auto hidden dark:block mx-auto h-auto my-4 object-contain"
+          />
+        </Link>
 
         {/* Founder Photo and Details */}
         <motion.div variants={itemFadeIn} className="text-center mb-8">

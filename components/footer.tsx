@@ -60,24 +60,24 @@ const Footer = () => {
         {/* Bottom Section: Logo, Copyright, and Policy Links */}
         <div className="flex flex-col md:flex-row items-center justify-between w-full gap-8 md:gap-6">
           {/* DigiZinc Logo */}
+          
           <div className="mb-6 md:mb-0">
-            <Link href="/" aria-label="DigiZinc Home">
-              {theme === "dark" ? (
-                <Image
-                  src="/digizinc-header-logo-dark.png"
-                  alt="DigiZinc Logo"
-                  width={150}
-                  height={40}
-                />
-              ) : (
-                <Image
-                  src="/digizinc-header-logo-light.png"
-                  alt="DigiZinc Logo"
-                  width={150}
-                  height={40}
-                />
-              )}
-            </Link>
+          <Link href="/" >
+          <Image
+            src="/digizinc-header-logo-light.png"
+            alt="Digizinc Logo"
+            width={120}
+            height={30}
+            className="h-auto w-auto block dark:hidden mx-auto my-4 object-contain"
+          />
+          <Image
+            src="/digizinc-header-logo-dark.png"
+            alt="Digizinc Logo"
+            width={120}
+            height={30}
+            className=" w-auto hidden dark:block mx-auto h-auto my-4 object-contain"
+          />
+        </Link>
           </div>
 
           {/* Copyright Information */}
