@@ -4,7 +4,8 @@ import React, { useState, useEffect } from 'react';
 import { useTheme } from 'next-themes';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
-import { Phone, MapPin, Linkedin, Twitter, Mail, Share2 } from 'lucide-react';
+import { Phone, MapPin,   Mail, Share2 } from 'lucide-react';
+import { FaXTwitter, FaLinkedin } from 'react-icons/fa6';
 
 const DigitalBusinessCard = () => {
   const { theme } = useTheme();
@@ -17,8 +18,8 @@ const DigitalBusinessCard = () => {
   // Founder and Company Details (Replace with your actual information)
   const founder = {
     name: "Bhargava Raj", // Replace with founder's name
-    title: "Founder & CEO, SaaVik Solutions",
-    photo: "/founder-photo.jpg", // Replace with path to founder's photo in public folder (e.g., /images/john-doe.jpg)
+    title: "Founder & CEO",
+    photo: "/founder-image.jpg", // Replace with path to founder's photo in public folder (e.g., /images/john-doe.jpg)
     social: {
       twitter: "https://twitter.com/raj", // Replace with founder's Twitter
       linkedin: "https://www.linkedin.com/in/raj", // Replace with founder's LinkedIn
@@ -141,27 +142,29 @@ END:VCARD`;
         </motion.div>
 
         {/* Contact Information */}
-        <motion.div variants={itemFadeIn} className="space-y-4 mb-8">
-          <div className="flex items-center justify-center text-gray-800 dark:text-gray-200">
+        <motion.div variants={itemFadeIn} className="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mb-8">
+          <div className="flex items-center text-gray-800 dark:text-gray-200">
             <Phone className="w-5 h-5 mr-3 text-primary-600 dark:text-primary-400" />
             <a href={`tel:${company.phone}`} className="hover:underline transition-colors duration-200">
               {company.phone}
             </a>
           </div>
-          <div className="flex items-center justify-center text-gray-800 dark:text-gray-200">
+          <div className="flex items-center text-gray-800 dark:text-gray-200">
             <Mail className="w-5 h-5 mr-3 text-primary-600 dark:text-primary-400" />
             <a href={`mailto:${founder.social.email}`} className="hover:underline transition-colors duration-200">
               {founder.social.email}
             </a>
           </div>
-          <div className="flex items-center justify-center text-gray-800 dark:text-gray-200 text-center">
-            <MapPin className="w-5 h-5 mr-3 text-primary-600 dark:text-primary-400 flex-shrink-0" />
-            <span>{company.address}</span>
-          </div>
         </motion.div>
 
+        {/* Location Information */}
+        <div className="flex place-items-start justify-center text-gray-800 dark:text-gray-200">
+          <MapPin className="w-5 h-5 mr-3 text-primary-600 dark:text-primary-400 flex-shrink-0" />
+          <span>{company.address}</span>
+        </div>
+
         {/* Founder Social Handles */}
-        <motion.div variants={itemFadeIn} className="flex justify-center gap-6 mb-8">
+        <motion.div variants={itemFadeIn} className="flex justify-center gap-6 m-8">
           {founder.social.twitter && (
             <a
               href={founder.social.twitter}
@@ -170,7 +173,7 @@ END:VCARD`;
               className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
               aria-label="Founder's Twitter"
             >
-              <Twitter className="w-7 h-7" />
+              <FaXTwitter className="w-7 h-7" />
             </a>
           )}
           {founder.social.linkedin && (
@@ -181,45 +184,13 @@ END:VCARD`;
               className="text-gray-700 dark:text-gray-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
               aria-label="Founder's LinkedIn"
             >
-              <Linkedin className="w-7 h-7" />
+              <FaLinkedin className="w-7 h-7" />
             </a>
           )}
         </motion.div>
 
         {/* Digizinc Social Handles */}
-        <motion.div variants={itemFadeIn} className="flex justify-center gap-6 mb-8">
-          {company.social.twitter && (
-            <a
-              href={company.social.twitter}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors duration-200"
-              aria-label="Digizinc Twitter"
-            >
-              <Twitter className="w-7 h-7" />
-            </a>
-          )}
-          {company.social.linkedin && (
-            <a
-              href={company.social.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors duration-200"
-              aria-label="Digizinc LinkedIn"
-            >
-              <Linkedin className="w-7 h-7" />
-            </a>
-          )}
-          {company.social.email && (
-            <a
-              href={`mailto:${company.social.email}`}
-              className="text-gray-700 dark:text-gray-300 hover:text-secondary-600 dark:hover:text-secondary-400 transition-colors duration-200"
-              aria-label="Digizinc Email"
-            >
-              <Mail className="w-7 h-7" />
-            </a>
-          )}
-        </motion.div>
+       
 
         {/* Add to Contacts Button */}
         <motion.div variants={itemFadeIn} className="text-center mb-8">
@@ -237,7 +208,7 @@ END:VCARD`;
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="mt-8 p-6 bg-white/70 dark:bg-gray-800/70 rounded-2xl shadow-inner border border-white/30 dark:border-gray-700/50 backdrop-blur-md"
+            className="mt-8 p-6 bg-white/30 dark:bg-gray-800/30 rounded-2xl shadow-inner border border-white/20 dark:border-gray-700/30 backdrop-blur-lg"
           >
             <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-4 text-center">
               Share My Contact
@@ -252,7 +223,7 @@ END:VCARD`;
                   type="text"
                   id="sharerName"
                   placeholder="Your Name"
-                  className="w-full p-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-[#f22ee5] dark:focus:ring-[#902ef2] focus:outline-none text-gray-900 dark:text-white"
+                  className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
                   value={sharerName}
                   onChange={(e) => setSharerName(e.target.value)}
                   required
@@ -264,7 +235,7 @@ END:VCARD`;
                   type="tel"
                   id="sharerPhone"
                   placeholder="Your Mobile Number"
-                  className="w-full p-3 rounded-md bg-gray-100 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-[#f22ee5] dark:focus:ring-[#902ef2] focus:outline-none text-gray-900 dark:text-white"
+                   className="w-full px-3 py-2 bg-white dark:bg-secondary-900 border border-gray-200 dark:border-secondary-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary-500 dark:focus:ring-primary-400 transition-all duration-200"
                   value={sharerPhone}
                   onChange={(e) => setSharerPhone(e.target.value)}
                   required
