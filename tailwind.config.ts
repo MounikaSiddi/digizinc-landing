@@ -82,7 +82,7 @@ const config = {
       },
       fontFamily: {
         sans: ["Inter", "sans-serif"],
-        heading: ["Bricolage Grotesque", "sans-serif"],
+        heading: ["Poppins", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",

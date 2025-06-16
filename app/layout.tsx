@@ -1,6 +1,6 @@
 // app/layout.tsx (Server Component)
 import type { Metadata } from "next"
-import { Inter, Bricolage_Grotesque } from "next/font/google"
+import { Inter, Poppins } from "next/font/google"
 import "./globals.css"
 import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
@@ -8,9 +8,14 @@ import Footer from "@/components/footer"
 import ClientWrapper from "@/components/ClientWrapper"
 
 const inter = Inter({ subsets: ["latin"] })
-const bricolage = Bricolage_Grotesque({
+// const bricolage = Bricolage_Grotesque({
+//   subsets: ["latin"],
+//   variable: '--font-bricolage',
+// })
+const poppins = Poppins({
+  weight: ["400", "500", "600"],
   subsets: ["latin"],
-  variable: '--font-bricolage',
+  variable: "--font-poppins",
 })
 
 // Updated Metadata export with AI focus
@@ -73,7 +78,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${bricolage.variable} min-h-screen bg-background`}>
+      <body className={`${inter.className} ${poppins.variable} min-h-screen bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ClientWrapper>
             <Navbar />
