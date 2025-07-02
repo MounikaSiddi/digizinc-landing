@@ -4,6 +4,7 @@
 import React, { useState, useEffect } from 'react';
 import { CheckCircle } from 'lucide-react';
 import Modal from './Modal';
+import { toast, ToastContainer } from 'react-toastify';
 
 interface ContactUsProps {
   defaultIndustry?: string;
@@ -25,20 +26,89 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
     }
   }, [defaultIndustry]);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log({
-      firstName,
-      lastName,
-      email,
-      company,
-      industry,
-      message,
+  // const handleSubmit = (e: React.FormEvent) => {
+  //   e.preventDefault();
+  //   console.log({
+  //     firstName,
+  //     lastName,
+  //     email,
+  //     company,
+  //     industry,
+  //     message,
+  //   });
+  //   if (isModal && onClose) {
+  //     onClose();
+  //   }
+  // };
+//   const handleSubmit = async (e: React.FormEvent) => {
+//   e.preventDefault();
+
+//   const scriptURL = 'YOUR_SCRIPT_URL_HERE'; // replace with your deployed Apps Script URL
+
+//   const formData = new FormData();
+//   formData.append('firstName', firstName);
+//   formData.append('lastName', lastName);
+//   formData.append('email', email);
+//   formData.append('company', company);
+//   formData.append('industry', industry);
+//   formData.append('message', message);
+
+//   try {
+//     const res = await fetch(scriptURL, {
+//       method: 'POST',
+//       body: formData,
+//     });
+
+//     if (res.ok) {
+//       toast.success('Submitted successfully!');
+//       setFirstName('');
+//       setLastName('');
+//       setEmail('');
+//       setCompany('');
+//       setIndustry('');
+//       setMessage('');
+//       if (isModal && onClose) onClose();
+//     } else {
+//       throw new Error('Failed to submit');
+//     }
+//   } catch (err) {
+//     toast.error('Something went wrong. Please try again.');
+//     console.error(err);
+//   }
+// };
+const scriptURL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCEZXQLXHekPQf6O1n0xeBdXyIHFhPc9XKGZbhT0xVZ6ZMnDPD/exec';
+
+const handleSubmit = (e: React.FormEvent) => {
+  e.preventDefault();
+
+  const formData = new FormData();
+  formData.append('firstName', firstName);
+  formData.append('lastName', lastName);
+  formData.append('email', email);
+  formData.append('company', company);
+  formData.append('industry', industry);
+  formData.append('message', message);
+
+  fetch(scriptURL, {
+    method: 'POST',
+    body: formData,
+  })
+    .then(() => {
+      toast.success("Submitted successfully!");
+      // Optionally reset form fields
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setCompany('');
+      setIndustry('');
+      setMessage('');
+      if (isModal && onClose) onClose();
+    })
+    .catch((error) => {
+      toast.error("Submission failed!");
+      console.error("Error submitting to Google Sheet:", error);
     });
-    if (isModal && onClose) {
-      onClose();
-    }
-  };
+};
 
   const formContent = (
     <form className="space-y-4" onSubmit={handleSubmit}>
