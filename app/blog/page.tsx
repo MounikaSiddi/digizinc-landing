@@ -1,11 +1,10 @@
-
-
-import { getAllPosts } from "@/lib/getPosts"
+// app/blog/page.tsx
+import { getAllPosts } from "@/lib/posts"
 import BlogClient from "./BlogClient"
- // We'll create this below
+
 
 export default function BlogPage() {
   const posts = getAllPosts()
-
   return <BlogClient posts={posts} />
 }
+

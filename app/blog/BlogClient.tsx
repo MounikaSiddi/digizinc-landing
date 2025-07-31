@@ -9,14 +9,29 @@ import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { Search, MessageCircle } from "lucide-react"
 
+type PostMeta = {
+  title: string
+  date: string
+  tags: string[]
+  author: string
+  excerpt: string
+  slug: string
+  category: string
+  readTime?: string
+  image?: string
+  featured?: boolean
+}
+
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
 }
 
 const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
 }
 
 const categories = [
@@ -29,43 +44,49 @@ const categories = [
   "Social Media",
 ]
 
-export default function BlogClient({ posts }: { posts: any[] }) {
+export default function BlogClient({ posts }: { posts: PostMeta[] }) {
   const [activeCategory, setActiveCategory] = useState("All")
+  const [searchQuery, setSearchQuery] = useState("")
 
-  const filteredPosts =
-    activeCategory === "All"
-      ? posts
-      : posts.filter((post) => post.category === activeCategory)
+  const filteredPosts = posts
+    .filter((post) =>
+      activeCategory === "All" ? true : post.category === activeCategory
+    )
+   .filter((post) =>
+  (post.title ?? "").toLowerCase().includes(searchQuery.toLowerCase())
+)
+
 
   return (
     <div className="bg-background min-h-screen">
-      {/* Header Section */}
-      <section className="py-16 md:py-24">
-        <div className="container">
-          <motion.div
-            className="text-center space-y-6 max-w-3xl mx-auto"
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-          >
-            <h1 className="text-4xl md:text-6xl font-bold">
-              Digizinc <span className="text-primary">Blogs</span>
-            </h1>
-            <p className="text-muted-foreground text-lg">
-              Stay updated with the latest insights on AI technology, digital marketing trends, and industry best
-              practices
-            </p>
-
-            <div className="relative max-w-md mx-auto mt-8">
-              <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
-              <Input placeholder="Search Articles" className="pl-10 bg-background border-input" />
-            </div>
-          </motion.div>
-        </div>
+      {/* Header */}
+      <section className="py-16 md:py-24 text-center">
+        <motion.div
+          className="container max-w-3xl mx-auto space-y-6"
+          initial="hidden"
+          animate="visible"
+          variants={fadeIn}
+        >
+          <h1 className="text-4xl md:text-6xl font-bold">
+            Digizinc <span className="text-primary">Blogs</span>
+          </h1>
+          <p className="text-muted-foreground text-lg">
+            Stay updated with the latest insights on AI, digital marketing, and growth strategies.
+          </p>
+          <div className="relative max-w-md mx-auto mt-6">
+            <Search className="absolute left-3 top-2.5 h-5 w-5 text-muted-foreground" />
+            <Input
+              placeholder="Search Articles"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10"
+            />
+          </div>
+        </motion.div>
       </section>
 
-      {/* Categories */}
-      <section className="pb-8">
+      {/* Category Filters */}
+      <section className="pb-10">
         <div className="container">
           <motion.div
             className="flex flex-wrap justify-center gap-3"
@@ -77,7 +98,7 @@ export default function BlogClient({ posts }: { posts: any[] }) {
               <motion.div key={category} variants={fadeIn}>
                 <Button
                   variant={activeCategory === category ? "default" : "outline"}
-                  className={activeCategory === category ? "bg-primary hover:bg-primary/90" : ""}
+                  className="rounded-full px-4"
                   onClick={() => setActiveCategory(category)}
                 >
                   {category}
@@ -88,39 +109,73 @@ export default function BlogClient({ posts }: { posts: any[] }) {
         </div>
       </section>
 
-      {/* Blog Posts */}
-      <section className="py-12 md:py-16">
+      {/* Blog Grid */}
+      <section className="py-10">
         <div className="container">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-          >
-            {filteredPosts.map((post) => (
-              <motion.div key={post.id || post.slug} variants={fadeIn}>
-                <Link href={`/blog/${post.slug}`}>
-                  <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow border-muted">
-                    <div className="relative h-48 w-full">
-                      <Image
-                        src={post.image || "/placeholder.svg"}
-                        alt={post.title || "blogs picture"}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <CardContent className="p-6 bg-[#1A0A30]">
-                      <h3 className="font-semibold text-lg mb-2 line-clamp-2">{post.title}</h3>
-                      <div className="flex justify-between items-center text-sm text-muted-foreground mt-4">
-                        <span>{post.author?.name || "Unknown Author"}</span>
-                        <span>{post.date}</span>
+          {filteredPosts.length === 0 ? (
+            <p className="text-center text-muted-foreground">No posts found.</p>
+          ) : (
+            <motion.div
+              className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+              initial="hidden"
+              animate="visible"
+              variants={staggerContainer}
+            >
+              {filteredPosts.map((post) => (
+                <motion.div key={post.slug} variants={fadeIn}>
+                  <Link href={`/blog/${post.slug}`}>
+                    <Card className="overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl border-muted relative">
+                      {post.featured && (
+                        <span className="absolute top-2 right-2 bg-yellow-500 text-xs text-white px-2 py-0.5 rounded z-10">
+                          Featured
+                        </span>
+                      )}
+
+                      <div className="relative h-48 w-full">
+                        <Image
+                          src={post.image || "/placeholder.svg"}
+                          alt={post.title}
+                          fill
+                          className="object-cover"
+                        />
                       </div>
-                    </CardContent>
-                  </Card>
-                </Link>
-              </motion.div>
-            ))}
-          </motion.div>
+
+                      <CardContent className="p-6 bg-[#1A0A30]/90 text-white">
+                        <h3 className="font-semibold text-xl mb-2 leading-tight line-clamp-2">
+                          {post.title}
+                        </h3>
+                        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                          {post.excerpt}
+                        </p>
+
+                        <div className="flex justify-between text-xs text-muted-foreground">
+                          <span>{post.author}</span>
+                          <span>{post.date}</span>
+                        </div>
+
+                        <div className="flex flex-wrap gap-2 mt-3">
+                          {post.tags?.map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-xs bg-muted text-foreground px-2 py-0.5 rounded"
+                            >
+                              #{tag}
+                            </span>
+                          ))}
+                        </div>
+
+                        {post.readTime && (
+                          <p className="mt-2 text-xs text-right text-muted-foreground italic">
+                            {post.readTime} min read
+                          </p>
+                        )}
+                      </CardContent>
+                    </Card>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
+          )}
         </div>
       </section>
 
@@ -134,10 +189,11 @@ export default function BlogClient({ posts }: { posts: any[] }) {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <h2 className="text-3xl md:text-5xl font-bold mb-6">Ready to Revolutionize Your Digital Presence?</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-6">
+              Ready to Revolutionize Your Digital Presence?
+            </h2>
             <p className="text-muted-foreground mb-8">
-              Partner with Digizinc and leverage the power of AI to transform your business. Our team of experts is
-              ready to help you achieve your digital marketing goals.
+              Partner with Digizinc and leverage the power of AI to transform your business.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button className="bg-primary hover:bg-primary/90">Get Started</Button>
@@ -154,7 +210,11 @@ export default function BlogClient({ posts }: { posts: any[] }) {
           animate={{ scale: 1, opacity: 1 }}
           transition={{ delay: 1, type: "spring" }}
         >
-          <Button size="icon" className="h-14 w-14 rounded-full bg-primary hover:bg-primary/90 shadow-lg">
+          <Button
+            size="icon"
+            className="h-14 w-14 rounded-full bg-primary hover:bg-primary/90 shadow-lg"
+            aria-label="Open Chat"
+          >
             <MessageCircle className="h-6 w-6" />
           </Button>
         </motion.div>
