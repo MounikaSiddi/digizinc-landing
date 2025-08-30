@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     siteName: "Digizinc",
     images: [
       {
-        url: "https://saavik-solutions-assets.s3.ap-south-1.amazonaws.com/digizinc-main-logo.jpg", // OG Image URL
+        url: "https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc-main-logo.jpg", // OG Image URL
         width: 1200, // Optimal width
         height: 630, // Optimal height
         alt: "Digizinc AI Solutions Logo - Digital Marketing & Branding Agency", // AI in alt text
@@ -62,7 +62,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Digizinc | AI-Powered Digital Marketing & Branding Agency", // AI in title
     description: "Transform your brand with Digizinc – your trusted partner for strategic, AI-driven branding and ROI-focused digital marketing solutions.", // AI in description
-    images: ["https://saavik-solutions-assets.s3.ap-south-1.amazonaws.com/digizinc-main-logo.jpg"], // Twitter Image URL
+    images: ["https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc-main-logo.jpg"], // Twitter Image URL
   },
 
   // Favicon (link rel="icon")
