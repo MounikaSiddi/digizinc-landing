@@ -1,9 +1,9 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import ReactConfetti from 'react-confetti';
-import { useWindowSize } from '@react-hook/window-size';
+import { useToast } from '@/hooks/use-toast';
+import { useConfetti } from '@/contexts/ConfettiContext';
 
 interface ToggleSwitchProps {
   initialState?: boolean;
@@ -17,8 +17,15 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
   className,
 }) => {
   const [isOn, setIsOn] = useState(initialState);
-  const [showConfetti, setShowConfetti] = useState(false);
-  const [width, height] = useWindowSize();
+  const { toast } = useToast();
+  const { showConfetti } = useConfetti();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+
+  useEffect(() => {
+    // Preload the audio file
+    audioRef.current = new Audio('/confetti_sound.mp3');
+    audioRef.current.load();
+  }, []);
 
   const toggleSwitch = () => {
     setIsOn((prev) => {
@@ -26,9 +33,21 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
       onToggle?.(newState);
       // Trigger confetti only when turning ON
       if (newState) {
-        setShowConfetti(true);
-        // Hide confetti after a short duration
-        setTimeout(() => setShowConfetti(false), 5000); // Confetti for 5 seconds
+        if (audioRef.current) {
+          audioRef.current.play().catch(e => console.error("Error playing sound:", e));
+        }
+        toast({
+          title: "You've Chosen Growth with Digizinc",
+          description: "Get ready to experience the fusion of creativity and intelligence. Your brand's journey to the future starts now.",
+          duration: 3000, // 3 seconds
+        });
+        showConfetti();
+      } else {
+        toast({
+          title: "Feature Deactivated.",
+          description: "This feature has been turned off.",
+          duration: 2000,
+        });
       }
       return newState;
     });
@@ -52,16 +71,6 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
           style={isOn ? { left: 'calc(100% - 74px)' } : { left: '5px' }} // Adjusted left position
         />
       </div>
-      {showConfetti && (
-        <ReactConfetti
-          width={width}
-          height={height}
-          recycle={false} // Don't loop confetti
-          numberOfPieces={500} // Number of confetti pieces
-          gravity={0.1} // How fast confetti falls
-          colors={['#D9D9D9', '#F22EE5', '#561F8C', '#FFFFFF']} // Custom colors
-        />
-      )}
     </>
   );
 };

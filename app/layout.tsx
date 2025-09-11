@@ -6,6 +6,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 import Navbar from "@/components/navbar"
 import Footer from "@/components/footer"
 import ClientWrapper from "@/components/ClientWrapper"
+import { Toaster } from "@/components/ui/toaster"
+import { ConfettiProvider } from "@/contexts/ConfettiContext";
 
 const inter = Inter({ subsets: ["latin"] })
 // const bricolage = Bricolage_Grotesque({
@@ -80,11 +82,14 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <body className={`${inter.className} ${poppins.variable} min-h-screen bg-background`}>
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <ClientWrapper>
-            <Navbar />
-            <main>{children}</main>
-            <Footer />
-          </ClientWrapper>
+          <ConfettiProvider>
+            <ClientWrapper>
+              <Navbar />
+              <main>{children}</main>
+              <Footer />
+              <Toaster />
+            </ClientWrapper>
+          </ConfettiProvider>
         </ThemeProvider>
       </body>
     </html>

@@ -6,22 +6,50 @@ import { Lightbulb, Users, Rocket, CheckCircle } from 'lucide-react';
 
 const steps = [
   {
-    icon: <Lightbulb className="h-10 w-10 text-primary-500" />,
+    icon: (
+      <motion.div
+        whileHover={{ scale: 1.1, rotate: 5 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        <Lightbulb className="h-10 w-10" />
+      </motion.div>
+    ),
     title: '1. Discovery & Strategy',
     description: 'We begin by understanding your vision, goals, and challenges. Through in-depth consultations, we define a tailored strategy that aligns with your brand and market.',
   },
   {
-    icon: <Users className="h-10 w-10 text-primary-500" />,
+    icon: (
+      <motion.div
+        whileHover={{ scale: 1.1 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        <Users className="h-10 w-10" />
+      </motion.div>
+    ),
     title: '2. Creative & AI Integration',
     description: 'Our team of designers and AI specialists collaborate to bring your ideas to life. We leverage cutting-edge AI tools to enhance creativity, efficiency, and impact.',
   },
   {
-    icon: <Rocket className="h-10 w-10 text-primary-500" />,
+    icon: (
+      <motion.div
+        whileHover={{ y: -5, rotate: -5 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        <Rocket className="h-10 w-10" />
+      </motion.div>
+    ),
     title: '3. Development & Refinement',
     description: 'We build and refine your digital assets, ensuring pixel-perfect execution and seamless functionality. Iterative feedback loops ensure the final product exceeds expectations.',
   },
   {
-    icon: <CheckCircle className="h-10 w-10 text-primary-500" />,
+    icon: (
+      <motion.div
+        whileHover={{ scale: 1.1, rotate: 10 }}
+        transition={{ type: "spring", stiffness: 400, damping: 10 }}
+      >
+        <CheckCircle className="h-10 w-10" />
+      </motion.div>
+    ),
     title: '4. Launch & Optimization',
     description: 'Your solution goes live! We continuously monitor performance, gather insights, and optimize campaigns to ensure sustained growth and measurable results.',
   },
@@ -85,11 +113,14 @@ const HowWeWork = () => {
                            hover:scale-[1.02] hover:-translate-y-1
                            h-full flex flex-col p-8 text-center"
               >
-                <div className="mb-6 mx-auto">
-                  <div className="w-20 h-20 rounded-full bg-gradient-primary flex items-center justify-center mb-4">
-                    {step.icon}
-                  </div>
-                </div>
+                <div className="relative mb-6 mx-auto w-20 h-20 rounded-2xl bg-gradient-primary to-secondary p-1 group-hover:scale-110 transition-all duration-300 transform group-hover:rotate-6">
+  <div className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] opacity-20 rounded-2xl group-hover:opacity-30 transition-opacity duration-300"></div>
+  <div className="relative h-full w-full flex items-center justify-center bg-background/80 rounded-2xl">
+    <div className=" transition-colors duration-300 transform group-hover:scale-110">
+      {step.icon}
+    </div>
+  </div>
+</div>
                 <h3 className="text-2xl font-semibold font-heading text-foreground mb-2">
                   {step.title}
                 </h3>

@@ -1,6 +1,7 @@
 'use client'; // Required for client-side state like useState
 
 import React, { useState, useRef, useEffect } from 'react';
+import { motion } from 'framer-motion';
 import {
   Brush, Image, Laptop, Layout, MessageSquare, FilmIcon,
   PenTool, Palette, Wand2, BarChart3,
@@ -14,6 +15,7 @@ interface Service {
   title: string;
   description: string;
   items: string[];
+  category: string;
 }
 
 const Services: React.FC = () => {
@@ -36,7 +38,21 @@ const Services: React.FC = () => {
   };
 
   const services: Service[] = [
-    { id: 'branding', icon: <Palette className="h-6 w-6" />, title: "Branding & Identity", description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", items: ["Logo Design", "Brand Strategy & Positioning", "Visual Identity Development", "Brand Guidelines", "Corporate Rebranding", "Naming & Tagline Creation"], category: "branding" },
+    { 
+      id: 'branding', 
+      icon: <Palette className="h-6 w-6" />, 
+      title: "Branding & Identity", 
+      description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", 
+      items: [
+        "Logo Design",
+        "Brand Strategy & Positioning", 
+        "Visual Identity Development",
+        "Brand Guidelines",
+        "Corporate Rebranding",
+        "Naming & Tagline Creation"
+      ],
+      category: "branding"
+    } as Service & { category: string },
     { id: 'website', icon: <Laptop className="h-6 w-6" />, title: "Website Design & Development", description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", items: ["Custom Website Design", "UI/UX Design & Prototyping", "Frontend & Backend Development", "E-commerce Development", "CMS Development (WordPress, Webflow, Shopify)", "Website Maintenance & Support"], category: "digital-experience" },
     { id: 'advertising', icon: <BarChart3 className="h-6 w-6" />, title: "Advertising & Marketing", description: "Enhance your marketing campaigns with AI-driven creative solutions.", items: ["Ad Campaign Design (Print, Digital, OOH)", "Social Media Creative Assets", "Banner & Display Ads", "Email Marketing Design", "Brochure & Flyer Design", "Presentation & Pitch Deck Design"], category: "marketing" },
     { id: 'content', icon: <MessageSquare className="h-6 w-6" />, title: "Content Creation & Storytelling", description: "Create compelling narratives with our AI content generation tools.", items: ["Copywriting & Content Strategy", "Scriptwriting (Ads, Explainers, Social)", "Blog & Article Writing", "Social Media Captions & Content", "Product Descriptions & Sales Copy"], category: "marketing" },
@@ -121,7 +137,11 @@ const Services: React.FC = () => {
               </h3>
               <nav className="flex flex-col space-y-1">
                 {services
-                  .filter(service => activeCategory === 'all' || service.category === activeCategory)
+                  .filter(service => {
+                    // Type assertion to access category property
+                    const serviceWithCategory = service as Service & { category: string };
+                    return activeCategory === 'all' || serviceWithCategory.category === activeCategory;
+                  })
                   .map(service => (
                   <button
                     key={service.id}
@@ -143,9 +163,15 @@ const Services: React.FC = () => {
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
             <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
               <div className="flex justify-center items-center mb-8">
-                <div className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm">
-                  {activeService.icon}
-                </div>
+                <motion.div
+  key={activeService.id}
+  initial={{ opacity: 0, scale: 0.8 }}
+  animate={{ opacity: 1, scale: 1 }}
+  transition={{ duration: 0.3, ease: "easeOut" }}
+  className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm"
+>
+  {activeService.icon}
+</motion.div>
                 <div className="space-y-1">
                   <h3 className="text-2xl font-semibold font-heading text-black dark:text-white">
                     {activeService.title}
