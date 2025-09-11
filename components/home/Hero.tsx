@@ -25,7 +25,7 @@ const Hero = () => {
 
   return (
     <section
-      className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
+      className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center items-center
       text-white`}>
       {/* 🌌 Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#D9D9D9] via-[#F22EE5] to-[#561F8C] -z-20"></div>
@@ -34,9 +34,9 @@ const Hero = () => {
       <div className="stars absolute inset-0 -z-10"></div>
 
       {/* Content */}
-      <div className="container relative z-10 px-4 lg:px-6 flex flex-col items-center justify-between gap-12">
+      <div className="container relative z-10 px-4 lg:px-6 flex flex-col items-center justify-center gap-12">
         <motion.div
-          className="max-w-3xl text-center lg:text-left space-y-8 w-full"
+          className="max-w-3xl text-center space-y-8 w-full"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
