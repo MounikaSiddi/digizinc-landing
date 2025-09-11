@@ -14,9 +14,7 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  images: {
-    unoptimized: true,
-  },
+  
   pageExtensions: ['ts', 'tsx', 'mdx'], // include .mdx pages
 }
 

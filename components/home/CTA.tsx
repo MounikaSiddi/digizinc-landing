@@ -29,7 +29,7 @@ const CTA = () => {
             </div>
 
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-              Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with SaaVik AI?
+              Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with DigiZinc?
             </h2>
 
             <p className="text-lg text-left px-10 text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
@@ -82,7 +82,7 @@ const CTA = () => {
                 />
               </div>
               <div className="text-sm text-gray-600 dark:text-gray-400">
-                <span className="text-primary-500 font-semibold">100+</span> businesses already using SaaVik AI
+                <span className="text-primary-500 font-semibold">100+</span> businesses already using our services
               </div>
             </div>
 

@@ -164,7 +164,7 @@ export default function IndustryTabs() { // No props needed here anymore
             Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span>
           </h2>
           <p className="text-foreground text-lg">
-            SaaVik AI creates custom solutions for a wide range of industries
+            DigiZinc creates custom solutions for a wide range of industries
           </p>
         </div>
 
@@ -233,7 +233,6 @@ export default function IndustryTabs() { // No props needed here anymore
                 <div className="text-white text-center p-6">
                   <span className="text-4xl mb-2 inline-block">{selectedIndustry.icon}</span>
                   <h3 className="text-2xl font-bold font-heading">{selectedIndustry.name}</h3>
-                  <span className="text-sm text-white/80">Powered by Savi AI</span>
                 </div>
               </div>
             </div>

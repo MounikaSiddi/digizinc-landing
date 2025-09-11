@@ -106,8 +106,6 @@ const Hero = () => {
   }
 
   const typingPlaceholders = [
-    'Help with SaaVik AI...',
-    2000,
     'Automate content creation...',
     2000,
     'Boost your website ranking...',
@@ -145,15 +143,7 @@ const Hero = () => {
           animate="visible"
           variants={fadeIn}
         >
-          {/* Introducing Saavik AI assistant badge */}
-          <motion.div
-            variants={fadeIn}
-            className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-900/10 dark:bg-secondary-900/30 text-secondary-900 dark:text-secondary-300 text-sm font-medium -mb-2"
-          >
-            <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2 animate-pulse"></span>
-            Introducing our Saavik AI assistant
-          </motion.div>
-
+          
           {/* Changed `md:text-5xl lg:text-6xl` to `lg:text-5xl xl:text-6xl` for heading responsiveness */}
           <motion.h1
             className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"

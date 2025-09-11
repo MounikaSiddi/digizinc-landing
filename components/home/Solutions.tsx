@@ -36,7 +36,7 @@ const Solutions = () => {
           variants={fadeIn}
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight text-foreground"> {/* Use text-foreground for the general heading text */}
-            SaaVik AI :<span className="bg-gradient-primary to-secondary text-transparent bg-clip-text"> Your Intelligent</span>  Partner
+            DigiZinc :<span className="bg-gradient-primary to-secondary text-transparent bg-clip-text"> Your Intelligent</span>  Partner
           </h2>
           <p className="text-foreground text-lg md:text-xl max-w-5xl mx-auto leading-relaxed">
             Digizinc provides comprehensive digital marketing solutions to help your business grow and succeed online.

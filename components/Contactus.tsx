@@ -26,89 +26,38 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
     }
   }, [defaultIndustry]);
 
-  // const handleSubmit = (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   console.log({
-  //     firstName,
-  //     lastName,
-  //     email,
-  //     company,
-  //     industry,
-  //     message,
-  //   });
-  //   if (isModal && onClose) {
-  //     onClose();
-  //   }
-  // };
-//   const handleSubmit = async (e: React.FormEvent) => {
-//   e.preventDefault();
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCEZXQLXHekPQf6O1n0xeBdXyIHFhPc9XKGZbhT0xVZ6ZMnDPD/exec';
 
-//   const scriptURL = 'YOUR_SCRIPT_URL_HERE'; // replace with your deployed Apps Script URL
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
 
-//   const formData = new FormData();
-//   formData.append('firstName', firstName);
-//   formData.append('lastName', lastName);
-//   formData.append('email', email);
-//   formData.append('company', company);
-//   formData.append('industry', industry);
-//   formData.append('message', message);
+    const formData = new FormData();
+    formData.append('firstName', firstName);
+    formData.append('lastName', lastName);
+    formData.append('email', email);
+    formData.append('company', company);
+    formData.append('industry', industry);
+    formData.append('message', message);
 
-//   try {
-//     const res = await fetch(scriptURL, {
-//       method: 'POST',
-//       body: formData,
-//     });
-
-//     if (res.ok) {
-//       toast.success('Submitted successfully!');
-//       setFirstName('');
-//       setLastName('');
-//       setEmail('');
-//       setCompany('');
-//       setIndustry('');
-//       setMessage('');
-//       if (isModal && onClose) onClose();
-//     } else {
-//       throw new Error('Failed to submit');
-//     }
-//   } catch (err) {
-//     toast.error('Something went wrong. Please try again.');
-//     console.error(err);
-//   }
-// };
-const scriptURL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCEZXQLXHekPQf6O1n0xeBdXyIHFhPc9XKGZbhT0xVZ6ZMnDPD/exec';
-
-const handleSubmit = (e: React.FormEvent) => {
-  e.preventDefault();
-
-  const formData = new FormData();
-  formData.append('firstName', firstName);
-  formData.append('lastName', lastName);
-  formData.append('email', email);
-  formData.append('company', company);
-  formData.append('industry', industry);
-  formData.append('message', message);
-
-  fetch(scriptURL, {
-    method: 'POST',
-    body: formData,
-  })
-    .then(() => {
-      toast.success("Submitted successfully!");
-      // Optionally reset form fields
-      setFirstName('');
-      setLastName('');
-      setEmail('');
-      setCompany('');
-      setIndustry('');
-      setMessage('');
-      if (isModal && onClose) onClose();
+    fetch(scriptURL, {
+      method: 'POST',
+      body: formData,
     })
-    .catch((error) => {
-      toast.error("Submission failed!");
-      console.error("Error submitting to Google Sheet:", error);
-    });
-};
+      .then(() => {
+        toast.success("Submitted successfully!");
+        setFirstName('');
+        setLastName('');
+        setEmail('');
+        setCompany('');
+        setIndustry('');
+        setMessage('');
+        if (isModal && onClose) onClose();
+      })
+      .catch((error) => {
+        toast.error("Submission failed!");
+        console.error("Error submitting to Google Sheet:", error);
+      });
+  };
 
   const formContent = (
     <form className="space-y-4" onSubmit={handleSubmit}>
@@ -228,16 +177,14 @@ const handleSubmit = (e: React.FormEvent) => {
           type="submit"
           className="w-full bg-gradient-primary text-white font-medium py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
         >
-          Get Started with SaaVik AI
+          Get Started with DigiZinc
         </button>
       </div>
     </form>
   );
 
-  // Mobile-optimized modal content (form only)
   const mobileModalContent = (
     <div className="p-6">
-      {/* Mobile header */}
       <div className="mb-6">
         <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium mb-3">
           <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2"></span>
@@ -255,7 +202,6 @@ const handleSubmit = (e: React.FormEvent) => {
 
       {formContent}
 
-      {/* Mobile trust indicators */}
       <div className="mt-6 pt-6 border-t border-gray-200 dark:border-secondary-700">
         <div className="flex items-center justify-center space-x-4">
           <div className="flex -space-x-2">
@@ -283,11 +229,9 @@ const handleSubmit = (e: React.FormEvent) => {
     </div>
   );
 
-  // Desktop modal content (full layout)
   const desktopModalContent = (
     <div className="max-w-4xl mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
-        {/* Left side content */}
         <div className="p-8 flex flex-col justify-center">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
             <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
@@ -342,12 +286,11 @@ const handleSubmit = (e: React.FormEvent) => {
               />
             </div>
             <div className="text-xs text-gray-600 dark:text-gray-400">
-              <span className="text-primary-500 font-semibold">100+</span> businesses trust SaaVik AI
+              <span className="text-primary-500 font-semibold">100+</span> businesses trust us
             </div>
           </div>
         </div>
 
-        {/* Right side form */}
         <div className="bg-gray-50 dark:bg-secondary-800 p-8 flex flex-col justify-center">
           {formContent}
         </div>
@@ -357,7 +300,6 @@ const handleSubmit = (e: React.FormEvent) => {
 
   const fullContactContent = (
     <section id="contact" className="py-12 md:py-16 relative overflow-hidden min-h-[80vh] flex items-center">
-      {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-white to-gray-50 dark:from-dark dark:to-secondary-950 -z-10"></div>
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary-200/20 dark:bg-primary-900/10 rounded-full blur-3xl -z-10"></div>
       <div className="absolute bottom-0 left-0 w-96 h-96 bg-secondary-200/20 dark:bg-secondary-900/10 rounded-full blur-3xl -z-10"></div>
@@ -365,7 +307,6 @@ const handleSubmit = (e: React.FormEvent) => {
       <div className="container mx-auto px-4 md:px-6">
         <div className="max-w-6xl mx-auto bg-white dark:bg-secondary-900 rounded-2xl shadow-xl overflow-hidden border border-gray-100 dark:border-secondary-800">
           <div className="grid grid-cols-1 lg:grid-cols-2">
-            {/* Left side content */}
             <div className="p-8 md:p-12">
               <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
                 <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
@@ -373,7 +314,7 @@ const handleSubmit = (e: React.FormEvent) => {
               </div>
 
               <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6">
-                Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with SaaVik AI?
+                Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with DigiZinc?
               </h2>
 
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
@@ -420,12 +361,11 @@ const handleSubmit = (e: React.FormEvent) => {
                   />
                 </div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">
-                  <span className="text-primary-500 font-semibold">100+</span> businesses already using SaaVik AI
+                  <span className="text-primary-500 font-semibold">100+</span> businesses already using our services
                 </div>
               </div>
             </div>
 
-            {/* Right side form */}
             <div className="bg-gray-50 dark:bg-secondary-800 p-8 md:p-12">
               {formContent}
             </div>
@@ -437,8 +377,7 @@ const handleSubmit = (e: React.FormEvent) => {
 
   if (isModal) {
     return (
-      <Modal isOpen={true} onClose={onClose!} title={`Contact Us for ${defaultIndustry || 'SaaVik AI Solutions'}`}>
-        {/* Show mobile-optimized content on small screens, desktop content on larger screens */}
+      <Modal isOpen={true} onClose={onClose!} title={`Contact Us for ${defaultIndustry || 'DigiZinc Solutions'}`}>
         <div className="md:hidden">
           {mobileModalContent}
         </div>
