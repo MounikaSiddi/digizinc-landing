@@ -24,6 +24,7 @@
     --input: 240 5.9% 90%;
     --ring: 271 81% 56%;
     --radius: 0.5rem;
+    --star-color: #000;
   }
 
   .dark {
@@ -46,6 +47,7 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 271 81% 56%;
+    --star-color: #fff;
   }
 }
 

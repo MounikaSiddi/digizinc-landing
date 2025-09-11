@@ -23,12 +23,11 @@ const Hero = () => {
     setMounted(true);
   }, []);
 
+  const backgroundClass = theme === 'dark' ? 'bg-gradient-dark-hero' : 'bg-gradient-light-hero';
+
   return (
     <section
-      className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center items-center
-      text-white`}>
-      {/* 🌌 Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-br from-[#D9D9D9] via-[#F22EE5] to-[#561F8C] -z-20"></div>
+      className={`relative py-10 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center ${backgroundClass}`}>
 
       {/* ⭐ Stars layer */}
       <div className="stars absolute inset-0 -z-10"></div>
@@ -41,17 +40,25 @@ const Hero = () => {
           animate="visible"
           variants={fadeIn}
         >
-          <motion.h1
-            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-white w-full"
-            variants={fadeIn}
-          >
-            <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
-            <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
-            <span className="text-3xl md:text-4xl xl:text-5xl"> of your business</span>
-          </motion.h1>
+  <motion.h1
+  className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 dark:text-white w-full"
+  variants={fadeIn}
+>
+  <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
+
+  {/* Growth word with toggle */}
+  <span className="inline-flex items-center text-6xl sm:text-7xl md:text-8xl xl:text-9xl whitespace-nowrap">
+    gr<ToggleSwitch className="mx-2" />wth
+  </span>
+
+  <span className="block text-3xl md:text-4xl xl:text-5xl mt-4 md:mt-2">
+    of your business
+  </span>
+</motion.h1>
+
 
           <motion.p
-            className="text-lg lg:text-xl text-white/90 mx-auto lg:mx-0 leading-relaxed"
+            className="text-lg lg:text-xl dark:text-white/90 mx-auto lg:mx-0 leading-relaxed"
             variants={fadeIn}
           >
             We turn ideas into working products
@@ -64,13 +71,13 @@ const Hero = () => {
         .stars {
           background: transparent;
           box-shadow:
-            20px 40px white,
-            100px 200px white,
-            300px 150px white,
-            500px 400px white,
-            700px 250px white,
-            900px 300px white,
-            1100px 200px white;
+            20px 40px var(--star-color),
+            100px 200px var(--star-color),
+            300px 150px var(--star-color),
+            500px 400px var(--star-color),
+            700px 250px var(--star-color),
+            900px 300px var(--star-color),
+            1100px 200px var(--star-color);
           animation: twinkle 2s infinite alternate;
         }
 
