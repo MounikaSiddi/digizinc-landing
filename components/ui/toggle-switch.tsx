@@ -43,11 +43,7 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
         });
         showConfetti();
       } else {
-        toast({
-          title: "Feature Deactivated.",
-          description: "This feature has been turned off.",
-          duration: 2000,
-        });
+        // No toast message on deactivation
       }
       return newState;
     });
