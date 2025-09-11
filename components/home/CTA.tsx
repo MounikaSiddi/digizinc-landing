@@ -57,34 +57,7 @@ const CTA = () => {
               </div>
             </div>
 
-            <div className="flex items-center justify-center space-x-4 mb-8"> {/* Centered avatar section */}
-              <div className="flex -space-x-2">
-                <Image
-                 src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                  alt="Client 1"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
-                />
-                <Image
-                   src="https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                  alt="Client 2"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
-                />
-                <Image
-                 src="https://images.pexels.com/photos/3776939/pexels-photo-3776939.jpeg?auto=compress&cs=tinysrgb&w=1600" 
-                  alt="Client 3"
-                  width={40}
-                  height={40}
-                  className="w-10 h-10 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
-                />
-              </div>
-              <div className="text-sm text-gray-600 dark:text-gray-400">
-                <span className="text-primary-500 font-semibold">100+</span> businesses already using our services
-              </div>
-            </div>
+            
 
             {/* Primary Gradient Button */}
             <Button

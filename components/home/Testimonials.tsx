@@ -1,7 +1,7 @@
 import React from "react";
 import { Star } from "lucide-react";
 import { motion } from "framer-motion";
-import Image from "next/image"; // Import Image component
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   Carousel,
   CarouselContent,
@@ -97,21 +97,12 @@ const testimonials = [
   }
 ];
 
-const StarRating = ({ rating }: { rating: number }) => {
-  return (
-    <div className="flex gap-1 mb-4">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          className={`w-5 h-5 ${
-            i < rating
-              ? 'fill-yellow-500 text-yellow-500'
-              : 'fill-muted text-muted dark:fill-muted-foreground/30 dark:text-muted-foreground/30'
-          }`}
-        />
-      ))}
-    </div>
-  );
+const getInitials = (name: string) => {
+  const names = name.split(' ');
+  if (names.length > 1) {
+    return `${names[0][0]}${names[names.length - 1][0]}`;
+  }
+  return names[0][0];
 };
 
 const Testimonials = () => {
@@ -141,32 +132,27 @@ const Testimonials = () => {
         >
           <CarouselContent>
             {testimonials.map((testimonial, i) => (
-              <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3">
+              <CarouselItem key={i} className="md:basis-1/2 lg:basis-1/3 flex-grow">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.5, delay: i * 0.1 }}
-                  className="group bg-card/30 backdrop-blur-sm p-8 rounded-2xl h-full
+                  className="group bg-white dark:bg-secondary-900 p-8 rounded-2xl h-full
                              border border-primary/20 dark:border-primary/10
                              transition-all duration-500 ease-out
-                             hover:bg-card/50 hover:shadow-2xl hover:shadow-primary/20
+                             hover:shadow-xl hover:shadow-primary/20
                              hover:border-primary/30 dark:hover:border-primary/20
-                             hover:-translate-y-1"
+                             hover:-translate-y-1 shadow-inner"
                 >
-                  <StarRating rating={testimonial.rating} />
                   <p className="text-foreground/90 mb-8 text-lg leading-relaxed italic">
                     "{testimonial.content}"
                   </p>
                   <div className="flex items-center gap-4 pt-6 border-t border-primary/10 mt-auto group-hover:border-primary/20 transition-colors duration-500">
-                    <div className="relative w-16 h-16 rounded-full overflow-hidden ring-2 ring-primary/20 group-hover:ring-primary/40 transition-all duration-500">
-                      <Image
-                        src={testimonial.avatar}
-                        alt={testimonial.author}
-                        fill
-                        className="object-cover object-center transform group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </div>
+                    <Avatar className="w-16 h-16">
+                      <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
+                      <AvatarFallback>{getInitials(testimonial.author)}</AvatarFallback>
+                    </Avatar>
                     <div className="flex-1">
                       <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-500">
                         {testimonial.author}

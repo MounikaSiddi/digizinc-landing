@@ -1,12 +1,8 @@
 'use client'
 import Image from "next/image"
 import { motion } from "framer-motion"
-import { Input } from "@/components/ui/input"
-import { Search } from "lucide-react"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
-import { TypeAnimation } from 'react-type-animation';
-import { Button } from "@/components/ui/button"
 import { useContactModal } from "../ClientWrapper";
 
 const fadeIn = {
@@ -18,300 +14,98 @@ const fadeIn = {
   },
 }
 
-const clientLogos = [
-  {
-    name: "Google",
-    lightLogo: "/logoipsum-1-light.svg",
-    darkLogo: "/logoipsum-1-dark.svg",
-    width: 120,
-    height: 40,
-  },
-  {
-    name: "Microsoft",
-    lightLogo: "/logoipsum-2-light.svg",
-    darkLogo: "/logoipsum-2-dark.svg",
-    width: 140,
-    height: 40,
-  },
-  {
-    name: "Amazon",
-    lightLogo: "/logoipsum-3-light.svg",
-    darkLogo: "/logoipsum-3-dark.svg",
-    width: 100,
-    height: 40,
-  },
-  {
-    name: "Netflix",
-    lightLogo: "/logoipsum-4-light.svg",
-    darkLogo: "/logoipsum-4-dark.svg",
-    width: 110,
-    height: 40,
-  },
-  {
-    name: "Spotify",
-    lightLogo: "/logoipsum-5-light.svg",
-    darkLogo: "/logoipsum-5-dark.svg",
-    width: 120,
-    height: 40,
-  },
-  {
-    name: "Adobe",
-    lightLogo: "/logoipsum-6-light.svg",
-    darkLogo: "/logoipsum-6-dark.svg",
-    width: 100,
-    height: 40,
-  },
-]
-
 const Hero = () => {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
-  const [inputValue, setInputValue] = useState('') // Add state for input value
-  const [isTyping, setIsTyping] = useState(false) // Add state to track if user is typing
-  const [typingTimeout, setTypingTimeout] = useState<NodeJS.Timeout | null>(null) // Add state for timeout
-  const [shouldAnimateType, setShouldAnimateType] = useState(true); // New state to control autotyping
-  const isDark = theme === "dark"
   const { openContactModal } = useContactModal();
 
   useEffect(() => {
     setMounted(true);
-
-    
   }, []);
 
-
-  // Handle input change
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value
-    setInputValue(value)
-    setIsTyping(true)
-    
-    // Clear any existing timeout
-    if (typingTimeout) {
-      clearTimeout(typingTimeout)
-    }
-    
-    // Set a new timeout to detect when user stops typing
-    const timeout = setTimeout(() => {
-      if (value === '') { // Only resume autotyping if input is empty
-        setIsTyping(false)
-        // Re-check window size to determine if autotyping should resume
-        const currentWidth = window.innerWidth;
-        const disableAutotyping = (currentWidth >= 767 && currentWidth <= 940);
-        setShouldAnimateType(!disableAutotyping);
-      }
-    }, 2000) // Wait 2 seconds after user stops typing
-    
-    setTypingTimeout(timeout)
-  }
-
-  const typingPlaceholders = [
-    'Automate content creation...',
-    2000,
-    'Boost your website ranking...',
-    2000,
-    
-    'Unlock new opportunities...',
-    2000,
-    
-  
-    'Boost your online visibility...',
-    2000,
-    
-  ];
-
   return (
-    <section className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
-      bg-white dark:bg-black transition-colors duration-300`}>
-      {/* Background image with low opacity */}
-      
+    <section
+      className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
+      text-white`}
+    >
+      {/* 🌌 Gradient background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-[#D9D9D9] via-[#F22EE5] to-[#561F8C] -z-20"></div>
 
-      {/* Background grid with adjusted opacity */}
-      <div className="absolute inset-0 bg-grid-white/[0.02] dark:bg-grid-white/[0.06] bg-[size:75px_75px]"></div>
+      {/* ⭐ Stars layer */}
+      <div className="stars absolute inset-0 -z-10"></div>
 
-      {/* Accent gradients */}
-      <div className="absolute -top-10 -right-10 w-64 h-64 bg-primary/5 dark:bg-primary/5 rounded-full blur-3xl -z-10"></div>
-      <div className="absolute top-40 -left-20 w-72 h-72 bg-secondary/5 dark:bg-secondary/5 rounded-full blur-3xl -z-10"></div>
-
-      {/* Changed `md:flex-row` to `lg:flex-row` and `md:px-6` to `lg:px-6` */}
-      <div className="container relative z-10 px-4 lg:px-6 flex flex-col lg:flex-row items-center justify-between gap-12">
-        {/* Left Section: Text and Search Bar */}
-        {/* Changed `md:text-left space-y-8 md:w-1/2` to `lg:text-left space-y-8 lg:w-1/2` */}
+      {/* Content */}
+      <div className="container relative z-10 px-4 lg:px-6 flex flex-col items-center justify-between gap-12">
         <motion.div
-          className="max-w-3xl text-center lg:text-left space-y-8 lg:w-1/2"
+          className="max-w-3xl text-center lg:text-left space-y-8 w-full"
           initial="hidden"
           animate="visible"
           variants={fadeIn}
         >
-          
-          {/* Changed `md:text-5xl lg:text-6xl` to `lg:text-5xl xl:text-6xl` for heading responsiveness */}
           <motion.h1
-            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-gray-900 dark:text-white w-full"
+            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-white w-full"
             variants={fadeIn}
           >
             Transform Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-primary animate-gradient bg-size-200">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 animate-gradient bg-[length:200%_200%]">
               Digital Presence
             </span>{" "}
             with AI
           </motion.h1>
-          {/* Changed `md:text-xl text-black dark:text-white mx-auto md:mx-0` to `lg:text-xl text-black dark:text-white mx-auto lg:mx-0` */}
+
           <motion.p
-            className="text-lg lg:text-xl text-black dark:text-white mx-auto lg:mx-0 leading-relaxed" // `lg:mx-0` removes auto margin on lg screens
+            className="text-lg lg:text-xl text-white/90 mx-auto lg:mx-0 leading-relaxed"
             variants={fadeIn}
           >
             Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your
             business thrive in the digital era...
           </motion.p>
-          {/* Changed `md:justify-start` to `lg:justify-start` */}
-          <motion.div variants={fadeIn} className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 pt-8 px-0">
-            <div className="relative w-full max-w-xl group">
-              <Search className="absolute left-6 top-1/2 -translate-y-1/2 h-6 w-6 text-primary-50/70 dark:text-[#FFD6FC]/70 group-hover:text-primary-50 dark:group-hover:text-[#FFD6FC] transition-colors duration-300 pointer-events-none" />
-              <Input
-                className="w-full pl-16 pr-8 py-6 text-lg font-medium rounded-full
-                  bg-dark dark:bg-gradient-to-r dark:from-[#3a0038] dark:to-[#1a0018]
-                  border-2 border-[#f22ee5]/20 dark:border-[#902ef2]/20
-                  hover:border-[#f22ee5]/40 dark:hover:border-[#902ef2]/40
-                  focus:border-[#f22ee5]/60 dark:focus:border-[#902ef2]/60
-                  focus:ring-4 focus:ring-[#f22ee5]/20 dark:focus:ring-[#902ef2]/20
-                  focus:ring-offset-0
-                  transition-all duration-300
-                  shadow-xl shadow-primary/5
-                  placeholder:text-[#f22ee5]/50 dark:placeholder:text-[#902ef2]/40
-                  text-primary-50 dark:text-[#FFD6FC]"
-                value={inputValue}
-                onChange={handleInputChange}
-              />
-              {!isTyping && inputValue === '' && shouldAnimateType && (
-                <div className="absolute inset-y-0 left-16 right-8 flex items-center pointer-events-none">
-                  <TypeAnimation
-                    sequence={typingPlaceholders}
-                    wrapper="span"
-                    cursor={true}
-                    repeat={Infinity}
-                    className="text-primary-50/50 dark:text-[#FFD6FC]/40 text-lg font-medium"
-                  />
-                </div>
-              )}
-            </div>
-            {/* "Get Started" button */}
-            <Button
-              variant={'gradient'}
-              className="w-full sm:w-auto px-10 py-6 rounded-full shadow-lg text-primary-foreground
-                        bg-gradient-to-r from-[#f22ee5] to-[#902ef2]
-                        hover:shadow-lg hover:shadow-[#f22ee5]/20 text-white
-                        transition-all duration-300 text-center font-medium
-                        flex-shrink-0"
-              onClick={() => openContactModal(undefined)}
-            >
-              Get Started
-            </Button>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Section: Header Image */}
-        {/* Changed `md:w-1/2 flex justify-center md:justify-end mt-12 md:mt-0` to `lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0` */}
-        <motion.div
-          className="w-full lg:w-1/2 flex justify-center lg:justify-end mt-12 lg:mt-0"
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-        >
-          <Image
-            src="/header-img.png"
-            alt="Digital presence with AI"
-            width={700}
-            height={500}
-            priority
-            className="rounded-lg object-contain w-full h-auto max-w-[600px]"
-          />
         </motion.div>
       </div>
 
-      {/* Trusted By Section - COMMENTED OUT AS REQUESTED */}
-      {/*
-      <motion.div
-        className="mt-20 pb-8 container mx-auto px-4 md:px-6"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.5 }}
-      >
-        <div className="text-center mb-6">
-          <p className="text-sm font-medium text-gray-700 dark:text-gray-300 uppercase tracking-wider">
-            Trusted by Industry Leaders
-          </p>
-        </div>
-
-        <div className="relative overflow-hidden">
-          <div className="flex animate-marquee gap-16 opacity-80 hover:opacity-100 transition-opacity duration-500 py-4">
-            {mounted && clientLogos.map((logo, i) => (
-              <div
-                key={`first-${i}`}
-                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
-              >
-                <Image
-                  src={isDark ? logo.darkLogo : logo.lightLogo}
-                  alt={`${logo.name} logo`}
-                  width={logo.width}
-                  height={logo.height}
-                  className="h-10 w-auto object-contain transition-all duration-300"
-                  priority={i < 3}
-                />
-              </div>
-            ))}
-
-            {mounted && clientLogos.map((logo, i) => (
-              <div
-                key={`second-${i}`}
-                className="flex-shrink-0 transition-all duration-300 hover:scale-110"
-              >
-                <Image
-                  src={isDark ? logo.darkLogo : logo.lightLogo}
-                  alt={`${logo.name} logo`}
-                  width={logo.width}
-                  height={logo.height}
-                  className="h-10 w-auto object-contain transition-all duration-300"
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-      </motion.div>
-      */}
-
-      {/* Custom CSS for marquee animation and gradient animation */}
+      {/* ✨ Custom CSS for stars + gradient animation */}
       <style jsx>{`
-        @keyframes marquee {
-          0% {
-            transform: translateX(0%);
-          }
-          100% {
-            transform: translateX(-50%);
-          }
+        .stars {
+          background: transparent;
+          box-shadow:
+            20px 40px white,
+            100px 200px white,
+            300px 150px white,
+            500px 400px white,
+            700px 250px white,
+            900px 300px white,
+            1100px 200px white;
+          animation: twinkle 2s infinite alternate;
         }
 
-        .animate-marquee {
-          animation: marquee 30s linear infinite;
+        .stars::after {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          box-shadow: inherit;
+          animation: twinkle 3s infinite alternate;
         }
 
-        .animate-marquee:hover {
-          animation-play-state: paused;
+        @keyframes twinkle {
+          from { opacity: 0.5; }
+          to { opacity: 1; }
         }
 
         @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
+          0% { background-position: 0% 50%; }
+          50% { background-position: 100% 50%; }
+          100% { background-position: 0% 50%; }
+        }
+
+        .animate-gradient {
+          animation: gradient 6s ease infinite;
         }
       `}</style>
     </section>
   )
 }
 
-export default Hero;
+export default Hero

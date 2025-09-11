@@ -14,7 +14,16 @@ const nextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
-  
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.pexels.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
   pageExtensions: ['ts', 'tsx', 'mdx'], // include .mdx pages
 }
 
