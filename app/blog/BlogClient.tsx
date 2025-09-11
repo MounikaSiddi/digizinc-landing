@@ -193,7 +193,7 @@ export default function BlogClient({ posts }: { posts: PostMeta[] }) {
               Ready to Revolutionize Your Digital Presence?
             </h2>
             <p className="text-muted-foreground mb-8">
-              Partner with Digizinc and leverage the power of AI to transform your business.
+              Partner with Digizinc to transform your business.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button className="bg-primary hover:bg-primary/90">Get Started</Button>

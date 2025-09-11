@@ -7,6 +7,8 @@ import DigitalPartners from "@/components/home/DigitalPartners";
 
 import CTA from "@/components/home/CTA";
 import Services from "@/components/home/Services";
+import Packages from "@/components/home/Packages";
+import HowWeWork from "@/components/home/HowWeWork";
 
 export default function Home() {
   return (
@@ -14,6 +16,8 @@ export default function Home() {
       <Hero />
       <Solutions />
       <Services />
+      <Packages />
+      <HowWeWork />
       <IndustryTabs />
       <DigitalPartners />
       <Testimonials />

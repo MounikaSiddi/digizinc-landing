@@ -46,7 +46,7 @@ const CTA = () => {
               <div className="flex items-start">
                 <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0" />
                 <p className="text-gray-700 dark:text-gray-300">
-                  <span className="font-semibold">Custom AI solution</span> designed for your industry
+                  <span className="font-semibold">Custom solution</span> designed for your industry
                 </p>
               </div>
               <div className="flex items-start">

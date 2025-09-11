@@ -110,7 +110,7 @@ const Solutions = () => {
               >
                 <CardContent className="p-8 flex flex-col h-full">
                   <div
-                    className="relative mb-6 w-10 h-10 rounded-2xl bg-gradient-primary to-secondary p-0.5 group-hover:scale-110 transition-all duration-300"
+                    className="relative mb-6 w-10 h-10 rounded-2xl bg-gradient-primary to-secondary p-0.5 group-hover:scale-110 transition-all duration-300 transform group-hover:rotate-6"
                   >
                     <div
                       className="absolute inset-0 bg-gradient-to-br from-[var(--primary)] to-[var(--secondary)] opacity-20 rounded-2xl group-hover:opacity-30 transition-opacity duration-300"
@@ -119,7 +119,7 @@ const Solutions = () => {
                       className="relative h-full w-full flex items-center justify-center bg-background/80 rounded-2xl"
                     >
                       <div
-                        className=" text-primary-500 group-hover:text-primary-800-foreground transition-colors duration-300"
+                        className=" text-primary-500 group-hover:text-white transition-colors duration-300 transform group-hover:scale-110"
                       >
                         {React.cloneElement(solution.icon, { className: "h-5 w-5" })}
                       </div>

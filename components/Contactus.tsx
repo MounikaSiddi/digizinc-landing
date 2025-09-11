@@ -19,6 +19,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
   const [company, setCompany] = useState('');
   const [industry, setIndustry] = useState(defaultIndustry || '');
   const [message, setMessage] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false); // New state for loading
 
   useEffect(() => {
     if (defaultIndustry) {
@@ -30,6 +31,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    setIsSubmitting(true); // Set loading to true on submit
 
     const formData = new FormData();
     formData.append('firstName', firstName);
@@ -56,6 +58,9 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
       .catch((error) => {
         toast.error("Submission failed!");
         console.error("Error submitting to Google Sheet:", error);
+      })
+      .finally(() => {
+        setIsSubmitting(false); // Set loading to false after fetch completes
       });
   };
 
@@ -175,9 +180,20 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
       <div>
         <button
           type="submit"
-          className="w-full bg-gradient-primary text-white font-medium py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98]"
+          className="w-full bg-gradient-primary text-white font-medium py-3 px-6 rounded-lg hover:shadow-lg hover:shadow-primary-500/20 transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] flex items-center justify-center"
+          disabled={isSubmitting}
         >
-          Get Started with DigiZinc
+          {isSubmitting ? (
+            <>
+              <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
+                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+              </svg>
+              Submitting...
+            </>
+          ) : (
+            "Get Started with DigiZinc"
+          )}
         </button>
       </div>
     </form>
@@ -318,7 +334,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
               </h2>
 
               <p className="text-lg text-gray-600 dark:text-gray-300 mb-8">
-                Get started with our AI-powered solutions tailored to your industry needs. Fill out the form and we'll be in touch shortly.
+                Get started with our tailored solutions tailored to your industry needs. Fill out the form and we'll be in touch shortly.
               </p>
 
               <div className="space-y-4 mb-8">
@@ -331,7 +347,7 @@ const ContactUs: React.FC<ContactUsProps> = ({ defaultIndustry, onClose, isModal
                 <div className="flex items-start">
                   <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0" />
                   <p className="text-gray-700 dark:text-gray-300">
-                    <span className="font-semibold">Custom AI solution</span> designed for your industry
+                    <span className="font-semibold">Custom solution</span> designed for your industry
                   </p>
                 </div>
                 <div className="flex items-start">

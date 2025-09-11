@@ -112,7 +112,7 @@ const DigitalBusinessCard = () => {
     address: "123 AI Street, Tech City, 500081 Hyderabad, Telangana, India",
     phone: "+91 98765 43210",
     social: {
-      twitter: "https://twitter.com/digizinc_ai",
+      twitter: "https://twitter.com/digizinc",
       linkedin: "https://www.linkedin.com/company/digizinc",
       email: "info@digizinc.com",
       website: 'https://saaviksolutions.com'

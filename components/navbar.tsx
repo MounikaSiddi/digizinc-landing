@@ -12,11 +12,14 @@ import { Menu } from "lucide-react"
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
 import { useContactModal } from './ClientWrapper'; // Import the custom hook
+import { useActiveSection } from '@/hooks/useActiveSection';
 
 const navItems = [
-  { name: "Solutions", href: "/#solutions", isSection: true },
-  { name: "Services", href:"/#services", isSection: true },
-  { name: "Industries", href: "/#industries", isSection: true },
+  { name: "Solutions", href: "/#solutions", isSection: true, id: "solutions" },
+  { name: "Services", href:"/#services", isSection: true, id: "services" },
+  { name: "Packages", href: "/#packages", isSection: true, id: "packages" },
+  { name: "How We Work", href: "/#how-we-work", isSection: true, id: "how-we-work" },
+  { name: "Industries", href: "/#industries", isSection: true, id: "industries" },
   { name: "Careers", href: "/careers", isSection: false },
   { name: "Blogs", href: "/blog", isSection: false },
 ]
@@ -26,6 +29,8 @@ export default function Navbar() { // No props needed here anymore
   const router = useRouter()
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const { openContactModal } = useContactModal(); // Use the hook here!
+  const sectionIds = navItems.filter(item => item.isSection).map(item => item.id || '');
+  const activeSectionId = useActiveSection(sectionIds);
 
   const handleNavClick = async (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
     if (item.isSection) {
@@ -34,13 +39,13 @@ export default function Navbar() { // No props needed here anymore
       if (pathname !== '/') {
         await router.push('/')
         setTimeout(() => {
-          const element = document.getElementById(item.name.toLowerCase())
+          const element = document.getElementById(item.id || '')
           if (element) {
             element.scrollIntoView({ behavior: 'smooth' })
           }
         }, 100)
       } else {
-        const element = document.getElementById(item.name.toLowerCase())
+        const element = document.getElementById(item.id || '')
         if (element) {
           element.scrollIntoView({ behavior: 'smooth' })
         }
@@ -81,7 +86,7 @@ export default function Navbar() { // No props needed here anymore
               key={item.name}
               href={item.href}
               onClick={(e) => handleNavClick(e, item)}
-              className="text-sm font-medium transition-colors hover:text-foreground/80 hover:underline-offset-4 hover:underline mx-4 text-black dark:text-white"
+              className={`text-sm font-medium transition-colors hover:text-foreground/80 hover:underline-offset-4 hover:underline mx-4 ${activeSectionId === item.id ? "text-primary dark:text-primary-foreground" : "text-black dark:text-white"}`}
             >
               {item.name}
             </Link>

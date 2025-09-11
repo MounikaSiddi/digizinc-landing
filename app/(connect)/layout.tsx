@@ -4,7 +4,7 @@ import React from 'react';
 
 export const metadata = {
   title: 'Connect With Bhargava Raj',
-  description: 'Founder of the Digizinc AI Digital Marketing Agency',
+  description: 'Founder of the Digizinc Digital Marketing Agency',
 };
 
 export default function ConnectLayout({

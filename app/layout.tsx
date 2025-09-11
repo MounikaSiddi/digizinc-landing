@@ -18,40 +18,40 @@ const poppins = Poppins({
   variable: "--font-poppins",
 })
 
-// Updated Metadata export with AI focus
+// Updated Metadata export
 export const metadata: Metadata = {
   // Primary Meta Tags
-  title: "Digizinc | AI-Powered Digital Marketing & Branding Solutions", // Emphasize AI
-  description: "Digizinc offers cutting-edge AI solutions for digital marketing, strategic branding, and creative design. Transform your business, automate content, and elevate your online presence with our artificial intelligence-driven strategies.", // AI-centric description
+  title: "Digizinc | Digital Marketing & Branding Solutions",
+  description: "Digizinc offers cutting-edge solutions for digital marketing, strategic branding, and creative design. Transform your business, automate content, and elevate your online presence with our data-driven strategies.",
   keywords: [
-    "AI digital marketing agency",
-    "AI branding experts",
-    "AI solutions for marketing",
-    "artificial intelligence in marketing",
+    "digital marketing agency",
+    "branding experts",
+    "solutions for marketing",
+    "data-driven marketing",
     "machine learning marketing",
-    "generative AI design",
-    "AI-powered content creation",
-    "digital transformation AI",
-    "AI brand strategy",
-    "ROI-driven AI marketing",
-    "Digizinc AI", // Specific to your brand + AI
-    "AI web design",
-    "AI ad campaigns"
+    "generative design",
+    "content creation",
+    "digital transformation",
+    "brand strategy",
+    "ROI-driven marketing",
+    "Digizinc",
+    "web design",
+    "ad campaigns"
   ],
   authors: [{ name: "Digizinc" }],
 
   // Open Graph (OG) Tags for Facebook, LinkedIn, etc.
   openGraph: {
-    title: "Digizinc | AI-Powered Digital Marketing & Branding Agency", // AI in title
-    description: "Transform your brand with Digizinc – your trusted partner for strategic, AI-driven branding and ROI-focused digital marketing solutions.", // AI in description
-    url: "https://digizinc.com/", // Make sure this is your live domain
+    title: "Digizinc | Digital Marketing & Branding Agency",
+    description: "Transform your brand with Digizinc – your trusted partner for strategic, data-driven branding and ROI-focused digital marketing solutions.",
+    url: "https://digizinc.com/",
     siteName: "Digizinc",
     images: [
       {
-        url: "https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg", // OG Image URL
-        width: 1200, // Optimal width
-        height: 630, // Optimal height
-        alt: "Digizinc AI Solutions Logo - Digital Marketing & Branding Agency", // AI in alt text
+        url: "https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Digizinc Digital Marketing & Branding Agency Logo",
       },
     ],
     type: "website",
@@ -60,14 +60,14 @@ export const metadata: Metadata = {
   // Twitter Card Tags
   twitter: {
     card: "summary_large_image",
-    title: "Digizinc | AI-Powered Digital Marketing & Branding Agency", // AI in title
-    description: "Transform your brand with Digizinc – your trusted partner for strategic, AI-driven branding and ROI-focused digital marketing solutions.", // AI in description
-    images: ["https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg"], // Twitter Image URL
+    title: "Digizinc | Digital Marketing & Branding Agency",
+    description: "Transform your brand with Digizinc – your trusted partner for strategic, data-driven branding and ROI-focused digital marketing solutions.",
+    images: ["https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg"],
   },
 
   // Favicon (link rel="icon")
   icons: {
-    icon: "/favicon.ico", // Path to your favicon in the public directory
+    icon: "/favicon.ico",
   },
 }
 

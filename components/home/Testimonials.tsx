@@ -143,13 +143,15 @@ const Testimonials = () => {
                              transition-all duration-500 ease-out
                              hover:shadow-xl hover:shadow-primary/20
                              hover:border-primary/30 dark:hover:border-primary/20
-                             hover:-translate-y-1 shadow-inner"
+                             hover:-translate-y-1 shadow-inner
+                             relative overflow-hidden
+                             before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary/5 before:to-secondary/5 before:opacity-0 before:transition-opacity before:duration-500 group-hover:before:opacity-10"
                 >
                   <p className="text-foreground/90 mb-8 text-lg leading-relaxed italic">
                     "{testimonial.content}"
                   </p>
-                  <div className="flex items-center gap-4 pt-6 border-t border-primary/10 mt-auto group-hover:border-primary/20 transition-colors duration-500">
-                    <Avatar className="w-16 h-16">
+                  <div className="flex items-center gap-4 pt-6 border-t border-primary/10 mt-auto group-hover:border-primary/20 transition-colors duration-500 transform group-hover:scale-[1.01]">
+                    <Avatar className="w-16 h-16 transform group-hover:scale-105 transition-transform duration-300">
                       <AvatarImage src={testimonial.avatar} alt={testimonial.author} />
                       <AvatarFallback>{getInitials(testimonial.author)}</AvatarFallback>
                     </Avatar>

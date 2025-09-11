@@ -116,7 +116,7 @@ const industries: Industry[] = [
     id: 'entertainment',
     icon: <FilmIcon size={24} />,
     name: 'Entertainment',
-    description: 'Create captivating content for the entertainment industry with our AI-powered creative solutions.',
+    description: 'Create captivating content for the entertainment industry with our advanced creative solutions.',
     benefits: [
       'Engaging promotional materials for films and shows',
       'Eye-catching posters and digital marketing assets',
@@ -182,7 +182,7 @@ export default function IndustryTabs() { // No props needed here anymore
                     : 'bg-card text-foreground border-primary/30 dark:border-primary/20 hover:border-transparent hover:bg-gradient-primary hover:text-white hover:shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10'
                   }`}
               >
-                <span className="mb-2">{industry.icon}</span>
+                <span className="mb-2 transition-transform group-hover:scale-110">{industry.icon}</span>
                 <span className="text-sm font-medium text-center">{industry.name}</span>
               </button>
             )

@@ -19,6 +19,7 @@ interface Service {
 const Services: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const [activeTab, setActiveTab] = useState('branding');
+  const [activeCategory, setActiveCategory] = useState('all'); // New state for broader categories
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [modalIndustry, setModalIndustry] = useState<string | undefined>(undefined);
   // NEW STATE: Tracks if a tab has been clicked
@@ -35,16 +36,30 @@ const Services: React.FC = () => {
   };
 
   const services: Service[] = [
-    { id: 'branding', icon: <Palette className="h-6 w-6" />, title: "Branding & Identity", description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", items: ["Logo Design", "Brand Strategy & Positioning", "Visual Identity Development", "Brand Guidelines", "Corporate Rebranding", "Naming & Tagline Creation"] },
-    { id: 'website', icon: <Laptop className="h-6 w-6" />, title: "Website Design & Development", description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", items: ["Custom Website Design", "UI/UX Design & Prototyping", "Frontend & Backend Development", "E-commerce Development", "CMS Development (WordPress, Webflow, Shopify)", "Website Maintenance & Support"] },
-    { id: 'advertising', icon: <BarChart3 className="h-6 w-6" />, title: "Advertising & Marketing", description: "Enhance your marketing campaigns with AI-driven creative solutions.", items: ["Ad Campaign Design (Print, Digital, OOH)", "Social Media Creative Assets", "Banner & Display Ads", "Email Marketing Design", "Brochure & Flyer Design", "Presentation & Pitch Deck Design"] },
-    { id: 'content', icon: <MessageSquare className="h-6 w-6" />, title: "Content Creation & Storytelling", description: "Create compelling narratives with our AI content generation tools.", items: ["Copywriting & Content Strategy", "Scriptwriting (Ads, Explainers, Social)", "Blog & Article Writing", "Social Media Captions & Content", "Product Descriptions & Sales Copy"] },
-    { id: 'ux', icon: <Layout className="h-6 w-6" />, title: "UI/UX & Digital Experience", description: "Create seamless digital experiences with AI-enhanced design.", items: ["Website Design & Development", "App Interface Design", "Dashboard & SaaS UI Design", "Wireframing & Prototyping", "User Experience (UX) Audits"] },
-    { id: 'motion', icon: <FilmIcon className="h-6 w-6" />, title: "Motion & Video Production", description: "Bring your brand to life with AI-powered motion graphics and video.", items: ["Animation (2D, 3D, Motion Graphics)", "Video Editing & Post-Production", "Explainer Videos", "Brand Story Videos", "Social Media Reels & Shorts", "Cinematic Ad Production"] },
-    { id: 'illustration', icon: <PenTool className="h-6 w-6" />, title: "Illustration & Custom Artwork", description: "Create unique visuals with our AI-assisted illustration services.", items: ["Digital & Hand-drawn Illustrations", "Character Design", "Vector Art & Iconography", "Custom GIFs & Stickers", "Storyboarding for Ads/Videos"] },
-    { id: 'interactive', icon: <Wand2 className="h-6 w-6" />, title: "Experiential & Interactive Design", description: "Create immersive experiences with AI-powered interactive design.", items: ["Augmented Reality (AR) & Virtual Reality (VR) Design", "3D Modeling & Rendering", "Interactive Web Experiences", "Event & Exhibition Design", "Projection Mapping"] },
-    { id: 'photography', icon: <Image className="h-6 w-6" />, title: "Photography & Visual Content", description: "Enhance your visual content with AI-powered photography solutions.", items: ["Product Photography", "Brand Lifestyle Shoots", "Corporate Headshots", "Editorial & Fashion Photography", "Retouching & Image Manipulation"] },
-    { id: 'print', icon: <Laptop className="h-6 w-6" />, title: "Print & Packaging", description: "Create standout print materials with AI-optimized design.", items: ["Product Packaging Design", "Label & Sticker Design", "Billboard & Poster Design", "Book & Album Cover Design", "Trade Show Booth Design"] }
+    { id: 'branding', icon: <Palette className="h-6 w-6" />, title: "Branding & Identity", description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", items: ["Logo Design", "Brand Strategy & Positioning", "Visual Identity Development", "Brand Guidelines", "Corporate Rebranding", "Naming & Tagline Creation"], category: "branding" },
+    { id: 'website', icon: <Laptop className="h-6 w-6" />, title: "Website Design & Development", description: "Create a distinctive brand identity with our AI-enhanced branding solutions.", items: ["Custom Website Design", "UI/UX Design & Prototyping", "Frontend & Backend Development", "E-commerce Development", "CMS Development (WordPress, Webflow, Shopify)", "Website Maintenance & Support"], category: "digital-experience" },
+    { id: 'advertising', icon: <BarChart3 className="h-6 w-6" />, title: "Advertising & Marketing", description: "Enhance your marketing campaigns with AI-driven creative solutions.", items: ["Ad Campaign Design (Print, Digital, OOH)", "Social Media Creative Assets", "Banner & Display Ads", "Email Marketing Design", "Brochure & Flyer Design", "Presentation & Pitch Deck Design"], category: "marketing" },
+    { id: 'content', icon: <MessageSquare className="h-6 w-6" />, title: "Content Creation & Storytelling", description: "Create compelling narratives with our AI content generation tools.", items: ["Copywriting & Content Strategy", "Scriptwriting (Ads, Explainers, Social)", "Blog & Article Writing", "Social Media Captions & Content", "Product Descriptions & Sales Copy"], category: "marketing" },
+    { id: 'ux', icon: <Layout className="h-6 w-6" />, title: "UI/UX & Digital Experience", description: "Create seamless digital experiences with AI-enhanced design.", items: ["Website Design & Development", "App Interface Design", "Dashboard & SaaS UI Design", "Wireframing & Prototyping", "User Experience (UX) Audits"], category: "digital-experience" },
+    { id: 'motion', icon: <FilmIcon className="h-6 w-6" />, title: "Motion & Video Production", description: "Bring your brand to life with AI-powered motion graphics and video.", items: ["Animation (2D, 3D, Motion Graphics)", "Video Editing & Post-Production", "Explainer Videos", "Brand Story Videos", "Social Media Reels & Shorts", "Cinematic Ad Production"], category: "visual-content" },
+    { id: 'illustration', icon: <PenTool className="h-6 w-6" />, title: "Illustration & Custom Artwork", description: "Create unique visuals with our AI-assisted illustration services.", items: ["Digital & Hand-drawn Illustrations", "Character Design", "Vector Art & Iconography", "Custom GIFs & Stickers", "Storyboarding for Ads/Videos"], category: "visual-content" },
+    { id: 'interactive', icon: <Wand2 className="h-6 w-6" />, title: "Experiential & Interactive Design", description: "Create immersive experiences with AI-powered interactive design.", items: ["Augmented Reality (AR) & Virtual Reality (VR) Design", "3D Modeling & Rendering", "Interactive Web Experiences", "Event & Exhibition Design", "Projection Mapping"], category: "digital-experience" },
+    { id: 'photography', icon: <Image className="h-6 w-6" />, title: "Photography & Visual Content", description: "Enhance your visual content with AI-powered photography solutions.", items: ["Product Photography", "Brand Lifestyle Shoots", "Corporate Headshots", "Editorial & Fashion Photography", "Retouching & Image Manipulation"], category: "visual-content" },
+    { id: 'print', icon: <Laptop className="h-6 w-6" />, title: "Print & Packaging", description: "Create standout print materials with AI-optimized design.", items: ["Product Packaging Design", "Label & Sticker Design", "Billboard & Poster Design", "Book & Album Cover Design", "Trade Show Booth Design"], category: "branding" }
+  ];
+
+  interface ServiceCategory {
+    id: string;
+    name: string;
+    description: string;
+  }
+
+  const serviceCategories: ServiceCategory[] = [
+    { id: "all", name: "All Services", description: "Explore all our comprehensive solutions." },
+    { id: "branding", name: "Branding & Identity", description: "Build a strong and memorable brand presence." },
+    { id: "marketing", name: "Marketing & Advertising", description: "Reach your audience and drive conversions." },
+    { id: "digital-experience", name: "Digital Experience", description: "Create seamless and engaging online platforms." },
+    { id: "visual-content", name: "Visual Content", description: "Captivate with stunning visuals and motion." },
   ];
 
   // Move this line after the 'services' array declaration
@@ -84,10 +99,30 @@ const Services: React.FC = () => {
           <div className="lg:w-1/3 flex flex-col">
             <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-xl p-4 sticky top-24 flex-1">
               <h3 className="font-heading text-lg font-semibold dark:text-white mb-4 text-black">
+                Explore by Category
+              </h3>
+              <nav className="flex flex-wrap gap-2 mb-6">
+                {serviceCategories.map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setActiveCategory(category.id)}
+                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors
+                      ${activeCategory === category.id
+                        ? 'bg-gradient-primary text-white shadow-md'
+                        : 'bg-gray-200 dark:bg-secondary-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-secondary-600'
+                      }`}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </nav>
+              <h3 className="font-heading text-lg font-semibold dark:text-white mb-4 text-black">
                 Service Categories
               </h3>
               <nav className="flex flex-col space-y-1">
-                {services.map(service => (
+                {services
+                  .filter(service => activeCategory === 'all' || service.category === activeCategory)
+                  .map(service => (
                   <button
                     key={service.id}
                     onClick={() => handleTabClick(service.id)} 

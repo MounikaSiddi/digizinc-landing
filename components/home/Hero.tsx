@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
 import { useContactModal } from "../ClientWrapper";
-import ToggleSwitch from "@/components/ui/toggle-switch"; // Import the ToggleSwitch component
+import { Button } from "@/components/ui/button";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -46,7 +46,12 @@ const Hero = () => {
             variants={fadeIn}
           >
             <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
-            <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
+            <motion.span
+              className="text-7xl md:text-8xl xl:text-9xl block bg-gradient-primary bg-clip-text text-transparent"
+              initial={{ filter: "drop-shadow(0 0 0px #F22EE5)" }}
+              animate={{ filter: "drop-shadow(0 0 10px #F22EE5)" }}
+              transition={{ repeat: Infinity, duration: 2, ease: "easeInOut", repeatType: "reverse" }}
+            >grwth</motion.span>
             <span className="text-3xl md:text-4xl xl:text-5xl"> of your business</span>
           </motion.h1>
 
@@ -56,6 +61,16 @@ const Hero = () => {
           >
             We turn ideas into working products
           </motion.p>
+          <motion.div variants={fadeIn}>
+            <Button
+              variant={'gradient'}
+              size={'lg'}
+              className="mt-8 px-8 py-3 rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-lg hover:opacity-90 transition-opacity transform hover:scale-105"
+              onClick={() => openContactModal(undefined)}
+            >
+              Get a Free Consultation
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
 
