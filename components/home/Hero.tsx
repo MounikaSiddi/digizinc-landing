@@ -1,9 +1,9 @@
 'use client'
-import Image from "next/image"
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
 import { useState, useEffect } from "react"
 import { useContactModal } from "../ClientWrapper";
+import ToggleSwitch from "@/components/ui/toggle-switch"; // Import the ToggleSwitch component
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -26,8 +26,7 @@ const Hero = () => {
   return (
     <section
       className={`relative py-10 overflow-hidden min-h-[calc(100vh-80px)] flex flex-col justify-center
-      text-white`}
-    >
+      text-white`}>
       {/* 🌌 Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-br from-[#D9D9D9] via-[#F22EE5] to-[#561F8C] -z-20"></div>
 
@@ -46,19 +45,16 @@ const Hero = () => {
             className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-white w-full"
             variants={fadeIn}
           >
-            Transform Your{" "}
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 via-purple-500 to-indigo-600 animate-gradient bg-[length:200%_200%]">
-              Digital Presence
-            </span>{" "}
-            with AI
+            <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
+            <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
+            <span className="text-3xl md:text-4xl xl:text-5xl"> of your business</span>
           </motion.h1>
 
           <motion.p
             className="text-lg lg:text-xl text-white/90 mx-auto lg:mx-0 leading-relaxed"
             variants={fadeIn}
           >
-            Digizinc offers cutting-edge AI solutions and comprehensive digital marketing services to help your
-            business thrive in the digital era...
+            We turn ideas into working products
           </motion.p>
         </motion.div>
       </div>
@@ -95,9 +91,15 @@ const Hero = () => {
         }
 
         @keyframes gradient {
-          0% { background-position: 0% 50%; }
-          50% { background-position: 100% 50%; }
-          100% { background-position: 0% 50%; }
+          0% {
+            background-position: 0% 50%;
+          }
+          50% {
+            background-position: 100% 50%;
+          }
+          100% {
+            background-position: 0% 50%;
+          }
         }
 
         .animate-gradient {
@@ -108,4 +110,4 @@ const Hero = () => {
   )
 }
 
-export default Hero
+export default Hero;
