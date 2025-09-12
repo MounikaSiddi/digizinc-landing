@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, createContext, useContext } from 'react';
-import ContactUs from './Contactus';
+import { ContactModal } from './contact/ContactModal';
 import WhatsappButton from './Whatsapp'; // Import the WhatsApp component
 
 // Define the shape of our context
@@ -48,8 +48,8 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
 
       {/* Render the ContactUs modal here, at a high level within the client-side tree */}
       {isContactModalOpen && (
-        <ContactUs
-          isModal={true}
+        <ContactModal
+          isOpen={isContactModalOpen}
           defaultIndustry={modalIndustry}
           onClose={closeContactModal}
         />

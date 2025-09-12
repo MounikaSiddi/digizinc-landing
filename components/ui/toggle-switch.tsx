@@ -1,74 +1,62 @@
-'use client';
+'use client'
 
-import React, { useState, useEffect, useRef } from 'react';
-import { motion } from 'framer-motion';
-import { useToast } from '@/hooks/use-toast';
-import { useConfetti } from '@/contexts/ConfettiContext';
+import React, { useState } from 'react'
+import { motion } from 'framer-motion'
+import { cn } from '@/lib/utils'
 
 interface ToggleSwitchProps {
-  initialState?: boolean;
-  onToggle?: (isOn: boolean) => void;
-  className?: string;
+  checked?: boolean // external state (controlled mode)
+  defaultChecked?: boolean // initial value (uncontrolled mode)
+  onCheckedChange?: (isOn: boolean) => void // Renamed from onChange for clarity with native input onChange
+  className?: string
+  withLabels?: boolean
 }
 
 const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
-  initialState = false,
-  onToggle,
+  checked,
+  defaultChecked = false,
+  onCheckedChange,
   className,
+  withLabels = false,
 }) => {
-  const [isOn, setIsOn] = useState(initialState);
-  const { toast } = useToast();
-  const { showConfetti } = useConfetti();
-  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [internal, setInternal] = useState(defaultChecked)
+  const isControlled = checked !== undefined
+  const isOn = isControlled ? checked : internal
 
-  useEffect(() => {
-    // Preload the audio file
-    audioRef.current = new Audio('/confetti_sound.mp3');
-    audioRef.current.load();
-  }, []);
-
-  const toggleSwitch = () => {
-    setIsOn((prev) => {
-      const newState = !prev;
-      onToggle?.(newState);
-      // Trigger confetti only when turning ON
-      if (newState) {
-        if (audioRef.current) {
-          audioRef.current.play().catch(e => console.error("Error playing sound:", e));
-        }
-        toast({
-          title: "You've Chosen Growth with Digizinc",
-          description: "Get ready to experience the fusion of creativity and intelligence. Your brand's journey to the future starts now.",
-          duration: 3000, // 3 seconds
-        });
-        showConfetti();
-      } else {
-        // No toast message on deactivation
-      }
-      return newState;
-    });
-  };
+  const toggle = () => {
+    const newState = !isOn
+    if (!isControlled) setInternal(newState)
+    onCheckedChange?.(newState)
+  }
 
   return (
-    <>
-      <div
-        className={`relative inline-flex items-center rounded-full cursor-pointer transition-all duration-300 ${className}`}
-        style={{
-          width: '140px', // Increased width
-          height: '70px', // Increased height
-          background: 'linear-gradient(to right, #D9D9D9, #F22EE5, #561F8C)',
-        }}
-        onClick={toggleSwitch}
+    <div className="flex items-center gap-2">
+      {withLabels && <span className="text-sm font-medium">Human</span>}
+
+      <button
+        role="switch"
+        aria-checked={isOn}
+        onClick={toggle}
+        className={cn(
+          "relative inline-flex items-center rounded-full transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500",
+          "w-20 h-10", // fixed size for consistency
+          isOn
+            ? "bg-gradient-to-r from-purple-500 to-pink-500 shadow-[0_0_12px_rgba(236,72,153,0.7)]"
+            : "bg-gray-300 dark:bg-gray-700",
+          className
+        )}
       >
         <motion.div
-          className="absolute w-16 h-16 bg-white rounded-full shadow-md" // Further increased knob size
           layout
           transition={{ type: 'spring', stiffness: 700, damping: 30 }}
-          style={isOn ? { left: 'calc(100% - 74px)' } : { left: '5px' }} // Adjusted left position
+          className="absolute top-1 left-1 w-8 h-8 rounded-full bg-white shadow-md"
+          style={{ transform: `translateX(${isOn ? '40px' : '0px'})` }}
         />
-      </div>
-    </>
-  );
-};
+      </button>
 
-export default ToggleSwitch;
+      {withLabels && <span className="text-sm font-medium">AI</span>}
+    </div>
+  )
+}
+
+export default ToggleSwitch

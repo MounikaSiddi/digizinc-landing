@@ -1,4 +1,5 @@
 import React from 'react'
+import NewsletterSignup from './NewsletterSignup';
 
 export default function BlogLayout({
   children,
@@ -15,6 +16,10 @@ export default function BlogLayout({
       <article className="prose dark:prose-invert max-w-none">
         {children}
       </article>
+      <hr className="my-8" />
+      <div className="max-w-lg mx-auto">
+        <NewsletterSignup />
+      </div>
     </main>
   )
 }

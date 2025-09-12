@@ -5,7 +5,8 @@ import ReactConfetti from 'react-confetti';
 import { useWindowSize } from '@react-hook/window-size';
 
 interface ConfettiContextType {
-  showConfetti: () => void;
+  showConfetti: (duration?: number) => void;
+  stopConfetti: () => void;
 }
 
 const ConfettiContext = createContext<ConfettiContextType | undefined>(undefined);
@@ -26,21 +27,23 @@ export const ConfettiProvider: React.FC<ConfettiProviderProps> = ({ children }) 
   const [isRunning, setIsRunning] = useState(false);
   const [width, height] = useWindowSize();
 
-  const showConfetti = () => {
+  const showConfetti = (duration = 5000) => {
     setIsRunning(true);
-    setTimeout(() => setIsRunning(false), 5000); // Confetti for 5 seconds
+    setTimeout(() => setIsRunning(false), duration);
   };
 
+  const stopConfetti = () => setIsRunning(false);
+
   return (
-    <ConfettiContext.Provider value={{ showConfetti }}>
+    <ConfettiContext.Provider value={{ showConfetti, stopConfetti }}>
       {children}
       {isRunning && (
         <ReactConfetti
           width={width}
           height={height}
           recycle={false}
-          numberOfPieces={500}
-          gravity={0.1}
+          numberOfPieces={400}
+          gravity={0.15}
           colors={['#D9D9D9', '#F22EE5', '#561F8C', '#FFFFFF']}
           confettiSource={{
             x: 0,

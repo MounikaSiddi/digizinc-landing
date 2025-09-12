@@ -164,7 +164,7 @@ export default function IndustryTabs() { // No props needed here anymore
             Industries We <span className="text-transparent bg-clip-text bg-gradient-primary">Transform</span>
           </h2>
           <p className="text-foreground text-lg">
-            DigiZinc creates custom solutions for a wide range of industries
+            Digizinc creates custom solutions for a wide range of industries
           </p>
         </div>
 

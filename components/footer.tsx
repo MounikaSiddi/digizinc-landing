@@ -14,6 +14,7 @@ import {
   FaXTwitter, // Renamed FaXTwitter for clarity as it's often used for X
 } from 'react-icons/fa6';
 import { useTheme } from 'next-themes';
+import NewsletterSignup from './NewsletterSignup';
 
 
 const Footer = () => {
@@ -57,52 +58,54 @@ const Footer = () => {
         {/* Horizontal Divider */}
         <hr className="w-full border-t border-gray-300 dark:border-gray-700 mb-12 md:mb-16" />
 
-        {/* Bottom Section: Logo, Copyright, and Policy Links */}
-        <div className="flex flex-col md:flex-row items-center justify-between w-full gap-8 md:gap-6">
-          {/* DigiZinc Logo */}
-          
-          <div className="mb-6 md:mb-0">
-          <Link href="/" >
-          <Image
-            src="/digizinc-header-logo-light.png"
-            alt="Digizinc Logo"
-            width={120}
-            height={30}
-            className="h-auto w-auto block dark:hidden mx-auto my-4 object-contain"
-          />
-          <Image
-            src="/digizinc-header-logo-dark.png"
-            alt="Digizinc Logo"
-            width={120}
-            height={30}
-            className=" w-auto hidden dark:block mx-auto h-auto my-4 object-contain"
-          />
-        </Link>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full items-start">
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-4 text-foreground">Stay Connected</h4>
+            <NewsletterSignup />
           </div>
 
-          {/* Copyright Information */}
-          <div className="text-center text-sm md:text-base order-last md:order-none">
-            &copy;SaaVik Solutions Pvt. Ltd. || All rights reserved.
+          <div className="text-center">
+            <Link href="/" >
+              <Image
+                src="/digizinc-header-logo-light.png"
+                alt="Digizinc Logo"
+                width={120}
+                height={30}
+                className="h-auto w-auto block dark:hidden mx-auto my-4 object-contain"
+              />
+              <Image
+                src="/digizinc-header-logo-dark.png"
+                alt="Digizinc Logo"
+                width={120}
+                height={30}
+                className=" w-auto hidden dark:block mx-auto h-auto my-4 object-contain"
+              />
+            </Link>
+            <div className="text-sm md:text-base text-muted-foreground">
+              &copy;SaaVik Solutions Pvt. Ltd. || All rights reserved.
+            </div>
           </div>
 
-          {/* Policy Links */}
-          <ul className="flex flex-wrap justify-center gap-x-6 gap-y-3 text-sm md:text-base">
-            <li>
-              <Link href="/privacy-policy" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
-                Privacy Policy
-              </Link>
-            </li>
-            <li>
-              <Link href="/terms-of-service" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
-                Terms of Service
-              </Link>
-            </li>
-            <li>
-              <Link href="/cookie-policy" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
-                Cookie Policy
-              </Link>
-            </li>
-          </ul>
+          <div className="text-center md:text-right">
+            <h4 className="text-lg font-semibold mb-4 text-foreground">Legal</h4>
+            <ul className="flex flex-col gap-y-2 text-sm md:text-base">
+              <li>
+                <Link href="/privacy-policy" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms-of-service" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
+                  Terms of Service
+                </Link>
+              </li>
+              <li>
+                <Link href="/cookie-policy" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
+                  Cookie Policy
+                </Link>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
     </footer>

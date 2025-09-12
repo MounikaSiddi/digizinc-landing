@@ -4,8 +4,8 @@ const PrivacyPolicy = () => {
   return (
     <div className="min-h-screen bg-white text-gray-800 py-12 px-4 sm:px-6 lg:px-8">
       <Head>
-        <title>Privacy Policy - DigiZinc</title>
-        <meta name="description" content="DigiZinc's Privacy Policy explaining data collection, usage, and your rights." />
+        <title>Privacy Policy - Digizinc</title>
+        <meta name="description" content="Digizinc's Privacy Policy explaining data collection, usage, and your rights." />
       </Head>
 
       <div className="max-w-4xl mx-auto">
@@ -16,7 +16,7 @@ const PrivacyPolicy = () => {
         <section className="mb-8">
           <h2 className="text-2xl font-bold text-gray-900 mb-4">1. Introduction</h2>
           <p className="mb-4 leading-relaxed">
-            Welcome to DigiZinc. Your privacy is very important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.digizinc.com" className="text-blue-600 hover:underline">Digizinc.com</a>.
+            Welcome to Digizinc. Your privacy is very important to us. This Privacy Policy explains how we collect, use, disclose, and safeguard your information when you visit our website <a href="https://www.digizinc.com" className="text-blue-600 hover:underline">Digizinc.com</a>.
           </p>
         </section>
 
@@ -68,7 +68,7 @@ const PrivacyPolicy = () => {
           </p>
           <h3 className="text-xl font-semibold text-gray-800 mb-2">Business Transfers:</h3>
           <p className="mb-4 leading-relaxed">
-            If DigiZinc is involved in a merger, acquisition, or asset sale, your information may be transferred as part of that transaction.
+            If Digizinc is involved in a merger, acquisition, or asset sale, your information may be transferred as part of that transaction.
           </p>
         </section>
 

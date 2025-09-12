@@ -4,8 +4,8 @@ const CookiePolicy = () => {
   return (
     <div className="min-h-screen bg-white text-gray-800 py-12 px-4 sm:px-6 lg:px-8">
       <Head>
-        <title>Cookie Policy - DigiZinc</title>
-        <meta name="description" content="DigiZinc's Cookie Policy explaining how we use cookies and your choices." />
+        <title>Cookie Policy - Digizinc</title>
+        <meta name="description" content="Digizinc's Cookie Policy explaining how we use cookies and your choices." />
       </Head>
 
       <div className="max-w-4xl mx-auto">

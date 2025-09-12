@@ -1,51 +1,50 @@
 // app/layout.tsx (Server Component)
-import type { Metadata } from "next"
-import { Inter, Poppins } from "next/font/google"
-import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import Navbar from "@/components/navbar"
-import Footer from "@/components/footer"
-import ClientWrapper from "@/components/ClientWrapper"
-import { Toaster } from "@/components/ui/toaster"
+import type { Metadata } from "next";
+import { Inter, Poppins } from "next/font/google";
+import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import Navbar from "@/components/navbar";
+import Footer from "@/components/footer";
+import ClientWrapper from "@/components/ClientWrapper";
+import { Toaster } from "@/components/ui/toaster";
 import { ConfettiProvider } from "@/contexts/ConfettiContext";
+import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] })
-// const bricolage = Bricolage_Grotesque({
-//   subsets: ["latin"],
-//   variable: '--font-bricolage',
-// })
+const inter = Inter({ subsets: ["latin"] });
 const poppins = Poppins({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-poppins",
-})
+});
 
-// Updated Metadata export
+// ✅ Updated & SEO-optimized Metadata
 export const metadata: Metadata = {
-  // Primary Meta Tags
   title: "Digizinc | Digital Marketing & Branding Solutions",
-  description: "Digizinc offers cutting-edge solutions for digital marketing, strategic branding, and creative design. Transform your business, automate content, and elevate your online presence with our data-driven strategies.",
+  description:
+    "Digizinc delivers innovative digital marketing, creative branding, and data-driven growth solutions. We help businesses transform their online presence with automation, AI, and strategic campaigns that deliver measurable ROI.",
   keywords: [
     "digital marketing agency",
     "branding experts",
-    "solutions for marketing",
     "data-driven marketing",
+    "AI marketing solutions",
     "machine learning marketing",
     "generative design",
-    "content creation",
+    "creative content creation",
     "digital transformation",
-    "brand strategy",
-    "ROI-driven marketing",
+    "brand identity design",
+    "marketing automation",
+    "ROI-focused campaigns",
+    "web design and development",
+    "performance marketing",
+    "SEO and SEM",
     "Digizinc",
-    "web design",
-    "ad campaigns"
   ],
   authors: [{ name: "Digizinc" }],
 
-  // Open Graph (OG) Tags for Facebook, LinkedIn, etc.
   openGraph: {
     title: "Digizinc | Digital Marketing & Branding Agency",
-    description: "Transform your brand with Digizinc – your trusted partner for strategic, data-driven branding and ROI-focused digital marketing solutions.",
+    description:
+      "Partner with Digizinc for innovative branding and ROI-driven digital marketing. From AI-powered strategies to creative design, we elevate your brand online.",
     url: "https://digizinc.com/",
     siteName: "Digizinc",
     images: [
@@ -53,34 +52,37 @@ export const metadata: Metadata = {
         url: "https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg",
         width: 1200,
         height: 630,
-        alt: "Digizinc Digital Marketing & Branding Agency Logo",
+        alt: "Digizinc - Digital Marketing & Branding Agency",
       },
     ],
     type: "website",
   },
 
-  // Twitter Card Tags
   twitter: {
     card: "summary_large_image",
     title: "Digizinc | Digital Marketing & Branding Agency",
-    description: "Transform your brand with Digizinc – your trusted partner for strategic, data-driven branding and ROI-focused digital marketing solutions.",
-    images: ["https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg"],
+    description:
+      "Transform your brand with Digizinc — data-driven marketing, creative design, and ROI-focused strategies tailored to your growth.",
+    images: [
+      "https://miscellaneous-0.s3.ap-south-1.amazonaws.com/digizinc_main_og.jpg",
+    ],
   },
 
-  // Favicon (link rel="icon")
   icons: {
     icon: "/favicon.ico",
   },
-}
+};
 
 export default function RootLayout({
   children,
 }: {
-  children: React.ReactNode
+  children: React.ReactNode;
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.className} ${poppins.variable} min-h-screen bg-background`}>
+      <body
+        className={`${inter.className} ${poppins.variable} min-h-screen bg-background`}
+      >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConfettiProvider>
             <ClientWrapper>
@@ -91,7 +93,38 @@ export default function RootLayout({
             </ClientWrapper>
           </ConfettiProvider>
         </ThemeProvider>
+        <Analytics />
+
+        {/* ✅ Fixed JSON-LD (structured data) */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(
+              {
+                "@context": "https://schema.org",
+                "@type": "Organization",
+                name: "Digizinc",
+                url: "https://digizinc.com",
+                logo: "https://digizinc.com/digizinc-main-logo.jpg",
+                contactPoint: {
+                  "@type": "ContactPoint",
+                  telephone: "+91-97015-63362",
+                  contactType: "customer service",
+                },
+                sameAs: [
+                  "https://dribbble.com/digizinc_",
+                  "https://medium.com/@digizinc_",
+                  "https://www.instagram.com/digizinc_",
+                  "https://www.behance.net/digizinc_",
+                  "https://x.com/digizinc_",
+                ],
+              },
+              null,
+              2
+            ),
+          }}
+        />
       </body>
     </html>
-  )
+  );
 }

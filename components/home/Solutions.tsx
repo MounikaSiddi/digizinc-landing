@@ -36,7 +36,7 @@ const Solutions = () => {
           variants={fadeIn}
         >
           <h2 className="text-4xl md:text-5xl font-heading font-bold mb-6 leading-tight text-foreground"> {/* Use text-foreground for the general heading text */}
-            DigiZinc :<span className="bg-gradient-primary to-secondary text-transparent bg-clip-text"> Your Intelligent</span>  Partner
+            Digizinc :<span className="bg-gradient-primary to-secondary text-transparent bg-clip-text"> Your Intelligent</span>  Partner
           </h2>
           <p className="text-foreground text-lg md:text-xl max-w-5xl mx-auto leading-relaxed">
             Digizinc provides comprehensive digital marketing solutions to help your business grow and succeed online.
@@ -106,7 +106,7 @@ const Solutions = () => {
                 transition-all duration-300 ease-out
                 hover:scale-[1.02] hover:-translate-y-1
                 h-full overflow-hidden
-                before:absolute before:inset-0 before:bg-gradient-to-b before:from-[#401967] before:to-[#7F32CD] before:opacity-0 hover:before:opacity-10 before:transition-opacity before:duration-300"
+                before:absolute before:inset-0 before:bg-gradient-to-b before:from-secondary-900 before:to-secondary-600 before:opacity-0 hover:before:opacity-10 before:transition-opacity before:duration-300"
               >
                 <CardContent className="p-8 flex flex-col h-full">
                   <div

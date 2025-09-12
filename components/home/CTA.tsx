@@ -29,7 +29,7 @@ const CTA = () => {
             </div>
 
             <h2 className="font-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-6 leading-tight">
-              Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with DigiZinc?
+              Ready to transform your <span className="text-transparent bg-clip-text bg-gradient-primary">digital presence</span> with Digizinc?
             </h2>
 
             <p className="text-lg text-left px-10 text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">

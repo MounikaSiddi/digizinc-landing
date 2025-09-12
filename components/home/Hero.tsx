@@ -1,33 +1,57 @@
 'use client'
 import { motion } from "framer-motion"
 import { useTheme } from "next-themes"
-import { useState, useEffect } from "react"
+import { useState, useEffect, useRef } from "react"
 import { useContactModal } from "../ClientWrapper";
-import ToggleSwitch from "@/components/ui/toggle-switch"; // Import the ToggleSwitch component
+import { Button } from "@/components/ui/button";
+import ToggleSwitch from "@/components/ui/toggle-switch"; 
+import { useToast } from '@/hooks/use-toast';
+import { useConfetti } from '@/contexts/ConfettiContext';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6, staggerChildren: 0.2 },
-  },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6, staggerChildren: 0.2 } }
 }
 
-const Hero = () => {
+const HeroGrowth = () => {
   const { theme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const { openContactModal } = useContactModal();
+  const [isAI, setIsAI] = useState(true)
+  const { toast } = useToast();
+  const { showConfetti } = useConfetti();
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
+    audioRef.current = new Audio('/confetti_sound.mp3');
+    audioRef.current.load();
   }, []);
 
-  const backgroundClass = theme === 'dark' ? 'bg-gradient-dark-hero' : 'bg-gradient-light-hero';
+  const handleToggleChange = (checked: boolean) => {
+    setIsAI(checked);
+    if (checked) {
+      audioRef.current?.play().catch(() => {});
+      toast({
+        title: "🚀 Growth Activated",
+        description: "Your business journey with Digizinc begins!",
+        duration: 3000,
+      });
+      showConfetti();
+    }
+  };
+
+  const backgroundClass = theme === 'dark'
+    ? 'bg-gradient-to-b from-[#0d0d0d] via-[#240840] to-[#0d0d0d]'
+    : 'bg-gradient-to-b from-white to-gray-100';
 
   return (
     <section
       className={`relative py-10 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center ${backgroundClass}`}>
+      
+      {/* Neon Glow Orbs */}
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#f22ee5]/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-[#902ef2]/20 rounded-full blur-3xl"></div>
 
       {/* ⭐ Stars layer */}
       <div className="stars absolute inset-0 -z-10"></div>
@@ -40,81 +64,82 @@ const Hero = () => {
           animate="visible"
           variants={fadeIn}
         >
-  <motion.h1
-  className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 dark:text-white w-full"
-  variants={fadeIn}
->
-  <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
-
-  {/* Growth word with toggle */}
-  <span className="inline-flex items-center text-6xl sm:text-7xl md:text-8xl xl:text-9xl whitespace-nowrap">
-    gr<ToggleSwitch className="mx-2" />wth
-  </span>
-
-  <span className="block text-3xl md:text-4xl xl:text-5xl mt-4 md:mt-2">
-    of your business
-  </span>
-</motion.h1>
-
-
-          <motion.p
-            className="text-lg lg:text-xl dark:text-white/90 mx-auto lg:mx-0 leading-relaxed"
+          <motion.h1
+            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 dark:text-white w-full"
             variants={fadeIn}
           >
-            We turn ideas into working products
+            <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
+
+            {/* Growth word with toggle */}
+            <span className="inline-flex items-center text-6xl sm:text-7xl md:text-8xl xl:text-9xl whitespace-nowrap">
+              gr
+              <ToggleSwitch
+                className="mx-2 scale-110"
+                checked={isAI}
+                onCheckedChange={handleToggleChange}
+              />
+              wth
+            </span>
+
+            <span className="block text-3xl md:text-4xl xl:text-5xl mt-4 md:mt-2">
+              of your business
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg lg:text-xl dark:text-white/90 mx-auto leading-relaxed"
+            variants={fadeIn}
+          >
+            Digizinc merges design, storytelling, and {isAI ? "AI-powered intelligence" : "human creativity"}  
+            to help brands scale faster and stand out in a crowded market.
           </motion.p>
+
+          <motion.div variants={fadeIn} className="flex flex-wrap gap-4 justify-center mt-8">
+            <Button
+              onClick={() => openContactModal(undefined)}
+              className="rounded-full px-8 py-4 text-lg font-semibold shadow-lg bg-gradient-to-r from-[#f22ee5] via-[#902ef2] to-[#561f8c] text-white hover:scale-105 transition"
+            >
+              🚀 Start Your Project
+            </Button>
+            <Button
+              variant="outline"
+              className="rounded-full px-8 py-4 text-lg font-semibold border-[#902ef2] text-[#902ef2] hover:bg-[#902ef2]/10 transition"
+            >
+              Explore Services
+            </Button>
+          </motion.div>
         </motion.div>
       </div>
 
-      {/* ✨ Custom CSS for stars + gradient animation */}
+      {/* ✨ Stars CSS */}
       <style jsx>{`
         .stars {
           background: transparent;
           box-shadow:
-            20px 40px var(--star-color),
-            100px 200px var(--star-color),
-            300px 150px var(--star-color),
-            500px 400px var(--star-color),
-            700px 250px var(--star-color),
-            900px 300px var(--star-color),
-            1100px 200px var(--star-color);
+            20px 40px var(--star-color, #fff),
+            100px 200px var(--star-color, #fff),
+            300px 150px var(--star-color, #fff),
+            500px 400px var(--star-color, #fff),
+            700px 250px var(--star-color, #fff),
+            900px 300px var(--star-color, #fff),
+            1100px 200px var(--star-color, #fff);
           animation: twinkle 2s infinite alternate;
         }
-
         .stars::after {
           content: "";
           position: absolute;
-          top: 0;
-          left: 0;
-          width: 100%;
-          height: 100%;
+          top: 0; left: 0;
+          width: 100%; height: 100%;
           box-shadow: inherit;
           animation: twinkle 3s infinite alternate;
         }
-
         @keyframes twinkle {
           from { opacity: 0.5; }
           to { opacity: 1; }
-        }
-
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-
-        .animate-gradient {
-          animation: gradient 6s ease infinite;
         }
       `}</style>
     </section>
   )
 }
 
-export default Hero;
+export default HeroGrowth

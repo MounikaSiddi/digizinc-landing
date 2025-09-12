@@ -120,7 +120,7 @@ const Testimonials = () => {
             What Our Clients Say
           </h2>
           <p className="text-lg text-foreground/80 max-w-2xl mx-auto">
-            Discover how DigiZinc is transforming businesses worldwide
+            Discover how Digizinc is transforming businesses worldwide
           </p>
         </motion.div>
 

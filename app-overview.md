@@ -1,26 +1,4 @@
 
-
-
-          
-I need to check the content of app-overview.md to convert it to proper markdown format.
-        
-            
-toolName: view_files
-            
-status: success
-          
-            
-filePath: d:\saavik_solutions\digizinc\digizinc-landing\app-overview.md
-          
-I need to see the rest of the document to convert it completely to proper markdown.
-        
-            
-toolName: view_files
-            
-status: success
-          
-            
-filePath: d:\saavik_solutions\digizinc\digizinc-landing\app-overview.md
           
 # Digizinc: Comprehensive Research & Service Document
 
