@@ -45,13 +45,17 @@ const HeroGrowth = () => {
     ? 'bg-gradient-to-b from-[#0d0d0d] via-[#240840] to-[#0d0d0d]'
     : 'bg-gradient-to-b from-white to-gray-100';
 
+  const starColor = theme === 'dark' ? '#fff' : '#333';
+
+  if (!mounted) return null; // Avoids hydration mismatch
+
   return (
     <section
       className={`relative py-10 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center ${backgroundClass}`}>
       
       {/* Neon Glow Orbs */}
-      <div className="absolute -top-40 -left-40 w-96 h-96 bg-[#f22ee5]/20 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-[#902ef2]/20 rounded-full blur-3xl"></div>
+      <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
+      <div className="absolute bottom-0 right-0 w-[28rem] h-[28rem] bg-secondary/20 rounded-full blur-3xl"></div>
 
       {/* ⭐ Stars layer */}
       <div className="stars absolute inset-0 -z-10"></div>
@@ -65,17 +69,19 @@ const HeroGrowth = () => {
           variants={fadeIn}
         >
          <motion.h1
-            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-white w-full"
+            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-foreground w-full"
             variants={fadeIn}
           >
-            <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
+            <span className="text-3xl md:text-4xl xl:text-5xl">
+              AI <span className="font-cursive">driven</span>
+            </span>
             <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
-            <span className="text-3xl md:text-4xl xl:text-5xl"> of your business</span>
+            <span className="text-3xl md:text-4xl xl:text-5xl">for your business</span>
           </motion.h1>
 
 
           <motion.p
-            className="text-lg lg:text-xl dark:text-white/90 mx-auto leading-relaxed"
+            className="text-lg lg:text-xl text-muted-foreground mx-auto leading-relaxed"
             variants={fadeIn}
           >
             Digizinc merges design, storytelling, and {isAI ? "AI-powered intelligence" : "human creativity"}  
@@ -85,7 +91,8 @@ const HeroGrowth = () => {
           <motion.div variants={fadeIn} className="flex flex-wrap gap-4 justify-center mt-8">
             <Button
               onClick={() => openContactModal(undefined)}
-              className="rounded-full px-8 py-4 text-lg font-semibold shadow-lg bg-gradient-to-r from-[#f22ee5] via-[#902ef2] to-[#561f8c] text-white hover:scale-105 transition"
+              variant="gradient"
+              className="rounded-full px-8 py-4 text-lg font-semibold shadow-lg text-primary-foreground hover:scale-105 transition"
             >
               🚀 Start Your Project
             </Button>
@@ -97,7 +104,7 @@ const HeroGrowth = () => {
                   servicesSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="rounded-full px-8 py-4 text-lg font-semibold border-[#902ef2] text-[#902ef2] hover:bg-[#902ef2]/10 transition"
+              className="rounded-full px-8 py-4 text-lg font-semibold border-primary text-primary hover:bg-primary/10 transition"
             >
               Explore Services
             </Button>
@@ -110,13 +117,13 @@ const HeroGrowth = () => {
         .stars {
           background: transparent;
           box-shadow:
-            20px 40px var(--star-color, #fff),
-            100px 200px var(--star-color, #fff),
-            300px 150px var(--star-color, #fff),
-            500px 400px var(--star-color, #fff),
-            700px 250px var(--star-color, #fff),
-            900px 300px var(--star-color, #fff),
-            1100px 200px var(--star-color, #fff);
+            20px 40px ${starColor},
+            100px 200px ${starColor},
+            300px 150px ${starColor},
+            500px 400px ${starColor},
+            700px 250px ${starColor},
+            900px 300px ${starColor},
+            1100px 200px ${starColor};
           animation: twinkle 2s infinite alternate;
         }
         .stars::after {

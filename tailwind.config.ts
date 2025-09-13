@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss"
+const { fontFamily } = require("tailwindcss/defaultTheme")
 
 const config = {
   darkMode: ["class"],
@@ -81,8 +82,9 @@ const config = {
         },
       },
       fontFamily: {
-        sans: ["Inter", "sans-serif"],
-        heading: ["Poppins", "sans-serif"],
+        sans: ["var(--font-inter)", ...fontFamily.sans],
+        heading: ["var(--font-poppins)", "sans-serif"],
+        cursive: ["var(--font-dancing-script)", "cursive"],
       },
       borderRadius: {
         lg: "var(--radius)",

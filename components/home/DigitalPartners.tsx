@@ -49,7 +49,7 @@ const DigitalPartners = () => {
                 alt={`${logo.name} logo`}
                 width={160}
                 height={60}
-                className="h-16 w-auto object-contain"
+                className="h-16 w-auto object-contain invert dark:invert-0"
               />
             </a>
           ))}
@@ -70,7 +70,7 @@ const DigitalPartners = () => {
                 alt={`${logo.name} logo`}
                 width={160}
                 height={60}
-                className="h-16 w-auto object-contain"
+                className="h-16 w-auto object-contain invert dark:invert-0"
               />
             </a>
           ))}

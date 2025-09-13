@@ -1,6 +1,6 @@
 // app/layout.tsx (Server Component)
 import type { Metadata } from "next";
-import { Inter, Poppins } from "next/font/google";
+import { Inter, Poppins, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
@@ -10,11 +10,17 @@ import { Toaster } from "@/components/ui/toaster";
 import { ConfettiProvider } from "@/contexts/ConfettiContext";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const poppins = Poppins({
   weight: ["400", "500", "600"],
   subsets: ["latin"],
   variable: "--font-poppins",
+});
+
+const dancingScript = Dancing_Script({
+  subsets: ["latin"],
+  variable: "--font-dancing-script",
+  weight: "700",
 });
 
 // ✅ Updated & SEO-optimized Metadata
@@ -81,7 +87,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${inter.className} ${poppins.variable} min-h-screen bg-background`}
+        className={`${inter.variable} ${poppins.variable} ${dancingScript.variable} min-h-screen bg-background font-sans`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConfettiProvider>
