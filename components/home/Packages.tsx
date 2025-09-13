@@ -205,7 +205,7 @@ const Packages = () => {
                   <Button
                     className="w-full rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-lg hover:opacity-90 transition-transform hover:scale-105"
                     size="lg"
-                    onClick={() => openContactModal(pkg.title)}
+                    onClick={() => openContactModal(undefined, pkg.title)}
                   >
                     {pkg.ctaText}
                   </Button>

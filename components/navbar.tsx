@@ -1,97 +1,150 @@
-// components/navbar.tsx
 'use client'
 
-import Link from "next/link"
-import Image from "next/image"
-import { Button } from "@/components/ui/button"
-import { ModeToggle } from "@/components/mode-toggle"
-import { usePathname, useRouter } from "next/navigation"
-import { motion } from "framer-motion"
-import { useState } from "react"
-import { useContactModal } from './ClientWrapper';
-import { useActiveSection } from '@/hooks/useActiveSection';
-import { navItems } from '@/lib/nav-items';
-import { MobileNav } from './MobileNav';
+import React, { useState, useEffect } from 'react'
+import Link from 'next/link'
+import { motion } from 'framer-motion'
+import { navItems } from '@/lib/nav-items'
+import { cn } from '@/lib/utils'
+import { useContactModal } from './ClientWrapper'
+import { MobileNav } from './MobileNav'
+import { Button } from './ui/button'
+import { ModeToggle } from './mode-toggle'
+import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+  navigationMenuTriggerStyle,
+} from '@/components/ui/navigation-menu'
 
-export default function Navbar() {
-  const pathname = usePathname()
-  const router = useRouter()
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { openContactModal } = useContactModal();
-  const sectionIds = navItems.filter(item => item.isSection).map(item => item.id || '');
-  const activeSectionId = useActiveSection(sectionIds);
+const Navbar = () => {
+  const { openContactModal } = useContactModal()
+  const [isScrolled, setIsScrolled] = useState(false)
 
-  const handleDesktopNavClick = async (e: React.MouseEvent<HTMLAnchorElement>, item: typeof navItems[0]) => {
-    if (item.isSection) {
-      e.preventDefault()
-      if (pathname !== '/') {
-        await router.push('/')
-        setTimeout(() => {
-          const element = document.getElementById(item.id || '')
-          if (element) {
-            element.scrollIntoView({ behavior: 'smooth' })
-          }
-        }, 100)
-      } else {
-        const element = document.getElementById(item.id || '')
-        if (element) {
-          element.scrollIntoView({ behavior: 'smooth' })
-        }
-      }
+  useEffect(() => {
+    const handleScroll = () => {
+      const offset = window.scrollY
+      setIsScrolled(offset > 20)
     }
-  }
+
+    window.addEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
 
   return (
     <motion.header
-      className="sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-sm"
+      className={cn(
+        'sticky top-0 z-40 w-full border-b border-border bg-background/80 backdrop-blur-sm transition-colors duration-300',
+        {
+          'bg-background/80 backdrop-blur-sm border-b border-border/20': isScrolled,
+        }
+      )}
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.5, ease: 'easeOut' }}
     >
-      <div className="container flex h-16 items-center justify-between px-4 lg:px-8">
-        <Link href="/" className="flex items-center space-x-2 shrink-0">
-          <Image
-            src="/digizinc-header-logo-light.png"
-            alt="Digizinc Logo"
-            width={120}
-            height={30}
-            className="h-8 w-auto block dark:hidden"
-          />
-          <Image
-            src="/digizinc-header-logo-dark.png"
-            alt="Digizinc Logo"
-            width={120}
-            height={30}
-            className="h-8 w-auto hidden dark:block"
-          />
+      <div className="container mx-auto flex h-16 items-center justify-between px-4 lg:px-8">
+        {/* Logo */}
+        <Link href="/" passHref>
+          <div className="flex items-center gap-2 cursor-pointer">
+            <motion.img
+              src="/digizinc-header-logo-light.png"
+              alt="Digizinc Logo"
+              className="h-8 w-auto dark:hidden"
+              whileHover={{ scale: 1.05, rotate: -5 }}
+            />
+            <motion.img
+              src="/digizinc-header-logo-dark.png"
+              alt="Digizinc Logo"
+              className="h-8 w-auto hidden dark:block"
+              whileHover={{ scale: 1.05, rotate: -5 }}
+            />
+          </div>
         </Link>
 
-        <nav className="hidden md:flex items-center justify-center flex-1 ml-8">
-          {navItems.map((item) => (
-            <Link
-              key={item.name}
-              href={item.href}
-              onClick={(e) => handleDesktopNavClick(e, item)}
-              className={`text-sm font-medium transition-colors hover:text-foreground/80 hover:underline-offset-4 hover:underline mx-4 ${activeSectionId === item.id ? "text-primary dark:text-primary-foreground" : "text-black dark:text-white"}`}
-            >
-              {item.name}
-            </Link>
-          ))}
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center flex-1 justify-center">
+          <NavigationMenu>
+            <NavigationMenuList>
+              {navItems.map((item) =>
+                item.children ? (
+                  <NavigationMenuItem key={item.name}>
+                    <NavigationMenuTrigger>{item.name}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                      <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
+                        {item.children.map((child) => (
+                          <ListItem
+                            key={child.name}
+                            title={child.name}
+                            href={child.href}
+                          >
+                            {child.description}
+                          </ListItem>
+                        ))}
+                      </ul>
+                    </NavigationMenuContent>
+                  </NavigationMenuItem>
+                ) : (
+                  <NavigationMenuItem key={item.name}>
+                    <Link href={item.href!} legacyBehavior passHref>
+                      <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+                        {item.name}
+                      </NavigationMenuLink>
+                    </Link>
+                  </NavigationMenuItem>
+                )
+              )}
+            </NavigationMenuList>
+          </NavigationMenu>
         </nav>
 
-        <div className="flex items-center gap-4 ml-4">
+        {/* Right side */}
+        <div className="flex items-center gap-4">
           <ModeToggle />
           <Button
+            onClick={() => openContactModal()}
             variant={'gradient'}
-            className="hidden sm:flex   shadow-lg text-primary-foreground bg-gradient-primary hover:shadow-lg hover:shadow-primary-500/20 text-white  py-3 px-6 rounded-full transition-all duration-300 text-center font-medium"
-            onClick={() => openContactModal(undefined)}
+            className="hidden sm:flex shadow-lg text-primary-foreground bg-gradient-primary hover:shadow-lg hover:shadow-primary-500/20 text-white py-3 px-6 rounded-full transition-all duration-300 text-center font-medium"
           >
             Get Started
           </Button>
-
-          <MobileNav isMobileMenuOpen={isMobileMenuOpen} setIsMobileMenuOpen={setIsMobileMenuOpen} />
+          <div className="lg:hidden">
+            <MobileNav />
+          </div>
         </div>
       </div>
     </motion.header>
   )
 }
+
+const ListItem = React.forwardRef<
+  React.ElementRef<'a'>,
+  React.ComponentPropsWithoutRef<'a'>
+>(({ className, title, children, ...props }, ref) => {
+  return (
+    <li>
+      <NavigationMenuLink asChild>
+        <a
+          ref={ref}
+          className={cn(
+            'block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground',
+            className
+          )}
+          {...props}
+        >
+          <div className="text-sm font-medium leading-none">{title}</div>
+          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
+            {children}
+          </p>
+        </a>
+      </NavigationMenuLink>
+    </li>
+  )
+})
+ListItem.displayName = 'ListItem'
+
+export default Navbar

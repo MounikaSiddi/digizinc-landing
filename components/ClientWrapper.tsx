@@ -7,7 +7,7 @@ import WhatsappButton from './Whatsapp'; // Import the WhatsApp component
 
 // Define the shape of our context
 interface ContactModalContextType {
-  openContactModal: (industry?: string) => void;
+  openContactModal: (industry?: string, packageTitle?: string) => void;
 }
 
 // Create the context
@@ -28,15 +28,18 @@ interface ClientWrapperProps {
 export default function ClientWrapper({ children }: ClientWrapperProps) {
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [modalIndustry, setModalIndustry] = useState<string | undefined>(undefined);
+  const [modalPackageTitle, setModalPackageTitle] = useState<string | undefined>(undefined);
 
-  const openContactModal = (industry?: string) => {
+  const openContactModal = (industry?: string, packageTitle?: string) => {
     setModalIndustry(industry);
+    setModalPackageTitle(packageTitle);
     setIsContactModalOpen(true);
   };
 
   const closeContactModal = () => {
     setIsContactModalOpen(false);
     setModalIndustry(undefined);
+    setModalPackageTitle(undefined);
   };
 
   // Provide the openContactModal function through context
@@ -51,6 +54,7 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
         <ContactModal
           isOpen={isContactModalOpen}
           defaultIndustry={modalIndustry}
+          packageTitle={modalPackageTitle}
           onClose={closeContactModal}
         />
       )}

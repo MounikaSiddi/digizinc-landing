@@ -9,15 +9,16 @@ interface ContactModalProps {
   isOpen: boolean;
   onClose: () => void;
   defaultIndustry?: string;
+  packageTitle?: string;
 }
 
-export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, defaultIndustry }) => {
+export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, defaultIndustry, packageTitle }) => {
   const mobileModalContent = (
     <div className="p-6">
       <div className="mb-6">
         <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary-50 dark:bg-primary-900/30 text-primary-700 dark:text-primary-300 text-sm font-medium mb-3">
           <span className="flex h-2 w-2 rounded-full bg-primary-500 mr-2"></span>
-          {defaultIndustry ? `${defaultIndustry} Solutions` : 'Let\'s work together'}
+          {packageTitle || (defaultIndustry ? `${defaultIndustry} Solutions` : 'Let\'s work together')}
         </div>
         
         <h3 className="font-heading text-xl font-bold text-gray-900 dark:text-white mb-2">
@@ -25,11 +26,11 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
         </h3>
         
         <p className="text-sm text-gray-600 dark:text-gray-300">
-          Fill out the form below and we'll be in touch shortly.
+          Fill out the form below and we\'ll be in touch shortly.
         </p>
       </div>
 
-      <ContactForm defaultIndustry={defaultIndustry} />
+      <ContactForm defaultIndustry={defaultIndustry} packageTitle={packageTitle} />
 
       <div className="mt-6 pt-6 border-t border-gray-200 dark:border-secondary-700">
         <div className="flex items-center justify-center space-x-4">
@@ -64,7 +65,7 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
         <div className="p-8 flex flex-col justify-center">
           <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
             <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
-            Let's work together
+            {packageTitle || 'Let\'s work together'}
           </div>
 
           <h2 className="font-heading text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-4">
@@ -121,14 +122,14 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
         </div>
 
         <div className="bg-gray-50 dark:bg-secondary-800 p-8 flex flex-col justify-center">
-          <ContactForm defaultIndustry={defaultIndustry} />
+          <ContactForm defaultIndustry={defaultIndustry} packageTitle={packageTitle} />
         </div>
       </div>
     </div>
   );
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose} title={`Contact Us for ${defaultIndustry || 'Digizinc Solutions'}`}>
+    <Modal isOpen={isOpen} onClose={onClose} title={packageTitle || `Contact Us for ${defaultIndustry || 'Digizinc Solutions'}`}>
       <div className="md:hidden">
         {mobileModalContent}
       </div>

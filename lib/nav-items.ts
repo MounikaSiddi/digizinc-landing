@@ -1,11 +1,43 @@
 export const navItems = [
-  { name: "Solutions", href: "/#solutions", isSection: true, id: "solutions" },
-  { name: "Services", href:"/#services", isSection: true, id: "services" },
-  { name: "Packages", href: "/#packages", isSection: true, id: "packages" },
-  { name: "How We Work", href: "/#how-we-work", isSection: true, id: "how-we-work" },
-  { name: "Portfolio", href: "/portfolio", isSection: false },
-  { name: "Industries", href: "/#industries", isSection: true, id: "industries" },
-  { name: "About", href: "/about", isSection: false },
-  { name: "Careers", href: "/careers", isSection: false },
-  { name: "Blogs", href: "/blog", isSection: false },
+  { name: "Portfolio", href: "/portfolio" },
+  {
+    name: "Company",
+    children: [
+      {
+        name: "About Us",
+        href: "/about",
+        description: "Learn about our mission, vision, and the team driving innovation.",
+      },
+      {
+        name: "Careers",
+        href: "/careers",
+        description: "Explore open positions and join our team of digital experts.",
+      },
+      {
+        name: "Blog",
+        href: "/blog",
+        description: "Read our latest insights on digital marketing and AI.",
+      },
+    ],
+  },
+  {
+    name: "Services",
+    children: [
+      {
+        name: "Our Solutions",
+        href: "/#solutions",
+        description: "Explore our core service offerings and AI-powered solutions.",
+      },
+      {
+        name: "View Packages",
+        href: "/#packages",
+        description: "Find the right plan and creative package for your business needs.",
+      },
+      {
+        name: "How We Work",
+        href: "/#how-we-work",
+        description: "Discover our collaborative process for delivering exceptional results.",
+      },
+    ],
+  },
 ];

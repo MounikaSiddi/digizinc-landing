@@ -64,27 +64,15 @@ const HeroGrowth = () => {
           animate="visible"
           variants={fadeIn}
         >
-          <motion.h1
-            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 dark:text-white w-full"
+         <motion.h1
+            className="font-heading text-4xl lg:text-5xl xl:text-6xl font-bold leading-tight md:leading-tight mb-8 text-white w-full"
             variants={fadeIn}
           >
             <span className="text-3xl md:text-4xl xl:text-5xl">We support </span>
-
-            {/* Growth word with toggle */}
-            <span className="inline-flex items-center text-6xl sm:text-7xl md:text-8xl xl:text-9xl whitespace-nowrap">
-              gr
-              <ToggleSwitch
-                className="mx-2 scale-110"
-                checked={isAI}
-                onCheckedChange={handleToggleChange}
-              />
-              wth
-            </span>
-
-            <span className="block text-3xl md:text-4xl xl:text-5xl mt-4 md:mt-2">
-              of your business
-            </span>
+            <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
+            <span className="text-3xl md:text-4xl xl:text-5xl"> of your business</span>
           </motion.h1>
+
 
           <motion.p
             className="text-lg lg:text-xl dark:text-white/90 mx-auto leading-relaxed"
@@ -103,6 +91,12 @@ const HeroGrowth = () => {
             </Button>
             <Button
               variant="outline"
+              onClick={() => {
+                const servicesSection = document.getElementById('services');
+                if (servicesSection) {
+                  servicesSection.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
               className="rounded-full px-8 py-4 text-lg font-semibold border-[#902ef2] text-[#902ef2] hover:bg-[#902ef2]/10 transition"
             >
               Explore Services

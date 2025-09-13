@@ -1,4 +1,5 @@
 'use client'
+'use client'
 import { motion } from "framer-motion";
 import Hero from "@/components/home/Hero";
 import ConfettiToggle from '@/components/ConfettiToggle';
