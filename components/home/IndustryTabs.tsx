@@ -32,7 +32,7 @@ const industries: Industry[] = [
       'Interactive learning modules and assessments',
       'Engaging video content and animations for complex topics'
     ],
-    image: 'https://images.pexels.com/photos/5905702/pexels-photo-5905702.jpeg?auto=compress&cs=tinysrgb&w=1600'
+    image: 'https://images.pexels.com/photos/289737/pexels-photo-289737.jpeg?auto=compress&cs=tinysrgb&w=1600'
   },
   {
     id: 'ecommerce',
