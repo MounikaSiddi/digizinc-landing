@@ -51,17 +51,15 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="/" passHref>
           <div className="flex items-center gap-2 cursor-pointer">
-            <motion.img
+            <img
               src="/digizinc-header-logo-light.png"
               alt="Digizinc Logo"
               className="h-8 w-auto dark:hidden"
-              whileHover={{ scale: 1.05, rotate: -5 }}
             />
-            <motion.img
+            <img
               src="/digizinc-header-logo-dark.png"
               alt="Digizinc Logo"
               className="h-8 w-auto hidden dark:block"
-              whileHover={{ scale: 1.05, rotate: -5 }}
             />
           </div>
         </Link>

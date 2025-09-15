@@ -73,7 +73,7 @@ const HeroGrowth = () => {
             variants={fadeIn}
           >
             <span className="text-3xl md:text-4xl xl:text-5xl">
-              AI <span className="font-cursive">driven</span>
+              AI driven
             </span>
             <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
             <span className="text-3xl md:text-4xl xl:text-5xl">for your business</span>

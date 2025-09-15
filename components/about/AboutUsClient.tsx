@@ -4,6 +4,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { CheckCircle } from 'lucide-react';
+import Link from 'next/link';
 
 const AboutUsClient = () => {
   return (
@@ -85,6 +86,24 @@ const AboutUsClient = () => {
               </ul>
             </div>
           </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto text-center mb-16">
+          <h2 className="text-3xl font-bold font-heading mb-4 text-foreground">
+            Our Global Presence
+          </h2>
+          <p className="text-lg text-muted-foreground mb-8">
+            With offices in India, Dubai, and the USA, we're strategically positioned to serve clients worldwide.
+          </p>
+          <Link
+            href="/locations"
+            className="inline-flex items-center justify-center px-8 py-3 rounded-full bg-gradient-to-r from-[#f22ee5] to-[#902ef2] text-white font-semibold shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 transform"
+          >
+            Explore Our Locations
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-4 h-4 ml-2">
+              <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+            </svg>
+          </Link>
         </div>
 
         {/* Optional: Team Section */}

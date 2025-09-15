@@ -7,6 +7,7 @@ import Image from 'next/image';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Phone, MapPin, Mail, Share2, X, CheckCircle, AlertCircle } from 'lucide-react';
 import { FaXTwitter, FaLinkedin } from 'react-icons/fa6';
+import { companyLocations, getCompanyLocation } from '@/lib/company-locations';
 
 // Toast Component
 type ToastProps = {
@@ -106,11 +107,13 @@ const DigitalBusinessCard = () => {
     },
   };
 
+  const primaryIndiaOffice = getCompanyLocation('india-hyderabad-main');
+
   const company = {
     name: "Digizinc",
     logoLight: "/digizinc-header-logo-dark.png",
     logoDark: "/digizinc-header-logo-light.png",
-    address: "123 AI Street, Tech City, 500081 Hyderabad, Telangana, India",
+    address: primaryIndiaOffice?.address + ', ' + primaryIndiaOffice?.city + ', ' + primaryIndiaOffice?.state + ', ' + primaryIndiaOffice?.zip + ', ' + primaryIndiaOffice?.country,
     phone: "+91 98765 43210",
     social: {
       twitter: "https://twitter.com/digizinc",

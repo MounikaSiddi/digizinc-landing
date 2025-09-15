@@ -1,26 +1,24 @@
 'use client'
 
-
 import React from 'react';
 import Link from 'next/link';
-import Image from 'next/image'; // Import Next.js Image component for optimized images
-
-// Import social media icons from react-icons/fa6 (or the specific library you use)
+import Image from 'next/image';
 import {
   FaDribbble,
   FaMedium,
   FaInstagram,
   FaBehance,
-  FaXTwitter, // Renamed FaXTwitter for clarity as it's often used for X
+  FaXTwitter,
 } from 'react-icons/fa6';
 import { useTheme } from 'next-themes';
 import NewsletterSignup from './NewsletterSignup';
-
+import { companyLocations } from '@/lib/company-locations';
+import { MapPin, Globe } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   const { theme } = useTheme();
-  // Define social media links with their respective icons
+
   const socialLinks = [
     { href: "https://dribbble.com/digizinc_", icon: FaDribbble, name: "Dribbble" },
     { href: "https://medium.com/@digizinc_", icon: FaMedium, name: "Medium" },
@@ -30,15 +28,15 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="dark:bg-secondary-900 bg-gray-50 text-gray-600 dark:text-gray-200 py-10 md:py-16 lg:py-20 transition-colors duration-200 min-h-[50vh]">
-      <div className="container mx-auto px-4 md:px-6 flex flex-col items-center">
+    <footer className="dark:bg-secondary-950 bg-gray-50 text-gray-600 dark:text-gray-300 pt-12 md:pt-16 lg:pt-20 transition-colors duration-200">
+      <div className="container mx-auto px-4 md:px-8 flex flex-col">
 
-        {/* Top Section: In Search For Some Action & Social Media Icons */}
-        <div className="w-full text-center mb-12 md:mb-16">
-          <h4 className="text-2xl md:text-3xl font-extrabold font-heading mb-8 text-gray-800 dark:text-gray-100  tracking-wide">
+        {/* Top CTA Section */}
+        <div className="text-center mb-10 md:mb-14">
+          <h4 className="text-2xl md:text-3xl font-bold font-heading tracking-wide text-gray-900 dark:text-gray-100">
             IN SEARCH FOR SOME ACTION
           </h4>
-          <ul className="flex justify-center gap-6 sm:gap-8 md:gap-10 pt-4">
+          <ul className="flex justify-center gap-6 sm:gap-8 md:gap-10 mt-6">
             {socialLinks.map((link) => (
               <li key={link.name}>
                 <Link
@@ -46,65 +44,96 @@ const Footer = () => {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={link.name}
-                  className="text-gray-600 dark:text-gray-50 hover:text-purple-400 dark:hover:text-purple-500 transition-colors duration-300 transform hover:scale-110"
+                  className="group"
                 >
-                  <link.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9" />
+                  <link.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-gray-500 dark:text-gray-400 group-hover:text-primary-500 transition-transform duration-300 transform group-hover:scale-110" />
                 </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Horizontal Divider */}
-        <hr className="w-full border-t border-gray-300 dark:border-gray-700 mb-12 md:mb-16" />
+        <hr className="w-full border-t border-gray-300 dark:border-gray-700 mb-12" />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full items-start">
-          <div className="text-center md:text-left">
-            <h4 className="text-lg font-semibold mb-4 text-foreground">Stay Connected</h4>
+        {/* Main Grid Section */}
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-14 mb-12">
+          {/* Newsletter */}
+          <div>
+            <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Stay Updated</h4>
             <NewsletterSignup />
           </div>
 
-          <div className="text-center">
-            <Link href="/" >
+          {/* Logo + copyright */}
+          <div className="flex flex-col items-center justify-start text-center">
+            <Link href="/">
               <Image
                 src="/digizinc-header-logo-light.png"
                 alt="Digizinc Logo"
-                width={120}
-                height={30}
-                className="h-auto w-auto block dark:hidden mx-auto my-4 object-contain"
+                width={140}
+                height={35}
+                className="h-auto w-auto block dark:hidden mx-auto mb-4"
               />
               <Image
                 src="/digizinc-header-logo-dark.png"
                 alt="Digizinc Logo"
-                width={120}
-                height={30}
-                className=" w-auto hidden dark:block mx-auto h-auto my-4 object-contain"
+                width={140}
+                height={35}
+                className="h-auto w-auto hidden dark:block mx-auto mb-4"
               />
             </Link>
-            <div className="text-sm md:text-base text-muted-foreground">
-              &copy;SaaVik Solutions Pvt. Ltd. || All rights reserved.
-            </div>
+            <p className="text-sm text-gray-500 dark:text-gray-400">
+              &copy; {currentYear} SaaVik Solutions Pvt. Ltd.<br />
+              All rights reserved.
+            </p>
           </div>
 
-          <div className="text-center md:text-right">
-            <h4 className="text-lg font-semibold mb-4 text-foreground">Legal</h4>
+          {/* Legal Links */}
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Legal</h4>
             <ul className="flex flex-col gap-y-2 text-sm md:text-base">
-              <li>
-                <Link href="/privacy-policy" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
-                  Privacy Policy
-                </Link>
-              </li>
-              <li>
-                <Link href="/terms-of-service" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
-                  Terms of Service
-                </Link>
-              </li>
-              <li>
-                <Link href="/cookie-policy" className="hover:text-gray-900 dark:hover:text-gray-50 transition-colors duration-200">
-                  Cookie Policy
-                </Link>
-              </li>
+              {[
+                { href: "/privacy-policy", label: "Privacy Policy" },
+                { href: "/terms-of-service", label: "Terms of Service" },
+                { href: "/cookie-policy", label: "Cookie Policy" },
+              ].map((item) => (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    className="hover:text-primary-600 dark:hover:text-primary-400 transition-colors duration-200"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
+          </div>
+
+          {/* Locations */}
+          <div className="text-center md:text-left">
+            <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Our Locations</h4>
+            <div className="flex flex-col gap-y-2 text-sm md:text-base mb-4">
+              {companyLocations.map((location) => (
+                <a
+                  key={location.id}
+                  href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.address}, ${location.city}, ${location.state}, ${location.zip}, ${location.country}`)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center md:justify-start group"
+                >
+                  <MapPin className="w-4 h-4 mr-2 flex-shrink-0 text-primary-500 group-hover:text-primary-600" />
+                  <span className="group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
+                    {location.city}, {location.country}
+                  </span>
+                </a>
+              ))}
+            </div>
+            <Link
+              href="/locations"
+              className="inline-flex items-center justify-center text-sm md:text-base hover:underline text-primary-600 dark:text-primary-400 transition-colors"
+            >
+              <Globe className="w-4 h-4 mr-2" />
+              Explore Our Global Reach
+            </Link>
           </div>
         </div>
       </div>
