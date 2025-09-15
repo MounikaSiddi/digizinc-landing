@@ -59,7 +59,6 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-14 mb-12">
           {/* Newsletter */}
           <div>
-            <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Stay Updated</h4>
             <NewsletterSignup />
           </div>
 
