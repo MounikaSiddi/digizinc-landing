@@ -58,7 +58,7 @@ const Navbar = () => {
               alt="Digizinc Logo"
               width={140}
               height={32}
-              className="h-8 w-auto dark:hidden"
+              className="h-8 w-[140px] dark:hidden"
               priority
             />
             <Image
@@ -66,7 +66,7 @@ const Navbar = () => {
               alt="Digizinc Logo"
               width={140}
               height={32}
-              className="h-8 w-auto hidden dark:block"
+              className="h-8 w-[140px] hidden dark:block"
               priority
             />
           </div>
