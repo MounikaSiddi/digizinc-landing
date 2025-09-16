@@ -2,6 +2,7 @@
 
 import React from 'react'
 import Link from 'next/link'
+import Image from 'next/image' // Added Image import
 import { Button } from '@/components/ui/button'
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet'
 import { Menu } from 'lucide-react'
@@ -29,15 +30,19 @@ export const MobileNav = () => {
       <SheetContent side="right" className="w-full max-w-sm bg-background">
         <div className="p-4">
           <Link href="/" className="flex items-center gap-2 mb-8" onClick={() => setIsOpen(false)}>
-             <img
+             <Image
               src="/digizinc-header-logo-light.png"
               alt="Digizinc Logo"
-              className="h-8 w-auto dark:hidden"
+              width={140}
+              height={32}
+              className="h-8 w-[140px] dark:hidden"
             />
-            <img
+            <Image
               src="/digizinc-header-logo-dark.png"
               alt="Digizinc Logo"
-              className="h-8 w-auto hidden dark:block"
+              width={140}
+              height={32}
+              className="h-8 w-[140px] hidden dark:block"
             />
           </Link>
 

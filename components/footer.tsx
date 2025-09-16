@@ -28,7 +28,7 @@ const Footer = () => {
   ];
 
   return (
-    <footer className="dark:bg-secondary-950 bg-gray-50 text-gray-600 dark:text-gray-300 pt-12 md:pt-16 lg:pt-20 transition-colors duration-200">
+    <footer className="dark:bg-secondary-950 bg-gray-50 text-gray-600 dark:text-gray-100 pt-12 md:pt-16 lg:pt-20 transition-colors duration-200">
       <div className="container mx-auto px-4 md:px-8 flex flex-col">
 
         {/* Top CTA Section */}
