@@ -1,5 +1,6 @@
 export const navItems = [
   { name: "Portfolio", href: "/portfolio" },
+  { name: "Pricing", href: "/pricing" },
   {
     name: "Company",
     children: [
@@ -17,6 +18,16 @@ export const navItems = [
         name: "Blog",
         href: "/blog",
         description: "Read our latest insights on digital marketing and AI.",
+      },
+      {
+        name: "AI in Action",
+        href: "/ai-in-action",
+        description: "See how we leverage AI to create stunning visuals.",
+      },
+      {
+        name: "Labs",
+        href: "/labs",
+        description: "A showcase of our creative experiments.",
       },
     ],
   },
