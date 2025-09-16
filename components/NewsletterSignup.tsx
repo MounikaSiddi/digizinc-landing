@@ -12,7 +12,7 @@ const NewsletterSignup = () => {
       <p className="text-muted-foreground text-sm">Get the latest news, articles, and resources, sent to your inbox weekly.</p>
       <form className="flex items-center gap-2">
         <Input type="email" placeholder="Enter your email" className="flex-grow" />
-        <Button type="submit" size="icon">
+        <Button type="submit" size="icon" aria-label="Subscribe">
           <Send className="h-4 w-4" />
         </Button>
       </form>

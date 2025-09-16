@@ -156,9 +156,9 @@ const Testimonials = () => {
                       <AvatarFallback>{getInitials(testimonial.author)}</AvatarFallback>
                     </Avatar>
                     <div className="flex-1">
-                      <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-500">
+                      <p className="font-semibold text-foreground group-hover:text-primary transition-colors duration-500">
                         {testimonial.author}
-                      </h4>
+                      </p>
                       <span className="text-sm text-muted-foreground group-hover:text-foreground/80 transition-colors duration-500">
                         {testimonial.role}
                       </span>

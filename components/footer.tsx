@@ -33,9 +33,9 @@ const Footer = () => {
 
         {/* Top CTA Section */}
         <div className="text-center mb-10 md:mb-14">
-          <h4 className="text-2xl md:text-3xl font-bold font-heading tracking-wide text-gray-900 dark:text-gray-100">
+          <h3 className="text-2xl md:text-3xl font-bold font-heading tracking-wide text-gray-900 dark:text-gray-100">
             IN SEARCH FOR SOME ACTION
-          </h4>
+          </h3>
           <ul className="flex justify-center gap-6 sm:gap-8 md:gap-10 mt-6">
             {socialLinks.map((link) => (
               <li key={link.name}>
@@ -65,14 +65,14 @@ const Footer = () => {
                 alt="Digizinc Logo"
                 width={140}
                 height={35}
-                className="h-auto w-auto block dark:hidden mb-4"
+                className="block dark:hidden mb-4"
               />
               <Image
                 src="/digizinc-header-logo-dark.png"
                 alt="Digizinc Logo"
                 width={140}
                 height={35}
-                className="h-auto w-auto hidden dark:block mb-4"
+                className="hidden dark:block mb-4"
               />
             </Link>
             <p className="text-sm text-gray-500 dark:text-gray-400">
