@@ -12,6 +12,12 @@ interface CaseStudyClientProps {
   project: IPortfolioProject;
 }
 
+import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+
+interface CaseStudyClientProps {
+  project: IPortfolioProject;
+}
+
 const CaseStudyClient: React.FC<CaseStudyClientProps> = ({ project }) => {
   return (
     <section className="py-16 md:py-24 bg-background">
@@ -37,7 +43,15 @@ const CaseStudyClient: React.FC<CaseStudyClientProps> = ({ project }) => {
 
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-2">
-              <img src={project.image} alt={project.title} className="rounded-lg shadow-lg mb-8" />
+              {project.beforeAfterImages && project.beforeAfterImages.length > 0 ? (
+                project.beforeAfterImages.map((images, index) => (
+                  <div key={index} className="mb-8">
+                    <BeforeAfterSlider before={images.before} after={images.after} />
+                  </div>
+                ))
+              ) : (
+                <img src={project.image} alt={project.title} className="rounded-lg shadow-lg mb-8" />
+              )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="lead">{project.description}</p>
                 {project.content}

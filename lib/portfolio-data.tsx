@@ -27,6 +27,10 @@ export interface IPortfolioProject {
   }[];
   metaTitle: string;
   metaDescription: string;
+  beforeAfterImages?: {
+    before: string;
+    after: string;
+  }[];
 }
 
 export const portfolioProjects: IPortfolioProject[] = [
@@ -71,6 +75,14 @@ export const portfolioProjects: IPortfolioProject[] = [
     metaTitle: "Case Study: Futuristic Branding for Innovatech Solutions",
     metaDescription:
       "How we rebranded Innovatech Solutions with a future-focused identity powered by AI, driving 40% higher user engagement.",
+    beforeAfterImages: [
+      {
+        before:
+          "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600",
+        after:
+          "https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=1600",
+      },
+    ],
   },
   {
     id: 2,

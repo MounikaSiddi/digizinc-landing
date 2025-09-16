@@ -70,3 +70,9 @@ export function getAllPosts(): PostMeta[] {
     })
     .filter(Boolean) as PostMeta[]
 }
+
+export function getAllCategories(): string[] {
+  const allPosts = getAllPosts();
+  const allCategories = allPosts.map((post) => post.category);
+  return ['All', ...new Set(allCategories)];
+}

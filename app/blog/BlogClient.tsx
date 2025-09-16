@@ -34,15 +34,42 @@ const staggerContainer = {
   },
 }
 
-const categories = [
-  "All",
-  "AI & Technology",
-  "Marketing Strategy",
-  "Content Creation",
-  "SEO",
-  "Branding",
-  "Social Media",
-]
+
+
+      import { useState } from "react"
+import Link from "next/link"
+import Image from "next/image"
+import { Input } from "@/components/ui/input"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
+import { motion } from "framer-motion"
+import { Search, MessageCircle } from "lucide-react"
+import CategoryList from "@/components/blog/CategoryList"
+
+type PostMeta = {
+  title: string
+  date: string
+  tags: string[]
+  author: string
+  excerpt: string
+  slug: string
+  category: string
+  readTime?: string
+  image?: string
+  featured?: boolean
+}
+
+const fadeIn = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+}
+
+const staggerContainer = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1 },
+  },
+}
 
 export default function BlogClient({ posts }: { posts: PostMeta[] }) {
   const [activeCategory, setActiveCategory] = useState("All")
@@ -85,97 +112,78 @@ export default function BlogClient({ posts }: { posts: PostMeta[] }) {
         </motion.div>
       </section>
 
-      {/* Category Filters */}
-      <section className="pb-10">
-        <div className="container">
-          <motion.div
-            className="flex flex-wrap justify-center gap-3"
-            initial="hidden"
-            animate="visible"
-            variants={staggerContainer}
-          >
-            {categories.map((category) => (
-              <motion.div key={category} variants={fadeIn}>
-                <Button
-                  variant={activeCategory === category ? "default" : "outline"}
-                  className="rounded-full px-4"
-                  onClick={() => setActiveCategory(category)}
-                >
-                  {category}
-                </Button>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
       {/* Blog Grid */}
       <section className="py-10">
-        <div className="container">
-          {filteredPosts.length === 0 ? (
-            <p className="text-center text-muted-foreground">No posts found.</p>
-          ) : (
-            <motion.div
-              className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-              initial="hidden"
-              animate="visible"
-              variants={staggerContainer}
-            >
-              {filteredPosts.map((post) => (
-                <motion.div key={post.slug} variants={fadeIn}>
-                  <Link href={`/blog/${post.slug}`}>
-                    <Card className="overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl border-muted relative">
-                      {post.featured && (
-                        <span className="absolute top-2 right-2 bg-yellow-500 text-xs text-white px-2 py-0.5 rounded z-10">
-                          Featured
-                        </span>
-                      )}
-
-                      <div className="relative h-48 w-full">
-                        <Image
-                          src={post.image || "/placeholder.svg"}
-                          alt={post.title}
-                          fill
-                          className="object-cover"
-                        />
-                      </div>
-
-                      <CardContent className="p-6 bg-[#1A0A30]/90 text-white">
-                        <h3 className="font-semibold text-xl mb-2 leading-tight line-clamp-2">
-                          {post.title}
-                        </h3>
-                        <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
-                          {post.excerpt}
-                        </p>
-
-                        <div className="flex justify-between text-xs text-muted-foreground">
-                          <span>{post.author}</span>
-                          <span>{post.date}</span>
-                        </div>
-
-                        <div className="flex flex-wrap gap-2 mt-3">
-                          {post.tags?.map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs bg-muted text-foreground px-2 py-0.5 rounded"
-                            >
-                              #{tag}
-                            </span>
-                          ))}
-                        </div>
-
-                        {post.readTime && (
-                          <p className="mt-2 text-xs text-right text-muted-foreground italic">
-                            {post.readTime} min read
-                          </p>
+        <div className="container grid grid-cols-1 lg:grid-cols-4 gap-8">
+          <div className="lg:col-span-1">
+            <CategoryList />
+          </div>
+          <div className="lg:col-span-3">
+            {filteredPosts.length === 0 ? (
+              <p className="text-center text-muted-foreground">No posts found.</p>
+            ) : (
+              <motion.div
+                className="grid sm:grid-cols-1 md:grid-cols-2 gap-8"
+                initial="hidden"
+                animate="visible"
+                variants={staggerContainer}
+              >
+                {filteredPosts.map((post) => (
+                  <motion.div key={post.slug} variants={fadeIn}>
+                    <Link href={`/blog/${post.slug}`}>
+                      <Card className="overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:shadow-xl border-muted relative">
+                        {post.featured && (
+                          <span className="absolute top-2 right-2 bg-yellow-500 text-xs text-white px-2 py-0.5 rounded z-10">
+                            Featured
+                          </span>
                         )}
-                      </CardContent>
-                    </Card>
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
+
+                        <div className="relative h-48 w-full">
+                          <Image
+                            src={post.image || "/placeholder.svg"}
+                            alt={post.title}
+                            fill
+                            className="object-cover"
+                          />
+                        </div>
+
+                        <CardContent className="p-6 bg-[#1A0A30]/90 text-white">
+                          <h3 className="font-semibold text-xl mb-2 leading-tight line-clamp-2">
+                            {post.title}
+                          </h3>
+                          <p className="text-sm text-muted-foreground line-clamp-2 mb-3">
+                            {post.excerpt}
+                          </p>
+
+                          <div className="flex justify-between text-xs text-muted-foreground">
+                            <span>{post.author}</span>
+                            <span>{post.date}</span>
+                          </div>
+
+                          <div className="flex flex-wrap gap-2 mt-3">
+                            {post.tags?.map((tag) => (
+                              <span
+                                key={tag}
+                                className="text-xs bg-muted text-foreground px-2 py-0.5 rounded"
+                              >
+                                #{tag}
+                              </span>
+                            ))}
+                          </div>
+
+                          {post.readTime && (
+                            <p className="mt-2 text-xs text-right text-muted-foreground italic">
+                              {post.readTime} min read
+                            </p>
+                          )}
+                        </CardContent>
+                      </Card>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </div>
         </div>
       </section>
 
