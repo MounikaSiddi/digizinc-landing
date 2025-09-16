@@ -13,6 +13,7 @@ interface CaseStudyClientProps {
 }
 
 import BeforeAfterSlider from '@/components/ui/BeforeAfterSlider';
+import Image from 'next/image';
 
 interface CaseStudyClientProps {
   project: IPortfolioProject;
@@ -50,7 +51,7 @@ const CaseStudyClient: React.FC<CaseStudyClientProps> = ({ project }) => {
                   </div>
                 ))
               ) : (
-                <img src={project.image} alt={project.title} className="rounded-lg shadow-lg mb-8" />
+                <Image src={project.image} alt={project.title} width={1200} height={800} className="rounded-lg shadow-lg mb-8" />
               )}
               <div className="prose prose-lg dark:prose-invert max-w-none">
                 <p className="lead">{project.description}</p>

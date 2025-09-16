@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import { portfolioProjects, getAllServices } from '@/lib/portfolio-data';
 import { ArrowRight } from 'lucide-react';
+import Image from 'next/image';
 
 const PortfolioClient = () => {
   const [activeFilter, setActiveFilter] = useState('All');
@@ -63,9 +64,11 @@ const PortfolioClient = () => {
             <Link href={`/portfolio/${featuredProject.slug}`}>
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center bg-white dark:bg-gray-900/50 rounded-2xl shadow-lg overflow-hidden border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
                 <div className="relative h-80 lg:h-full">
-                  <img
+                  <Image
                     src={featuredProject.image}
                     alt={featuredProject.title}
+                    width={1200}
+                    height={600}
                     className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
@@ -110,9 +113,11 @@ const PortfolioClient = () => {
               <Link href={`/portfolio/${project.slug}`}>
                 <div className="bg-white dark:bg-gray-900/50 rounded-2xl shadow-lg overflow-hidden border border-purple-500/20 hover:border-purple-500/40 transition-all duration-300">
                   <div className="relative h-64">
-                    <img
+                    <Image
                       src={project.image}
                       alt={project.title}
+                      width={600}
+                      height={400}
                       className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>

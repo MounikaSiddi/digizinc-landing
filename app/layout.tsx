@@ -10,17 +10,19 @@ import { Toaster } from "@/components/ui/toaster";
 import { ConfettiProvider } from "@/contexts/ConfettiContext";
 import { Analytics } from "@vercel/analytics/react";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter", display: "optional" });
 const poppins = Poppins({
   weight: ["400", "500", "600", "700"],
   subsets: ["latin"],
   variable: "--font-poppins",
+  display: "optional",
 });
 
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
   variable: "--font-dancing-script",
   weight: "700",
+  display: "optional",
 });
 
 // ✅ Updated & SEO-optimized Metadata
@@ -86,6 +88,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://vitals.vercel-insights.com" />
+        <link rel="preconnect" href="https://miscellaneous-0.s3.ap-south-1.amazonaws.com" />
+      </head>
       <body
         className={`${inter.variable} ${poppins.variable} ${dancingScript.variable} min-h-screen bg-background font-sans`}
       >

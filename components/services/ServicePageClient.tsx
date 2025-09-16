@@ -81,7 +81,7 @@ const ServicePageClient: React.FC<ServicePageClientProps> = ({ service }) => {
                   {relatedProjects.map(project => (
                     <Link key={project.id} href={`/portfolio/${project.slug}`}>
                       <div className="group flex items-center gap-4 hover:bg-gray-100 dark:hover:bg-gray-800/50 p-3 rounded-lg transition-colors duration-300">
-                        <img src={project.image} alt={project.title} className="w-20 h-20 rounded-lg object-cover border-2 border-purple-500/30 group-hover:border-purple-500 transition-all duration-300" />
+                        <Image src={project.image} alt={project.title} width={80} height={80} className="w-20 h-20 rounded-lg object-cover border-2 border-purple-500/30 group-hover:border-purple-500 transition-all duration-300" />
                         <div>
                           <h4 className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-500 transition-colors duration-300">{project.title}</h4>
                           <p className="text-sm text-gray-500 dark:text-gray-400">{project.services.join(', ')}</p>

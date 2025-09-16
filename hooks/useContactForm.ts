@@ -1,11 +1,12 @@
 'use client'
 
 import { useState, useEffect } from 'react';
-import { toast } from 'react-toastify';
+import { useToast } from '@/hooks/use-toast';
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCEZXQLXHekPQf6O1n0xeBdXyIHFhPc9XKGZbhT0xVZ6ZMnDPD/exec';
 
 export const useContactForm = (defaultIndustry?: string) => {
+  const { toast } = useToast();
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
@@ -37,7 +38,11 @@ export const useContactForm = (defaultIndustry?: string) => {
         method: 'POST',
         body: formData,
       });
-      toast.success("Submitted successfully!");
+      toast({
+        title: "Submitted successfully!",
+        description: "We will get back to you shortly.",
+        variant: "default",
+      });
       setFirstName('');
       setLastName('');
       setEmail('');
@@ -45,7 +50,11 @@ export const useContactForm = (defaultIndustry?: string) => {
       setIndustry('');
       setMessage('');
     } catch (error) {
-      toast.error("Submission failed!");
+      toast({
+        title: "Submission failed!",
+        description: "Please try again later.",
+        variant: "destructive",
+      });
       console.error("Error submitting to Google Sheet:", error);
     } finally {
       setIsSubmitting(false);

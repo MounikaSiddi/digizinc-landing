@@ -83,6 +83,11 @@
     "vaul": "^0.9.6",
     "zod": "^3.24.1"
   },
+  "browserslist": [
+    "defaults",
+    "not IE 11",
+    "not op_mini all"
+  ],
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.16",
     "@types/node": "^22.15.21",
