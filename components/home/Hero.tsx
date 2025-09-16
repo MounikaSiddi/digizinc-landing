@@ -110,7 +110,7 @@ const HeroGrowth = () => {
                   servicesSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="rounded-full px-8 py-4 text-lg font-semibold border-primary text-primary hover:bg-primary/10 transition"
+              className="rounded-full px-8 py-4 text-lg font-semibold border-primary text-primary-foreground hover:bg-primary/10 transition"
             >
               Explore Services
             </Button>

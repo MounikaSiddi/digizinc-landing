@@ -63,15 +63,15 @@ const Footer = () => {
               <Image
                 src="/digizinc-header-logo-light.png"
                 alt="Digizinc Logo"
-                width={140}
-                height={35}
+                width={205}
+                height={46}
                 className="block dark:hidden mb-4"
               />
               <Image
                 src="/digizinc-header-logo-dark.png"
                 alt="Digizinc Logo"
-                width={140}
-                height={35}
+                width={205}
+                height={46}
                 className="hidden dark:block mb-4"
               />
             </Link>
