@@ -4,6 +4,7 @@ import React from 'react';
 import Modal from '@/components/Modal';
 import { ContactForm } from './ContactForm';
 import { CheckCircle } from 'lucide-react';
+import Image from 'next/image';
 
 interface ContactModalProps {
   isOpen: boolean;
@@ -35,20 +36,29 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
       <div className="mt-6 pt-6 border-t border-gray-200 dark:border-secondary-700">
         <div className="flex items-center justify-center space-x-4">
           <div className="flex -space-x-2">
-            <img
+            <Image
               src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt="Client"
+              width={32}
+              height={32}
               className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+              loading="lazy"
             />
-            <img
+            <Image
               src="https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt="Client"
+              width={32}
+              height={32}
               className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+              loading="lazy"
             />
-            <img
+            <Image
               src="https://images.pexels.com/photos/3776939/pexels-photo-3776939.jpeg?auto=compress&cs=tinysrgb&w=1600"
               alt="Client"
+              width={32}
+              height={32}
               className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+              loading="lazy"
             />
           </div>
           <div className="text-xs text-gray-600 dark:text-gray-400">
@@ -99,20 +109,29 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose, def
 
           <div className="flex items-center space-x-4">
             <div className="flex -space-x-2">
-              <img
+              <Image
                 src="https://images.pexels.com/photos/2379005/pexels-photo-2379005.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Client"
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+                loading="lazy"
               />
-              <img
+              <Image
                 src="https://images.pexels.com/photos/3776932/pexels-photo-3776932.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Client"
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+                loading="lazy"
               />
-              <img
+              <Image
                 src="https://images.pexels.com/photos/3776939/pexels-photo-3776939.jpeg?auto=compress&cs=tinysrgb&w=1600"
                 alt="Client"
+                width={32}
+                height={32}
                 className="w-8 h-8 rounded-full border-2 border-white dark:border-secondary-900 object-cover"
+                loading="lazy"
               />
             </div>
             <div className="text-xs text-gray-600 dark:text-gray-400">

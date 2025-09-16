@@ -4,7 +4,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { CheckCircle } from 'lucide-react';
-import { servicesData } from '@/lib/services-data.tsx';
+import { servicesData } from '@/lib/services-data';
 
 const Services: React.FC = () => {
   const contentRef = useRef<HTMLDivElement>(null);

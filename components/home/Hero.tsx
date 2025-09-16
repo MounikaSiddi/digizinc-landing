@@ -75,7 +75,13 @@ const HeroGrowth = () => {
             <span className="text-3xl md:text-4xl xl:text-5xl">
               AI driven
             </span>
-            <span className="text-7xl md:text-8xl xl:text-9xl block">gr<ToggleSwitch className="mx-1 align-middle" />wth</span>
+            <span className="text-7xl md:text-8xl xl:text-9xl block">gr
+              {mounted ? (
+                <ToggleSwitch className="mx-1 inline-block w-[100px] h-[50px] md:w-[120px] md:h-[60px] lg:w-[150px] lg:h-[75px] align-middle" />
+              ) : (
+                <span className="inline-block w-[100px] h-[50px] md:w-[120px] md:h-[60px] lg:w-[150px] lg:h-[75px] align-middle bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"></span>
+              )}
+            wth</span>
             <span className="text-3xl md:text-4xl xl:text-5xl">for your business</span>
           </motion.h1>
 

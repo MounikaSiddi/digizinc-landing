@@ -2,7 +2,7 @@
 'use client';
 
 import React, { useState, createContext, useContext } from 'react';
-import { ContactModal } from './contact/ContactModal';
+import dynamic from 'next/dynamic';
 import WhatsappButton from './Whatsapp'; // Import the WhatsApp component
 
 // Define the shape of our context
@@ -45,27 +45,33 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
   // Provide the openContactModal function through context
   const contextValue = { openContactModal };
 
+  // Define DynamicContactModal here, before the final return statement
+  const DynamicContactModal = dynamic(() => import('./contact/ContactModal').then(mod => mod.ContactModal), {
+    ssr: false,
+    loading: () => <p>Loading form...</p>,
+  });
+
   return (
     <ContactModalContext.Provider value={contextValue}>
       {children} {/* Render any children passed to ClientWrapper */}
 
       {/* Render the ContactUs modal here, at a high level within the client-side tree */}
       {isContactModalOpen && (
-        <ContactModal
+        <DynamicContactModal
           isOpen={isContactModalOpen}
           defaultIndustry={modalIndustry}
           packageTitle={modalPackageTitle}
           onClose={closeContactModal}
         />
       )}
-      
+
       {/* WhatsApp Button */}
       <div className="fixed bottom-6 right-6 z-40">
         <div className="bg-white dark:bg-secondary-800 p-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300">
           <WhatsappButton />
         </div>
       </div>
-      
+
     </ContactModalContext.Provider>
   );
 }

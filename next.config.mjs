@@ -25,6 +25,9 @@ const nextConfig = {
     ],
   },
   pageExtensions: ['ts', 'tsx', 'mdx'], // include .mdx pages
+  compiler: {
+    removeConsole: process.env.NODE_ENV === 'production',
+  },
 }
 
 export default withMDX(nextConfig)

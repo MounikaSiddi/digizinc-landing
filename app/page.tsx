@@ -1,16 +1,17 @@
 'use client'
-'use client'
 import { motion } from "framer-motion";
+import dynamic from 'next/dynamic';
 import Hero from "@/components/home/Hero";
 import ConfettiToggle from '@/components/ConfettiToggle';
 import Solutions from "@/components/home/Solutions";
 import IndustryTabs from "@/components/home/IndustryTabs";
-import Testimonials from "@/components/home/Testimonials";
-import DigitalPartners from "@/components/home/DigitalPartners";
-import CTA from "@/components/home/CTA";
-import Services from "@/components/home/Services";
-import Packages from "@/components/home/Packages";
-import HowWeWork from "@/components/home/HowWeWork";
+
+const DynamicTestimonials = dynamic(() => import("@/components/home/Testimonials"), { ssr: false });
+const DynamicDigitalPartners = dynamic(() => import("@/components/home/DigitalPartners"), { ssr: false });
+const DynamicCTA = dynamic(() => import("@/components/home/CTA"), { ssr: false });
+const DynamicServices = dynamic(() => import("@/components/home/Services"), { ssr: false });
+const DynamicPackages = dynamic(() => import("@/components/home/Packages"), { ssr: false });
+const DynamicHowWeWork = dynamic(() => import("@/components/home/HowWeWork"), { ssr: false });
 
 const sectionAnimation = {
   hidden: { opacity: 0, y: 20 },
@@ -48,15 +49,15 @@ export default function Home() {
       </SectionWrapper>
 
       <SectionWrapper>
-        <Services />
+        <DynamicServices />
       </SectionWrapper>
 
       <SectionWrapper>
-        <Packages />
+        <DynamicPackages />
       </SectionWrapper>
 
       <SectionWrapper>
-        <HowWeWork />
+        <DynamicHowWeWork />
       </SectionWrapper>
 
       <SectionWrapper>
@@ -64,15 +65,15 @@ export default function Home() {
       </SectionWrapper>
 
       <SectionWrapper>
-        <DigitalPartners />
+        <DynamicDigitalPartners />
       </SectionWrapper>
 
       <SectionWrapper>
-        <Testimonials />
+        <DynamicTestimonials />
       </SectionWrapper>
 
       <SectionWrapper>
-        <CTA />
+        <DynamicCTA />
       </SectionWrapper>
     </main>
   );

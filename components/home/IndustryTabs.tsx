@@ -2,6 +2,7 @@
 'use client'
 
 import React, { useState } from 'react'
+import Image from 'next/image'
 import {
   Briefcase, Building2, GraduationCap, HeartPulse,
   Home, ShoppingCart, Users, Landmark, FilmIcon, Triangle
@@ -223,10 +224,12 @@ export default function IndustryTabs() { // No props needed here anymore
             </div>
 
             <div className="h-64 lg:h-auto relative order-1 lg:order-2">
-              <img
+              <Image
                 src={selectedIndustry.image}
                 alt={`${selectedIndustry.name} industry`}
                 className="absolute inset-0 w-full h-full object-cover"
+                fill
+                loading="lazy"
               />
               <div className={`absolute inset-0 bg-gradient-to-r ${overlayGradientFrom} ${overlayGradientTo} mix-blend-multiply`}></div>
               <div className="absolute inset-0 flex items-center justify-center">

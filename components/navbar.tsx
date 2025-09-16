@@ -19,6 +19,8 @@ import {
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
 
+import Image from 'next/image';
+
 const Navbar = () => {
   const { openContactModal } = useContactModal()
   const [isScrolled, setIsScrolled] = useState(false)
@@ -51,15 +53,21 @@ const Navbar = () => {
         {/* Logo */}
         <Link href="/" passHref>
           <div className="flex items-center gap-2 cursor-pointer">
-            <img
+            <Image
               src="/digizinc-header-logo-light.png"
               alt="Digizinc Logo"
+              width={140}
+              height={32}
               className="h-8 w-auto dark:hidden"
+              priority
             />
-            <img
+            <Image
               src="/digizinc-header-logo-dark.png"
               alt="Digizinc Logo"
+              width={140}
+              height={32}
               className="h-8 w-auto hidden dark:block"
+              priority
             />
           </div>
         </Link>

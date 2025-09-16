@@ -8,42 +8,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { motion } from "framer-motion"
 import { Search, MessageCircle } from "lucide-react"
-
-type PostMeta = {
-  title: string
-  date: string
-  tags: string[]
-  author: string
-  excerpt: string
-  slug: string
-  category: string
-  readTime?: string
-  image?: string
-  featured?: boolean
-}
-
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-}
-
-const staggerContainer = {
-  hidden: {},
-  visible: {
-    transition: { staggerChildren: 0.1 },
-  },
-}
-
-
-
-      import { useState } from "react"
-import Link from "next/link"
-import Image from "next/image"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { motion } from "framer-motion"
-import { Search, MessageCircle } from "lucide-react"
 import CategoryList from "@/components/blog/CategoryList"
 
 type PostMeta = {
@@ -71,7 +35,7 @@ const staggerContainer = {
   },
 }
 
-export default function BlogClient({ posts }: { posts: PostMeta[] }) {
+export default function BlogClient({ posts, categories }: { posts: PostMeta[], categories: string[] }) {
   const [activeCategory, setActiveCategory] = useState("All")
   const [searchQuery, setSearchQuery] = useState("")
 
@@ -116,7 +80,7 @@ export default function BlogClient({ posts }: { posts: PostMeta[] }) {
       <section className="py-10">
         <div className="container grid grid-cols-1 lg:grid-cols-4 gap-8">
           <div className="lg:col-span-1">
-            <CategoryList />
+            <CategoryList categories={categories} />
           </div>
           <div className="lg:col-span-3">
             {filteredPosts.length === 0 ? (

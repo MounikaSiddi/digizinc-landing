@@ -49,8 +49,6 @@ const ToggleSwitch: React.FC<ToggleSwitchProps> = ({
     <div
       className={`relative inline-flex items-center rounded-full cursor-pointer transition-all duration-300 ${className}`}
       style={{
-        width: 'clamp(100px, 25vw, 180px)',  // responsive width
-        height: 'clamp(45px, 12vw, 90px)',   // responsive height
         background: 'linear-gradient(to right, #D9D9D9, #F22EE5, #561F8C)',
       }}
       onClick={toggleSwitch}
