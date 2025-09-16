@@ -35,7 +35,7 @@ const DigitalPartners = () => {
 
       <div className="flex flex-col items-center justify-center space-y-8">
         {/* Top Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-8 gap-y-8 md:gap-x-12 lg:gap-x-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-x-12 gap-y-10 md:gap-x-16 lg:gap-x-20">
           {topRowLogos.map((logo, i) => (
             <a
               key={i}
@@ -47,16 +47,16 @@ const DigitalPartners = () => {
               <Image
                 src={logo.logo}
                 alt={`${logo.name} logo`}
-                width={160}
-                height={60}
-                className="h-16 w-auto object-contain invert dark:invert-0"
+                width={200}
+                height={75}
+                className="h-20 w-auto object-contain invert dark:invert-0"
               />
             </a>
           ))}
         </div>
 
         {/* Bottom Row */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-8 gap-y-8 md:gap-x-12 lg:gap-x-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-x-12 gap-y-10 md:gap-x-16 lg:gap-x-20">
           {bottomRowLogos.map((logo, i) => (
             <a
               key={i}
@@ -68,9 +68,9 @@ const DigitalPartners = () => {
               <Image
                 src={logo.logo}
                 alt={`${logo.name} logo`}
-                width={160}
-                height={60}
-                className="h-16 w-auto object-contain invert dark:invert-0"
+                width={200}
+                height={75}
+                className="h-20 w-auto object-contain invert dark:invert-0"
               />
             </a>
           ))}

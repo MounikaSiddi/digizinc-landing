@@ -46,7 +46,7 @@ const Footer = () => {
                   aria-label={link.name}
                   className="group"
                 >
-                  <link.icon className="w-7 h-7 sm:w-8 sm:h-8 lg:w-9 lg:h-9 text-gray-500 dark:text-gray-400 group-hover:text-primary-500 transition-transform duration-300 transform group-hover:scale-110" />
+                  <link.icon className="w-8 h-8 sm:w-9 sm:h-9 lg:w-10 lg:h-10 text-gray-500 dark:text-gray-400 group-hover:text-primary-500 transition-transform duration-300 transform group-hover:scale-110" />
                 </Link>
               </li>
             ))}
@@ -56,28 +56,23 @@ const Footer = () => {
         <hr className="w-full border-t border-gray-300 dark:border-gray-700 mb-12" />
 
         {/* Main Grid Section */}
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 lg:gap-14 mb-12">
-          {/* Newsletter */}
-          <div>
-            <NewsletterSignup />
-          </div>
-
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-14 mb-12">
           {/* Logo + copyright */}
-          <div className="flex flex-col items-center justify-start text-center">
+          <div className="flex flex-col items-start justify-start text-left">
             <Link href="/">
               <Image
                 src="/digizinc-header-logo-light.png"
                 alt="Digizinc Logo"
                 width={140}
                 height={35}
-                className="h-auto w-auto block dark:hidden mx-auto mb-4"
+                className="h-auto w-auto block dark:hidden mb-4"
               />
               <Image
                 src="/digizinc-header-logo-dark.png"
                 alt="Digizinc Logo"
                 width={140}
                 height={35}
-                className="h-auto w-auto hidden dark:block mx-auto mb-4"
+                className="h-auto w-auto hidden dark:block mb-4"
               />
             </Link>
             <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -86,8 +81,13 @@ const Footer = () => {
             </p>
           </div>
 
+          {/* Newsletter */}
+          <div>
+            <NewsletterSignup />
+          </div>
+
           {/* Legal Links */}
-          <div className="text-center md:text-left">
+          <div className="text-left">
             <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Legal</h4>
             <ul className="flex flex-col gap-y-2 text-sm md:text-base">
               {[
@@ -108,7 +108,7 @@ const Footer = () => {
           </div>
 
           {/* Locations */}
-          <div className="text-center md:text-left">
+          <div className="text-left">
             <h4 className="text-lg font-semibold mb-4 text-gray-800 dark:text-gray-100">Our Locations</h4>
             <div className="flex flex-col gap-y-2 text-sm md:text-base mb-4">
               {companyLocations.map((location) => (
@@ -117,7 +117,7 @@ const Footer = () => {
                   href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(`${location.address}, ${location.city}, ${location.state}, ${location.zip}, ${location.country}`)}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center md:justify-start group"
+                  className="flex items-center group"
                 >
                   <MapPin className="w-4 h-4 mr-2 flex-shrink-0 text-primary-500 group-hover:text-primary-600" />
                   <span className="group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
@@ -128,7 +128,7 @@ const Footer = () => {
             </div>
             <Link
               href="/locations"
-              className="inline-flex items-center justify-center text-sm md:text-base hover:underline text-primary-600 dark:text-primary-400 transition-colors"
+              className="inline-flex items-center text-sm md:text-base hover:underline text-primary-600 dark:text-primary-400 transition-colors"
             >
               <Globe className="w-4 h-4 mr-2" />
               Explore Our Global Reach

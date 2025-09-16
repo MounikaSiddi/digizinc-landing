@@ -49,52 +49,98 @@ const Step = ({ step, index }: { step: any; index: number }) => {
   };
 
   return (
-    <div ref={ref} className="relative flex lg:justify-center items-start lg:items-center w-full">
-      {/* Desktop: Alternating Content */}
-      <motion.div
-        className={`hidden lg:flex w-5/12 ${isEven ? 'justify-end' : 'justify-start'}`}
-        variants={cardVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        whileHover={{ scale: 1.03 }}
-        transition={{ duration: 0.3 }}
-      >
-        {isEven && (
+    <div ref={ref} className={`relative flex w-full ${isEven ? 'justify-start' : 'justify-end'}`}>
+      {/* Mobile view */}
+      <div className="lg:hidden w-full flex items-start">
+        <div className="relative w-1/6 flex justify-center">
+            <motion.div
+              variants={iconVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              whileHover={{ scale: 1.1, rotate: 10 }}
+              transition={{ type: 'spring', stiffness: 300 }}
+              className="absolute top-0 -translate-y-1/2 w-14 h-14 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center border-4 border-purple-500 shadow-2xl z-10"
+            >
+              <Icon className="w-7 h-7 text-purple-500" />
+            </motion.div>
+        </div>
+        <motion.div
+          className="w-5/6"
+          variants={cardVariants}
+          initial="hidden"
+          animate={inView ? 'visible' : 'hidden'}
+          whileHover={{ scale: 1.03 }}
+          transition={{ duration: 0.3 }}
+        >
           <div className="p-6 bg-white dark:bg-gradient-to-br from-gray-900 to-[#1c0f2a] rounded-xl shadow-lg border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 w-full max-w-sm cursor-pointer">
             <h3 className="text-xl font-bold font-heading text-gray-900 dark:text-white mb-2">{step.title}</h3>
             <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
           </div>
-        )}
-      </motion.div>
-
-      {/* Timeline Connector */}
-      <div className="relative w-1/6 lg:w-1/12 flex justify-center">
-        <motion.div
-          variants={iconVariants}
-          initial="hidden"
-          animate={inView ? 'visible' : 'hidden'}
-          whileHover={{ scale: 1.1, rotate: 10 }}
-          transition={{ type: 'spring', stiffness: 300 }}
-          className="absolute top-0 lg:top-1/2 -translate-y-1/2 w-14 h-14 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center border-4 border-purple-500 shadow-2xl z-10"
-        >
-          <Icon className="w-7 h-7 text-purple-500" />
         </motion.div>
       </div>
 
-      {/* Mobile Content & Desktop Alternating Content */}
-      <motion.div
-        className="w-5/6 lg:w-5/12"
-        variants={cardVariants}
-        initial="hidden"
-        animate={inView ? 'visible' : 'hidden'}
-        whileHover={{ scale: 1.03 }}
-        transition={{ duration: 0.3 }}
-      >
-        <div className={`p-6 bg-white dark:bg-gradient-to-br from-gray-900 to-[#1c0f2a] rounded-xl shadow-lg border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 w-full max-w-sm cursor-pointer ${isEven ? 'lg:hidden' : ''}`}>
-          <h3 className="text-xl font-bold font-heading text-gray-900 dark:text-white mb-2">{step.title}</h3>
-          <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
-        </div>
-      </motion.div>
+      {/* Desktop view */}
+      <div className="hidden lg:flex w-full items-center">
+        {isEven ? (
+          <>
+            <motion.div
+              className="w-5/12 justify-end flex"
+              variants={cardVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="p-6 bg-white dark:bg-gradient-to-br from-gray-900 to-[#1c0f2a] rounded-xl shadow-lg border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 w-full max-w-sm cursor-pointer">
+                <h3 className="text-xl font-bold font-heading text-gray-900 dark:text-white mb-2">{step.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
+              </div>
+            </motion.div>
+            <div className="relative w-1/6 flex justify-center">
+              <motion.div
+                variants={iconVariants}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="absolute top-1/2 -translate-y-1/2 w-14 h-14 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center border-4 border-purple-500 shadow-2xl z-10"
+              >
+                <Icon className="w-7 h-7 text-purple-500" />
+              </motion.div>
+            </div>
+            <div className="w-5/12"></div>
+          </>
+        ) : (
+          <>
+            <div className="w-5/12"></div>
+            <div className="relative w-1/6 flex justify-center">
+              <motion.div
+                variants={iconVariants}
+                initial="hidden"
+                animate={inView ? 'visible' : 'hidden'}
+                whileHover={{ scale: 1.1, rotate: 10 }}
+                transition={{ type: 'spring', stiffness: 300 }}
+                className="absolute top-1/2 -translate-y-1/2 w-14 h-14 bg-white dark:bg-gray-900 rounded-full flex items-center justify-center border-4 border-purple-500 shadow-2xl z-10"
+              >
+                <Icon className="w-7 h-7 text-purple-500" />
+              </motion.div>
+            </div>
+            <motion.div
+              className="w-5/12 justify-start flex"
+              variants={cardVariants}
+              initial="hidden"
+              animate={inView ? 'visible' : 'hidden'}
+              whileHover={{ scale: 1.03 }}
+              transition={{ duration: 0.3 }}
+            >
+              <div className="p-6 bg-white dark:bg-gradient-to-br from-gray-900 to-[#1c0f2a] rounded-xl shadow-lg border border-purple-500/20 hover:border-purple-500/50 transition-all duration-300 w-full max-w-sm cursor-pointer">
+                <h3 className="text-xl font-bold font-heading text-gray-900 dark:text-white mb-2">{step.title}</h3>
+                <p className="text-gray-600 dark:text-gray-300">{step.description}</p>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </div>
     </div>
   );
 };
@@ -129,8 +175,8 @@ const HowWeWork = () => {
         </motion.div>
 
         <div className="relative">
-          <div className="absolute top-0 left-[4.1rem] lg:left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
-          <div className="space-y-12 lg:space-y-0">
+          <div className="absolute top-0 left-1/6 lg:left-1/2 -translate-x-1/2 w-1 h-full bg-gradient-to-b from-purple-500 to-pink-500 rounded-full"></div>
+          <div className="space-y-12">
             {steps.map((step, index) => (
               <Step key={index} step={step} index={index} />
             ))}

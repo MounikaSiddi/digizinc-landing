@@ -7,7 +7,8 @@ import { MDXRemoteSerializeResult } from 'next-mdx-remote'
 
 export interface PostMeta {
   title: string
-  date: string
+  date: string // Original creation/update date
+  publishDate?: string // Scheduled publication date
   tags: string[]
   author: string
   excerpt: string
@@ -54,9 +55,17 @@ export function getAllPosts(): PostMeta[] {
         return null
       }
 
+      const publishDate = data.publishDate ? new Date(data.publishDate) : new Date(data.date);
+      const now = new Date();
+
+      if (publishDate > now) {
+        return null; // Filter out future posts
+      }
+
       return {
-        ...(data as Omit<PostMeta, 'slug'>),
-        slug
+        ...(data as Omit<PostMeta, 'slug' | 'readTime'>),
+        slug,
+        readTime: readingTime(fileContents).text,
       }
     })
     .filter(Boolean) as PostMeta[]
