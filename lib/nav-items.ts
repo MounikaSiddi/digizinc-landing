@@ -19,16 +19,16 @@ export const navItems = [
         href: "/blog",
         description: "Read our latest insights on digital marketing and AI.",
       },
-      {
-        name: "AI in Action",
-        href: "/ai-in-action",
-        description: "See how we leverage AI to create stunning visuals.",
-      },
-      {
-        name: "Labs",
-        href: "/labs",
-        description: "A showcase of our creative experiments.",
-      },
+      // {
+      //   name: "AI in Action",
+      //   href: "/ai-in-action",
+      //   description: "See how we leverage AI to create stunning visuals.",
+      // },
+      // {
+      //   name: "Labs",
+      //   href: "/labs",
+      //   description: "A showcase of our creative experiments.",
+      // },
     ],
   },
   {
