@@ -8,6 +8,7 @@ import WhatsappButton from './Whatsapp'; // Import the WhatsApp component
 // Define the shape of our context
 interface ContactModalContextType {
   openContactModal: (industry?: string, packageTitle?: string) => void;
+  openAiPackageInquiryModal: (packageName: string) => void;
 }
 
 // Create the context
@@ -30,6 +31,9 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
   const [modalIndustry, setModalIndustry] = useState<string | undefined>(undefined);
   const [modalPackageTitle, setModalPackageTitle] = useState<string | undefined>(undefined);
 
+  const [isAiPackageInquiryModalOpen, setIsAiPackageInquiryModalOpen] = useState(false);
+  const [aiPackageName, setAiPackageName] = useState('');
+
   const openContactModal = (industry?: string, packageTitle?: string) => {
     setModalIndustry(industry);
     setModalPackageTitle(packageTitle);
@@ -42,13 +46,28 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
     setModalPackageTitle(undefined);
   };
 
+  const openAiPackageInquiryModal = (packageName: string) => {
+    setAiPackageName(packageName);
+    setIsAiPackageInquiryModalOpen(true);
+  };
+
+  const closeAiPackageInquiryModal = () => {
+    setIsAiPackageInquiryModalOpen(false);
+    setAiPackageName('');
+  };
+
   // Provide the openContactModal function through context
-  const contextValue = { openContactModal };
+  const contextValue = { openContactModal, openAiPackageInquiryModal };
 
   // Define DynamicContactModal here, before the final return statement
   const DynamicContactModal = dynamic(() => import('./contact/ContactModal').then(mod => mod.ContactModal), {
     ssr: false,
     loading: () => <p>Loading form...</p>,
+  });
+
+  const DynamicAiPackageInquiryModal = dynamic(() => import('./contact/AiPackageInquiryModal').then(mod => mod.AiPackageInquiryModal), {
+    ssr: false,
+    loading: () => <p>Loading inquiry form...</p>,
   });
 
   return (
@@ -62,6 +81,15 @@ export default function ClientWrapper({ children }: ClientWrapperProps) {
           defaultIndustry={modalIndustry}
           packageTitle={modalPackageTitle}
           onClose={closeContactModal}
+        />
+      )}
+
+      {/* Render the AI Package Inquiry modal */}
+      {isAiPackageInquiryModalOpen && (
+        <DynamicAiPackageInquiryModal
+          isOpen={isAiPackageInquiryModalOpen}
+          packageName={aiPackageName}
+          onClose={closeAiPackageInquiryModal}
         />
       )}
 
