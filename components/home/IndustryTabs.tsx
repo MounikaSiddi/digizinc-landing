@@ -173,8 +173,9 @@ export default function IndustryTabs() { // No props needed here anymore
           {industries.map(industry => {
             const isActive = activeIndustry === industry.id
             return (
-              <button
-                key={industry.id}
+                <button
+                  key={industry.id}
+                  suppressHydrationWarning
                 onClick={() => setActiveIndustry(industry.id)}
                 aria-pressed={isActive}
                 className={`relative flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-300 border-2 bg-gray-50 dark:bg-secondary-900
@@ -216,6 +217,7 @@ export default function IndustryTabs() { // No props needed here anymore
               </ul>
 
               <button
+                suppressHydrationWarning
                 onClick={() => handleGetSolutionsClick(selectedIndustry.name)}
                 className="inline-flex items-center justify-center px-6 py-3 bg-gradient-primary text-primary-foreground font-medium rounded-full hover:opacity-90 transition-opacity shadow-lg"
               >

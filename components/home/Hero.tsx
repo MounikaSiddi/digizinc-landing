@@ -14,10 +14,10 @@ const fadeIn = {
 }
 
 const HeroGrowth = () => {
-  const { theme } = useTheme()
+  const { theme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
   const { openContactModal } = useContactModal();
-  const [isAI, setIsAI] = useState(true)
+  
   const { toast } = useToast();
   const { showConfetti } = useConfetti();
   const audioRef = useRef<HTMLAudioElement | null>(null);
@@ -28,30 +28,17 @@ const HeroGrowth = () => {
     audioRef.current.load();
   }, []);
 
-  const handleToggleChange = (checked: boolean) => {
-    setIsAI(checked);
-    if (checked) {
-      audioRef.current?.play().catch(() => {});
-      toast({
-        title: "🚀 Growth Activated",
-        description: "Your business journey with Digizinc begins!",
-        duration: 3000,
-      });
-      showConfetti();
-    }
-  };
 
-  const backgroundClass = theme === 'dark'
-    ? 'bg-gradient-to-b from-[#0d0d0d] via-[#240840] to-[#0d0d0d]'
-    : 'bg-gradient-to-b from-white to-gray-100';
+
+
 
   const starColor = theme === 'dark' ? '#fff' : '#333';
 
-  if (!mounted) return null; // Avoids hydration mismatch
+
 
   return (
     <section
-      className={`relative py-10 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center ${backgroundClass}`}>
+      className={`relative py-10 min-h-[calc(100vh-80px)] flex flex-col justify-center items-center bg-gradient-to-b from-white to-gray-100 dark:from-[#0d0d0d] dark:via-[#240840] dark:to-[#0d0d0d]`}>
       
       {/* Neon Glow Orbs */}
       <div className="absolute -top-40 -left-40 w-96 h-96 bg-primary/20 rounded-full blur-3xl"></div>
@@ -77,7 +64,20 @@ const HeroGrowth = () => {
             </span>
             <span className="text-7xl md:text-8xl xl:text-9xl block">gr
               {mounted ? (
-                <ToggleSwitch className="mx-1 inline-block w-[100px] h-[50px] md:w-[120px] md:h-[60px] lg:w-[150px] lg:h-[75px] align-middle" />
+                <ToggleSwitch
+                  className="mx-1 inline-block w-[100px] h-[50px] md:w-[120px] md:h-[60px] lg:w-[150px] lg:h-[75px] align-middle"
+                  checked={theme === 'dark'}
+                  onCheckedChange={(checked) => {
+                    setTheme(checked ? 'dark' : 'light');
+                    if (checked) {
+                      toast({
+                        title: "🚀 Growth Activated",
+                        description: "Your business journey with Digizinc begins!",
+                        duration: 3000,
+                      });
+                    }
+                  }}
+                />
               ) : (
                 <span className="inline-block w-[100px] h-[50px] md:w-[120px] md:h-[60px] lg:w-[150px] lg:h-[75px] align-middle bg-gray-200 dark:bg-gray-700 rounded-full animate-pulse"></span>
               )}
@@ -90,7 +90,7 @@ const HeroGrowth = () => {
             className="text-lg lg:text-xl text-muted-foreground mx-auto leading-relaxed"
             variants={fadeIn}
           >
-            Digizinc merges design, storytelling, and {isAI ? "AI-powered intelligence" : "human creativity"}  
+            Digizinc merges design, storytelling, and {"AI-powered intelligence"}  
             to help brands scale faster and stand out in a crowded market.
           </motion.p>
 
@@ -110,7 +110,7 @@ const HeroGrowth = () => {
                   servicesSection.scrollIntoView({ behavior: 'smooth' });
                 }
               }}
-              className="rounded-full px-8 py-4 text-lg font-semibold border-primary text-primary-foreground hover:bg-primary/10 transition"
+              className="rounded-full px-8 py-4 text-lg font-semibold border-primary text-primary dark:text-primary-foreground hover:bg-primary/10 transition"
             >
               Explore Services
             </Button>
