@@ -70,11 +70,6 @@ const HeroGrowth = () => {
                   onCheckedChange={(checked) => {
                     setTheme(checked ? 'dark' : 'light');
                     if (checked) {
-                      toast({
-                        title: "🚀 Growth Activated",
-                        description: "Your business journey with Digizinc begins!",
-                        duration: 3000,
-                      });
                     }
                   }}
                 />
