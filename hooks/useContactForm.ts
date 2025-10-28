@@ -8,12 +8,46 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw3mNXSZUGhpRs4TJdCE
 export const useContactForm = (defaultIndustry?: string) => {
   const { toast } = useToast();
   const [firstName, setFirstName] = useState('');
+  const [firstNameError, setFirstNameError] = useState('');
   const [lastName, setLastName] = useState('');
+  const [lastNameError, setLastNameError] = useState('');
   const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [company, setCompany] = useState('');
   const [industry, setIndustry] = useState(defaultIndustry || '');
   const [message, setMessage] = useState('');
   const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const validateFirstName = () => {
+    if (!firstName.trim()) {
+      setFirstNameError('First name is required.');
+      return false;
+    }
+    setFirstNameError('');
+    return true;
+  };
+
+  const validateLastName = () => {
+    if (!lastName.trim()) {
+      setLastNameError('Last name is required.');
+      return false;
+    }
+    setLastNameError('');
+    return true;
+  };
+
+  const validateEmail = () => {
+    if (!email.trim()) {
+      setEmailError('Email is required.');
+      return false;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      setEmailError('Invalid email format.');
+      return false;
+    }
+    setEmailError('');
+    return true;
+  };
 
   useEffect(() => {
     if (defaultIndustry) {
@@ -23,6 +57,21 @@ export const useContactForm = (defaultIndustry?: string) => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Perform all validations
+    const isFirstNameValid = validateFirstName();
+    const isLastNameValid = validateLastName();
+    const isEmailValid = validateEmail();
+
+    if (!isFirstNameValid || !isLastNameValid || !isEmailValid) {
+      toast({
+        title: "Validation Error",
+        description: "Please fill in all required fields correctly.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     setIsSubmitting(true);
 
     const formData = new FormData();
@@ -62,9 +111,9 @@ export const useContactForm = (defaultIndustry?: string) => {
   };
 
   return {
-    firstName, setFirstName,
-    lastName, setLastName,
-    email, setEmail,
+    firstName, setFirstName, firstNameError, validateFirstName,
+    lastName, setLastName, lastNameError, validateLastName,
+    email, setEmail, emailError, validateEmail,
     company, setCompany,
     industry, setIndustry,
     message, setMessage,

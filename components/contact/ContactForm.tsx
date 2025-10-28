@@ -19,9 +19,9 @@ interface ContactFormProps {
 export const ContactForm: React.FC<ContactFormProps> = ({ defaultIndustry, packageTitle }) => {
   const [step, setStep] = useState(1);
   const {
-    firstName, setFirstName,
-    lastName, setLastName,
-    email, setEmail,
+    firstName, setFirstName, firstNameError, validateFirstName,
+    lastName, setLastName, lastNameError, validateLastName,
+    email, setEmail, emailError, validateEmail,
     company, setCompany,
     industry, setIndustry,
     message, setMessage,
@@ -37,6 +37,8 @@ export const ContactForm: React.FC<ContactFormProps> = ({ defaultIndustry, packa
 
   const nextStep = () => setStep(step + 1);
   const prevStep = () => setStep(step - 1);
+
+  const canProceedToStep2 = !firstNameError && !lastNameError && !emailError && firstName.trim() !== '' && lastName.trim() !== '' && email.trim() !== '';
 
   return (
     <Card className="p-6 md:p-8 shadow-lg border-border/50 dark:border-secondary-700">
@@ -63,15 +65,16 @@ export const ContactForm: React.FC<ContactFormProps> = ({ defaultIndustry, packa
                   <label htmlFor="first-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     First Name
                   </label>
-                  <Input
-                    type="text"
-                    id="first-name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    placeholder="John"
-                    required
-                  />
-                </div>
+                                      <Input
+                                        type="text"
+                                        id="first-name"
+                                        value={firstName}
+                                        onChange={(e) => setFirstName(e.target.value)}
+                                        onBlur={validateFirstName}
+                                        placeholder="John"
+                                        required
+                                      />
+                                      {firstNameError && <p className="text-red-500 text-xs mt-1">{firstNameError}</p>}                </div>
                 <div>
                   <label htmlFor="last-name" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                     Last Name
@@ -81,9 +84,11 @@ export const ContactForm: React.FC<ContactFormProps> = ({ defaultIndustry, packa
                     id="last-name"
                     value={lastName}
                     onChange={(e) => setLastName(e.target.value)}
+                    onBlur={validateLastName}
                     placeholder="Doe"
                     required
                   />
+                  {lastNameError && <p className="text-red-500 text-xs mt-1">{lastNameError}</p>}
                 </div>
               </div>
               <div>
@@ -95,11 +100,13 @@ export const ContactForm: React.FC<ContactFormProps> = ({ defaultIndustry, packa
                   id="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
+                  onBlur={validateEmail}
                   placeholder="john@example.com"
                   required
                 />
+                {emailError && <p className="text-red-500 text-xs mt-1">{emailError}</p>}
               </div>
-              <Button onClick={nextStep} className="w-full mt-4" variant="gradient">Next</Button>
+              <Button onClick={nextStep} className="w-full mt-4" variant="gradient" disabled={!canProceedToStep2}>Next</Button>
             </div>
           )}
 
