@@ -42,7 +42,7 @@ export const portfolioProjects: IPortfolioProject[] = [
       "A full-scale brand transformation for a SaaS startup, with a bold, future-forward identity designed using AI-assisted concepting.",
     image:
       "https://images.pexels.com/photos/3861969/pexels-photo-3861969.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    services: ["Branding", "AI-Concepting", "UI/UX"],
+    services: ["Branding & Identity", "AI-Concepting", "UI/UX & Digital Experience"],
     client: "Innovatech Solutions",
     content: (
       <>
@@ -92,7 +92,7 @@ export const portfolioProjects: IPortfolioProject[] = [
       "Designed an AI-driven ad campaign producing 100+ creatives, A/B tested for maximum performance, achieving a 300% increase in CTR.",
     image:
       "https://images.pexels.com/photos/6169659/pexels-photo-6169659.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    services: ["Advertising", "Content Creation", "AI-Generation"],
+    services: ["Advertising & Marketing", "Content Creation & Storytelling", "AI-Generation"],
     client: "Luxe Apparel",
     content: (
       <>
@@ -131,7 +131,7 @@ export const portfolioProjects: IPortfolioProject[] = [
       "A cutting-edge property website with interactive 3D tours and virtual walkthroughs, enhancing engagement and buyer trust.",
     image:
       "https://images.pexels.com/photos/1546168/pexels-photo-1546168.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    services: ["Web Development", "3D Modeling", "UI/UX"],
+    services: ["Website Design & Development", "3D Modeling", "Experiential & Interactive Design"],
     client: "Prestige Properties",
     content: (
       <>
@@ -167,8 +167,8 @@ export const portfolioProjects: IPortfolioProject[] = [
     description:
       "Executed a viral content campaign on Instagram and TikTok, doubling followers and boosting in-store traffic.",
     image:
-      "https://images.pexels.com/photos/2129796/pexels-photo-2129796.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    services: ["Social Media", "Video Production", "Content Strategy"],
+      "https://images.pexels.com/photos/312418/pexels-photo-312418.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    services: ["Social Media", "Motion & Video Production", "Content Creation & Storytelling"],
     client: "The Daily Grind Cafe",
     content: (
       <>
@@ -206,7 +206,7 @@ export const portfolioProjects: IPortfolioProject[] = [
       "Delivered consistent, high-end product visuals using AI retouching and automated enhancements for e-commerce success.",
     image:
       "https://images.pexels.com/photos/1884581/pexels-photo-1884581.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    services: ["Photography", "AI-Retouching", "E-commerce"],
+    services: ["Photography & Visual Content", "AI-Retouching", "E-commerce"],
     client: "Urban Threads",
     content: (
       <>
@@ -243,7 +243,7 @@ export const portfolioProjects: IPortfolioProject[] = [
       "Produced a 90-second animated explainer video simplifying complex healthcare features into an accessible story.",
     image:
       "https://images.pexels.com/photos/7089401/pexels-photo-7089401.jpeg?auto=compress&cs=tinysrgb&w=1600",
-    services: ["Video Production", "Animation", "Storytelling"],
+    services: ["Motion & Video Production", "Animation", "Content Creation & Storytelling"],
     client: "Well-being Plus",
     content: (
       <>
@@ -272,6 +272,72 @@ export const portfolioProjects: IPortfolioProject[] = [
     metaTitle: "Case Study: Explainer Video for Well-being Plus",
     metaDescription:
       "See how an animated explainer video boosted app downloads by 25% and reached 100K+ views on YouTube.",
+  },
+  {
+    id: 7,
+    title: "Custom Illustrations for a Children's Book",
+    slug: "custom-illustrations-childrens-book",
+    description:
+      "Created a series of vibrant and engaging illustrations for a children's book, bringing the story to life with a unique visual style.",
+    image:
+      "https://images.pexels.com/photos/1648377/pexels-photo-1648377.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    services: ["Illustration & Custom Artwork"],
+    client: "Little Readers Publishing",
+    content: (
+      <>
+        <p>
+          Little Readers Publishing needed a unique and captivating visual style
+          for their new children's book. They wanted to create a world that
+          would spark the imagination of young readers.
+        </p>
+        <p>
+          Our team of illustrators worked closely with the author to develop a
+          unique visual language for the book. We used a combination of
+          hand-drawn and digital illustration techniques to create a vibrant and
+          engaging world for the story.
+        </p>
+      </>
+    ),
+    results: [
+      { label: "Increase in book sales", value: 50, suffix: "%" },
+      { label: "Positive reviews from readers", value: 95, suffix: "%" },
+    ],
+    metaTitle: "Case Study: Custom Illustrations for a Children's Book",
+    metaDescription:
+      "How we created a unique visual style for a children's book, resulting in a 50% increase in sales.",
+  },
+  {
+    id: 8,
+    title: "Eco-Friendly Packaging for a Coffee Brand",
+    slug: "eco-friendly-packaging-coffee-brand",
+    description:
+      "Designed a new line of eco-friendly packaging for a coffee brand, using sustainable materials and a minimalist design.",
+    image:
+      "https://images.pexels.com/photos/3738075/pexels-photo-3738075.jpeg?auto=compress&cs=tinysrgb&w=1600",
+    services: ["Print & Packaging"],
+    client: "Green Bean Coffee Co.",
+    content: (
+      <>
+        <p>
+          Green Bean Coffee Co. wanted to redesign their packaging to reflect
+          their commitment to sustainability. They needed a design that was both
+          eco-friendly and visually appealing.
+        </p>
+        <p>
+          Our team designed a new line of packaging using sustainable materials
+          and a minimalist design. The new packaging is not only better for the
+          environment, but it also stands out on the shelf and communicates the
+          brand's values to customers.
+        </p>
+      </>
+    ),
+    results: [
+      { label: "Reduction in packaging waste", value: 30, suffix: "%" },
+      { label: "Increase in customer loyalty", value: 20, suffix: "%" },
+    ],
+    metaTitle: "Case Study: Eco-Friendly Packaging for a Coffee Brand",
+    metaDescription:
+      "How we designed a new line of eco-friendly packaging for a coffee brand, resulting in a 30% reduction in packaging waste.",
   },
 ];
 

@@ -82,7 +82,7 @@ const Services: React.FC = () => {
                       className={`flex items-center px-4 py-3 rounded-lg text-left transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-800 ${
                         activeTab === service.id
                           ? 'bg-gradient-primary text-white shadow-lg scale-[1.02]'
-                          : 'text-gray-300 hover:bg-secondary-800 hover:scale-[1.01]'
+                          : 'hover:bg-gray-100 hover:scale-[1.01]'
                       }`}
                     >
                       <span className="mr-3 transition-transform group-hover:scale-110">{service.icon}</span>
@@ -94,46 +94,48 @@ const Services: React.FC = () => {
           </div>
 
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
-            <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1">
-              <div className="flex justify-center items-center mb-8">
-                <motion.div
-                  key={activeService.id}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.3, ease: "easeOut" }}
-                  className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm"
-                >
-                  {activeService.icon}
-                </motion.div>
-                <div className="space-y-1">
-                  <h3 className="text-2xl font-semibold font-heading text-black dark:text-white">
-                    {activeService.title}
-                  </h3>
+            <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1 flex flex-col">
+              <div className="overflow-y-auto">
+                <div className="flex justify-center items-center mb-8">
+                  <motion.div
+                    key={activeService.id}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, ease: "easeOut" }}
+                    className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm"
+                  >
+                    {activeService.icon}
+                  </motion.div>
+                  <div className="space-y-1">
+                    <h3 className="text-2xl font-semibold font-heading text-black dark:text-white">
+                      {activeService.title}
+                    </h3>
+                  </div>
+                </div>
+                <p className="text-black dark:text-white p-3 px-8 font-medium text-base leading-relaxed w-full">
+                  {activeService.description}
+                </p>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-6 mb-10">
+                  {activeService.items.map((item, index) => (
+                    <div
+                      key={index}
+                      className="p-5 rounded-xl bg-gray-50 dark:bg-secondary-800/60 hover:bg-secondary-700
+                        border border-primary-500 hover:border-primary-500
+                        group hover:shadow-xl hover:scale-[1.025] transition-all duration-300"
+                    >
+                      <div className="flex items-center space-x-3">
+                        <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0 group-hover:text-white transition-colors" />
+                        <p className="text-black dark:text-white group-hover:text-white transition-colors text-sm">
+                          {item}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
-              <p className="text-black dark:text-white p-3 px-8 font-medium text-base leading-relaxed w-full">
-                {activeService.description}
-              </p>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-5 px-6 mb-10">
-                {activeService.items.map((item, index) => (
-                  <div
-                    key={index}
-                    className="p-5 rounded-xl bg-gray-50 dark:bg-secondary-800/60 hover:bg-secondary-700
-                      border border-primary-500 hover:border-primary-500
-                      group hover:shadow-xl hover:scale-[1.025] transition-all duration-300"
-                  >
-                    <div className="flex items-center space-x-3">
-                      <CheckCircle className="h-6 w-6 text-primary-500 mr-3 flex-shrink-0 group-hover:text-white transition-colors" />
-                      <p className="text-black dark:text-white group-hover:text-white transition-colors text-sm">
-                        {item}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-4 flex justify-left px-6 pt-10 md:pt-28">
+              <div className="mt-auto flex justify-left px-6 pt-4">
                 <Link href={`/services/${activeService.slug}`} passHref legacyBehavior>
                   <a className="inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-primary text-white font-medium hover:shadow-lg hover:scale-105 transition-all duration-300">
                     Learn more about {activeService.title}

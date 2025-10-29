@@ -5,6 +5,8 @@ import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, CheckCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Image from 'next/image';
+import { useContactModal } from '@/components/ClientWrapper';
 import { IService } from '@/lib/services-data';
 import { portfolioProjects } from '@/lib/portfolio-data.tsx';
 
@@ -13,6 +15,7 @@ interface ServicePageClientProps {
 }
 
 const ServicePageClient: React.FC<ServicePageClientProps> = ({ service }) => {
+  const { openAiPackageInquiryModal } = useContactModal();
   const relatedProjects = portfolioProjects.filter(p => p.services.includes(service.title));
 
   const fadeIn = {
@@ -90,7 +93,7 @@ const ServicePageClient: React.FC<ServicePageClientProps> = ({ service }) => {
                     </Link>
                   ))}
                 </div>
-                <Button className="w-full mt-8 bg-gradient-primary text-white font-semibold py-3 rounded-lg hover:scale-105 transition-transform duration-300">
+                <Button className="w-full mt-8 bg-gradient-primary text-white font-semibold py-3 rounded-lg hover:scale-105 transition-transform duration-300" onClick={() => openAiPackageInquiryModal(service.title)}>
                   Get a Quote <ArrowRight className="ml-2 w-5 h-5" />
                 </Button>
               </motion.div>
