@@ -136,6 +136,12 @@ export default function RootLayout({
             ),
           }}
         />
+        {/* Tidio Chatbot Script Placeholder */}
+        <script
+          // Replace the src with the script from your Tidio account
+          src="//code.tidio.co/YOUR_TIDIO_CODE.js"
+          async
+        ></script>
       </body>
     </html>
   );

@@ -10,9 +10,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const staticPages = [
     '/',
+    '/about',
+    // '/ai-in-action',
     '/careers',
     '/connect',
     '/cookie-policy',
+    // '/labs',
+    '/locations',
     '/privacy-policy',
     '/terms-of-service',
     '/blog',
@@ -40,6 +44,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date().toISOString().split('T')[0],
     changeFrequency: 'monthly' as 'monthly',
     priority: 0.7,
+    images: [
+      {
+        url: project.image,
+        caption: project.title,
+      },
+    ],
   }));
 
   const serviceEntries = servicesData.map(service => ({
@@ -47,6 +57,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date().toISOString().split('T')[0],
     changeFrequency: 'monthly' as 'monthly',
     priority: 0.7,
+    images: [
+      {
+        url: `/images/services/${service.slug}.jpg`, // Assuming a convention for service images
+        caption: service.title,
+      },
+    ],
   }));
 
   return [
