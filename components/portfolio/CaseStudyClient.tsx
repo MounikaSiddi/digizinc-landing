@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button';
 import { ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
 import { IPortfolioProject } from '@/lib/portfolio-data';
+import { useContactModal } from '../ClientWrapper';
 import CountUp from 'react-countup';
 
 interface CaseStudyClientProps {
@@ -20,6 +21,7 @@ interface CaseStudyClientProps {
 }
 
 const CaseStudyClient: React.FC<CaseStudyClientProps> = ({ project }) => {
+  const { openAiPackageInquiryModal } = useContactModal();
   return (
     <section className="py-16 md:py-24 bg-background">
       <div className="container mx-auto px-4 md:px-6">
@@ -84,7 +86,7 @@ const CaseStudyClient: React.FC<CaseStudyClientProps> = ({ project }) => {
                     </div>
                   </li>
                 </ul>
-                <Button className="w-full mt-8">Start Your Project</Button>
+                <Button className="w-full rounded-full bg-gradient-primary text-primary-foreground font-semibold shadow-lg hover:opacity-90 transition-transform hover:scale-105 mt-8" onClick={() => openAiPackageInquiryModal(project.title)}>Start Your Project</Button>
               </div>
             </div>
           </div>

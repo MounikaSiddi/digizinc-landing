@@ -1,6 +1,8 @@
 'use client'
 
 import React from 'react';
+import Image from 'next/image';
+import { CheckCircle } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import Modal from '@/components/Modal'; // Assuming you have a generic Modal component
 

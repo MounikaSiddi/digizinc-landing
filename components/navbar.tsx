@@ -66,7 +66,7 @@ const Navbar = () => {
               alt="Digizinc Logo"
               width={140}
               height={32}
-              className="h-8 w-[140px] hidden dark:block"
+              className="h-auto w-[140px] hidden dark:block"
               priority
             />
           </div>

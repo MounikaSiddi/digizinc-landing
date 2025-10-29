@@ -170,7 +170,7 @@ const Packages = () => {
                 transition-all duration-300 ease-out
                 hover:scale-[1.02] hover:-translate-y-1
                 h-full flex flex-col p-8
-                before:absolute before:inset-0 before:bg-gradient-to-b before:from-secondary-900 before:to-secondary-600 before:opacity-0 hover:before:opacity-10 before:transition-opacity before:duration-300"
+                before:absolute before:inset-0 before:bg-gradient-to-b before:from-secondary-900 before:to-secondary-600 before:opacity-0 hover:before:opacity-10 before:transition-opacity before:duration-300 before:pointer-events-none"
               >
                   {/* Icon */}
                   <div className="mb-6 text-center">
@@ -207,7 +207,7 @@ const Packages = () => {
                     size="lg"
                     onClick={() => openAiPackageInquiryModal(pkg.title)}
                   >
-                    {pkg.ctaText}
+                    <span className="truncate block">{pkg.ctaText}</span>
                   </Button>
                 </div>
               </motion.div>
