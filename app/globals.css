@@ -50,6 +50,8 @@
     --star-color: #fff;
   }
 }
+/* Hide scrollbar but keep scroll functionality */
+
 
 @layer base {
   * {
