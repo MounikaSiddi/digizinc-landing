@@ -174,9 +174,10 @@ const HeroGrowth = () => {
         {/* Image Grid */}
         
       </div>
-       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto p-4 md:max-h-[350px] overflow-hidden">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto p-4 overflow-hidden">
   {/* Left Column */}
   <div className="flex flex-col gap-4">
+    {/* Visible on all screens */}
     <div className="rounded-3xl overflow-hidden border-2 border-secondary/20 hover:border-secondary/50 transition-all shadow-lg shadow-secondary/20 bg-[#ffffff]/40 p-2">
       <img 
         src="/Rectangle 11631.png" 
@@ -184,7 +185,9 @@ const HeroGrowth = () => {
         className="w-full h-auto object-cover rounded-3xl"
       />
     </div>
-    <div className="rounded-3xl overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all shadow-lg shadow-primary/20 bg-[#ffffff]/40 p-2">
+
+    {/* Hide on small screens, show from md and up */}
+    <div className="hidden md:block rounded-3xl overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all shadow-lg shadow-primary/20 bg-[#ffffff]/40 p-2">
       <img 
         src="/Rectangle 11632.png"
         alt="E-commerce Shopping Cart with Neon Effects" 
@@ -195,6 +198,7 @@ const HeroGrowth = () => {
 
   {/* Middle Column */}
   <div className="flex flex-col gap-4">
+    {/* Always visible */}
     <div className="rounded-3xl overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all shadow-lg shadow-primary/20 bg-[#ffffff]/40 p-2">
       <img 
         src="/Rectangle 11630.png"
@@ -202,7 +206,9 @@ const HeroGrowth = () => {
         className="w-full h-auto object-cover rounded-3xl"
       />
     </div>
-    <div className="rounded-3xl overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all shadow-lg shadow-primary/20 bg-[#ffffff]/40 p-2">
+
+    {/* Only visible on lg and up */}
+    <div className="hidden lg:block rounded-3xl overflow-hidden border-2 border-primary/20 hover:border-primary/50 transition-all shadow-lg shadow-primary/20 bg-[#ffffff]/40 p-2">
       <img 
         src="/Rectangle 11635.png"
         alt="Neon City Skyline" 
@@ -212,7 +218,8 @@ const HeroGrowth = () => {
   </div>
 
   {/* Right Column */}
-  <div className="rounded-3xl overflow-hidden border-2 border-secondary/20 hover:border-secondary/50 transition-all shadow-lg shadow-secondary/20 bg-[#ffffff]/40 p-2">
+  {/* Visible only on lg and up */}
+  <div className="hidden lg:block rounded-3xl overflow-hidden border-2 border-secondary/20 hover:border-secondary/50 transition-all shadow-lg shadow-secondary/20 bg-[#ffffff]/40 p-2">
     <img 
       src="/Rectangle 11634.png"
       alt="DNA Technology Visualization" 
