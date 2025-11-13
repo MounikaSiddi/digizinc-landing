@@ -9,7 +9,7 @@ const CTA = () => {
   const { openContactModal } = useContactModal();
 
   return (
-    <section className="relative py-8 md:py-16 overflow-hidden bg-white dark:bg-black transition-colors duration-200"> {/* Reduced vertical padding, simplified dark background */}
+    <section className="relative font-bricolage py-8 md:py-16 overflow-hidden bg-white dark:bg-black transition-colors duration-200"> {/* Reduced vertical padding, simplified dark background */}
       {/* Optional: Subtle background gradient overlay for depth */}
       <div className="absolute inset-0 bg-gradient-to-br from-primary/10 to-secondary/10 opacity-30 pointer-events-none"></div>
 
@@ -24,7 +24,7 @@ const CTA = () => {
           {/* New Content Start */}
           <div className="p-4 sm:p-8 md:p-12 bg-white dark:bg-secondary-900/20  dark:border-secondary-800"> {/* Added padding, background, border, shadow */}
             <div className="inline-flex items-center px-3 py-1 rounded-full bg-secondary-50 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 text-sm font-medium mb-6">
-              <span className="flex h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
+              <span className="flex font-bricolage font-bricolage-heading h-2 w-2 rounded-full bg-secondary-500 mr-2"></span>
               Let's work together
             </div>
 

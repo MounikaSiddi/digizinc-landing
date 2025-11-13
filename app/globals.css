@@ -52,6 +52,17 @@
 }
 /* Hide scrollbar but keep scroll functionality */
 
+/* globals.css */
+.font-bricolage-heading {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 56.3px;
+  line-height: 54px;
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+}
 
 @layer base {
   * {

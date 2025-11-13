@@ -152,7 +152,7 @@ const HeroGrowth = () => {
 
       <div className="relative z-10 container mx-auto px-6 py-20 flex flex-col items-center text-center">
         {/* Heading */}
-        <h1 className="text-4xl md:text-6xl font-bold leading-tight max-w-4xl">
+        <h1 className="text-4xl font-bricolage font-bricolage-heading md:text-6xl font-bold leading-tight max-w-4xl">
           We build{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400">
             AI-Powered
@@ -161,13 +161,13 @@ const HeroGrowth = () => {
         </h1>
 
         {/* Subtext */}
-        <p className="mt-4 text-gray-300 max-w-2xl">
+        <p className="mt-4 font-bricolage text-gray-300 max-w-2xl">
           From scroll-stopping visuals to smart campaigns—we deliver
           data-backed creativity for brands that want more than likes.
         </p>
 
         {/* Button */}
-        <button className="mt-8 px-6 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-500 hover:from-purple-500 hover:to-pink-500 text-white font-medium shadow-lg transition-all">
+        <button className="mt-8 px-6 py-3 font-bricolage rounded-full bg-gradient-to-r from-white/20 to-white/50 hover:from-purple-500 hover:to-pink-500 text-white font-medium shadow-lg transition-all">
           Explore Services
         </button>
 

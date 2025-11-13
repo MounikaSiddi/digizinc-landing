@@ -22,13 +22,13 @@ const bottomRowLogos = [
 const DigitalPartners = () => {
   return (
     <motion.div
-      className="py-16 container mx-auto px-4 md:px-6"
+      className="py-16 font-bricolage container mx-auto px-4 md:px-6"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ delay: 0.5, duration: 0.5 }}
     >
       <div className="text-center mb-12">
-        <h2 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
+        <h2 className="text-4xl font-bricolage font-bricolage-heading md:text-5xl font-bold mb-4 bg-gradient-primary bg-clip-text text-transparent">
           Our Digital Partners
         </h2>
       </div>

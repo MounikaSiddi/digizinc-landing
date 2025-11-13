@@ -1,6 +1,6 @@
 // app/layout.tsx (Server Component)
 import type { Metadata } from "next";
-import { Inter, Poppins, Dancing_Script } from "next/font/google";
+import { Inter, Poppins, Dancing_Script, Bricolage_Grotesque } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "@/components/navbar";
@@ -17,7 +17,11 @@ const poppins = Poppins({
   variable: "--font-poppins",
   display: "optional",
 });
-
+const bricolage = Bricolage_Grotesque({
+  subsets: ["latin"],
+  weight: ["400"], // thin/regular weight
+  variable: "--font-bricolage",
+});
 const dancingScript = Dancing_Script({
   subsets: ["latin"],
   variable: "--font-dancing-script",
@@ -93,7 +97,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://miscellaneous-0.s3.ap-south-1.amazonaws.com" />
       </head>
       <body
-        className={`${inter.variable} ${poppins.variable} ${dancingScript.variable} min-h-screen bg-background font-sans`}
+        className={`${inter.variable} ${poppins.variable} ${dancingScript.variable} ${bricolage.variable} min-h-screen bg-background font-sans`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <ConfettiProvider>

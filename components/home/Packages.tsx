@@ -100,7 +100,7 @@ const Packages = () => {
   return (
     <section
       id="packages"
-      className="py-12 md:py-16 bg-gray-50 dark:bg-secondary-950"
+      className="py-12 md:py-16 bg-gray-50 dark:bg-secondary-950 font-bricolage"
     >
       <div className="container mx-auto px-4 md:px-6">
         {/* Heading */}
@@ -111,7 +111,7 @@ const Packages = () => {
           viewport={{ once: true, margin: '-100px' }}
           variants={fadeIn}
         >
-          <h2 className="text-4xl md:text-5xl font-heading font-bold mb-4 text-foreground">
+          <h2 className="font-bricolage font-bricolage-heading text-4xl md:text-5xl font-heading font-bold mb-4 text-foreground">
             Our{' '}
             <span className="bg-gradient-primary bg-clip-text text-transparent">
               AI-Powered Packages

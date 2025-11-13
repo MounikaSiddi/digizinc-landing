@@ -82,10 +82,11 @@ const config = {
         },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", ...fontFamily.sans],
-        heading: ["var(--font-poppins)", "sans-serif"],
-        cursive: ["var(--font-dancing-script)", "cursive"],
-      },
+  sans: ["var(--font-inter)", "Inter", "sans-serif"],
+  //heading: ["var(--font-poppins)", "Poppins", "sans-serif"],
+  cursive: ["var(--font-dancing-script)", "cursive"],
+  heading: ["var(--font-bricolage)", "sans-serif"],
+},
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",
