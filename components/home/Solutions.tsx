@@ -1,27 +1,8 @@
+"use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Zap, Smartphone, Share2, Mail, Users, BarChart3, Award } from "lucide-react"
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { useContactModal } from "../ClientWrapper";
+import { Search, Zap, Smartphone } from "lucide-react";
 
-const fadeIn = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.6 },
-  },
-}
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-}
 const services = [
   {
     title: "Affiliate Marketing",
@@ -38,7 +19,7 @@ const services = [
     icon: <Smartphone className="text-pink-500" />,
     image: "/Marketing Solutions/Social Media Marketing.jpg",
   },
-   {
+  {
     title: "SEO Optimization",
     icon: <Zap className="text-pink-500" />,
     image: "/Marketing Solutions/SEO Optimization.jpg",
@@ -61,19 +42,9 @@ const services = [
 ];
 
 const Solutions = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth < 768);
-    handleResize();
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
   return (
-    <section className="bg-[#0b0014] text-white py-20 px-6 md:px-12 lg:px-20">
+    <section className="bg-[#0b0014] text-white py-20 px-6 md:px-12 lg:px-20 overflow-hidden">
       <div className="max-w-6xl mx-auto text-center">
-        {/* Heading */}
         <h2 className="text-4xl md:text-5xl font-semibold mb-4">
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-purple-400">
             AI-Powered
@@ -81,33 +52,28 @@ const Solutions = () => {
           Marketing Solutions
         </h2>
 
-        {/* Subtext */}
         <p className="text-gray-300 max-w-3xl mx-auto mb-12">
           We provide comprehensive digital marketing solutions to help your
           business grow and succeed online.
         </p>
 
-        {/* Card Container */}
-        <div
-          className={`w-full no-scrollbar ${
-            isMobile
-              ? "h-[500px] overflow-y-auto"
-              : "overflow-x-auto overflow-y-hidden"
-          }`}
-        >
-          <div
-            className={`grid gap-8 p-2 scroll-smooth snap-mandatory ${
-              isMobile
-                ? "grid-cols-2 grid-rows-2 h-max snap-y"
-                : "grid-flow-col auto-cols-[minmax(320px,1fr)] h-[450px] snap-x"
-            }`}
+        {/* Infinite Carousel */}
+        <div className="relative w-full overflow-hidden py-6">
+          <motion.div
+            className="flex gap-8"
+            animate={{ x: ["0%", "-100%"] }}
+            transition={{
+              repeat: Infinity,
+              duration: 30,
+              ease: "linear",
+            }}
           >
-            {services.map((service, index) => (
+            {/* duplicate services array to create seamless loop */}
+            {[...services, ...services].map((service, index) => (
               <div
                 key={index}
-                className="group bg-gradient-to-b from-[#1a0125] to-[#0b0014] rounded-3xl p-6 min-w-[320px] shadow-[0_0_25px_rgba(255,0,255,0.05)] hover:shadow-[0_0_40px_rgba(255,0,255,0.3)] transition-all duration-500 snap-center"
+                className="group bg-gradient-to-b from-[#1a0125] to-[#0b0014] rounded-3xl p-3 h-90 min-w-[300px] max-w-[320px] shadow-[0_0_25px_rgba(255,0,255,0.05)] hover:shadow-[0_0_40px_rgba(255,0,255,0.3)] transition-all duration-500"
               >
-                {/* Icon + Title */}
                 <div className="flex items-center space-x-3 mb-5">
                   <div className="bg-[#2b013a] p-3 rounded-xl text-xl text-purple-400 group-hover:text-pink-400 transition-colors duration-300">
                     {service.icon}
@@ -117,7 +83,6 @@ const Solutions = () => {
                   </h3>
                 </div>
 
-                {/* Image */}
                 <div className="rounded-2xl overflow-hidden relative">
                   <img
                     src={service.image}
@@ -128,18 +93,11 @@ const Solutions = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </motion.div>
 
-          {/* Hide scrollbar */}
-          <style jsx>{`
-            .no-scrollbar::-webkit-scrollbar {
-              display: none;
-            }
-            .no-scrollbar {
-              -ms-overflow-style: none; /* IE and Edge */
-              scrollbar-width: none; /* Firefox */
-            }
-          `}</style>
+          {/* Edge fade gradients */}
+          <div className="pointer-events-none absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-[#0b0014] to-transparent"></div>
+          <div className="pointer-events-none absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-[#0b0014] to-transparent"></div>
         </div>
       </div>
     </section>
