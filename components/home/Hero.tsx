@@ -39,6 +39,7 @@ const HeroGrowth = () => {
         objectFit="cover"
         quality={80}
         priority={true}
+        fetchPriority="high"
         alt="AI-powered designs background"
         className="-z-10"
       />
