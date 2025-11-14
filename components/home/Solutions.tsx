@@ -57,24 +57,29 @@ const Solutions = () => {
           business grow and succeed online.
         </p>
 
-        {/* Infinite Carousel */}
-        <div className="relative w-full overflow-hidden py-6">
-          <motion.div
-            className="flex gap-8"
-            animate={{ x: ["0%", "-100%"] }}
-            transition={{
-              repeat: Infinity,
-              duration: 30,
-              ease: "linear",
-            }}
+        {/* Card Container */}
+        <div
+          className={`w-full no-scrollbar ${
+            isMobile
+              ? "h-[600px] overflow-y-auto"
+              : "overflow-x-auto overflow-y-hidden"
+          }`}
+        >
+          <div
+            className={`scroll-smooth snap-mandatory p-2 ${
+              isMobile
+                ? "grid grid-cols-2 gap-6 pb-6 snap-y"
+                : "grid grid-flow-col auto-cols-[minmax(320px,1fr)] gap-8 h-[450px] snap-x"
+            }`}
           >
             {/* duplicate services array to create seamless loop */}
             {[...services, ...services].map((service, index) => (
               <div
                 key={index}
-                className="group bg-gradient-to-b from-[#1a0125] to-[#0b0014] rounded-3xl p-5 h-90 min-w-[300px] max-w-[320px] shadow-[0_0_25px_rgba(255,0,255,0.05)] hover:shadow-[0_0_40px_rgba(255,0,255,0.3)] transition-all duration-500"
+                className="group bg-gradient-to-b from-[#1a0125] to-[#0b0014] rounded-3xl p-6 shadow-[0_0_25px_rgba(255,0,255,0.05)] hover:shadow-[0_0_40px_rgba(255,0,255,0.3)] transition-all duration-500 snap-center"
               >
-                <div className="flex items-center space-x-3 mb-5">
+                {/* Icon + Title */}
+                <div className="flex items-center space-x-3 mb-4">
                   <div className="bg-[#2b013a] p-3 rounded-xl text-xl text-purple-400 group-hover:text-pink-400 transition-colors duration-300">
                     {service.icon}
                   </div>
@@ -87,7 +92,7 @@ const Solutions = () => {
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-60 lg:h-80 m:h-52 object-cover transition-transform duration-500 group-hover:scale-110"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
