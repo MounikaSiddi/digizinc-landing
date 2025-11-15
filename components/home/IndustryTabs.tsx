@@ -178,11 +178,16 @@ export default function IndustryTabs() { // No props needed here anymore
                   suppressHydrationWarning
                 onClick={() => setActiveIndustry(industry.id)}
                 aria-pressed={isActive}
-                className={`relative flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-300 border-2 bg-gray-50 dark:bg-secondary-900
+                className={`relative flex flex-col items-center justify-center p-4 rounded-lg transition-all duration-300 border-2 
                   ${isActive
-                    ? 'bg-gradient-primary text-white border-transparent shadow-lg shadow-primary/20'
+                    ? 'text-white border-transparent shadow-lg shadow-primary/20'
+                    
                     : 'bg-card text-foreground border-primary/30 dark:border-primary/20 hover:border-transparent hover:bg-gradient-primary hover:text-white hover:shadow-lg hover:shadow-primary/20 dark:hover:shadow-primary/10'
-                  }`}
+                  }`
+                }
+                style={{
+    background: "linear-gradient(153.75deg, rgba(64, 25, 103, 0.12) 7.22%, rgba(127, 50, 205, 0.12) 96.19%)"
+  }}
               >
                 <span className="mb-2 transition-transform group-hover:scale-110">{industry.icon}</span>
                 <span className="text-sm font-medium text-center">{industry.name}</span>
@@ -191,8 +196,15 @@ export default function IndustryTabs() { // No props needed here anymore
           })}
         </div>
 
-        <div className="bg-card rounded-xl overflow-hidden shadow-lg border border-border transition-all bg-gray-50 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD]">
-          <div className="grid grid-cols-1 lg:grid-cols-2">
+        <div className="rounded-xl overflow-hidden shadow-lg border border-border transition-all"
+
+        style={{
+    background: "linear-gradient(153.75deg, rgba(64, 25, 103, 0.12) 7.22%, rgba(127, 50, 205, 0.12) 96.19%)"
+  }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2"
+          style={{
+    background: "linear-gradient(153.75deg, rgba(64, 25, 103, 0.12) 7.22%, rgba(127, 50, 205, 0.12) 96.19%)"
+  }}>
 
             <div className="p-6 md:p-8 order-2 lg:order-1">
               <h3 className="font-heading text-2xl font-bold text-foreground mb-4">

@@ -50,7 +50,10 @@ const Services: React.FC = () => {
 
         <div className="flex flex-col lg:flex-row gap-8 min-h-[400px]">
           <div className="lg:w-1/3 flex flex-col">
-            <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-xl p-4 sticky top-24 flex-1">
+            <div className="rounded-xl p-4 sticky top-24 flex-1" 
+            style={{
+    background: "linear-gradient(153.75deg, rgba(64, 25, 103, 0.12) 7.22%, rgba(127, 50, 205, 0.12) 96.19%)"
+  }}>
               <h3 className="font-heading text-lg font-semibold dark:text-white mb-4 text-black">
                 Explore by Category
               </h3>
@@ -94,7 +97,10 @@ const Services: React.FC = () => {
           </div>
 
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
-            <div className="bg-gray-80 dark:bg-gradient-to-b from-[#401967] to-[#7F32CD] rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1 flex flex-col">
+            <div className="rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1 flex flex-col"
+            style={{
+    background: "linear-gradient(153.75deg, rgba(64, 25, 103, 0.12) 7.22%, rgba(127, 50, 205, 0.12) 96.19%)"
+  }}>
               <div className="overflow-y-auto">
                 <div className="flex justify-center items-center mb-8">
                   <motion.div
