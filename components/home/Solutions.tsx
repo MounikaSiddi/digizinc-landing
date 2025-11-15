@@ -1,43 +1,43 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Search, Zap, Smartphone } from "lucide-react";
+import { Search, Zap, Smartphone, Share2, UserCheck, BarChart3, Award } from "lucide-react";
 
 const services = [
   {
     title: "Affiliate Marketing",
     icon: <Zap className="text-pink-500" />,
-    image: "/Marketing Solutions/Affiliate Marketing.png",
+    image: "/images/2nd section images/affiliate marketing.png",
   },
   {
     title: "AI-Driven Strategies",
     icon: <Search className="text-pink-500" />,
-    image: "/Marketing Solutions/AI-Driven Strategies.png",
+    image: "/images/2nd section images/ai driven strategies.png",
   },
   {
     title: "Social Media Marketing",
     icon: <Smartphone className="text-pink-500" />,
-    image: "/Marketing Solutions/Social Media Marketing.jpg",
+    image: "/images/2nd section images/social media.png",
   },
   {
     title: "SEO Optimization",
-    icon: <Zap className="text-pink-500" />,
-    image: "/Marketing Solutions/SEO Optimization.jpg",
+    icon: <Share2 className="text-pink-500" />,
+    image: "/images/2nd section images/seo.png",
   },
   {
     title: "Email Marketing",
-    icon: <Search className="text-pink-500" />,
-    image: "/Marketing Solutions/Email Marketing.jpg",
+    icon: <BarChart3 className="text-pink-500" />,
+    image: "/images/2nd section images/email.png",
   },
   {
     title: "Mobile Marketing",
-    icon: <Smartphone className="text-pink-500" />,
-    image: "/Marketing Solutions/Mobile Marketing.jpg",
+    icon: <Award className="text-pink-500" />,
+    image: "/images/2nd section images/mobile marketing.png",
   },
   {
     title: "Influencer Marketing",
-    icon: <Smartphone className="text-pink-500" />,
-    image: "/Marketing Solutions/Influencer Marketing.jpg",
+    icon: <UserCheck className="text-pink-500" />,
+    image: "/images/2nd section images/influencer.png",
   },
 ];
 
