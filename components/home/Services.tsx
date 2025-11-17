@@ -43,7 +43,7 @@ const Services: React.FC = () => {
           <h2 className="font-bricolage font-bricolage-heading text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
             Our <span className="text-transparent bg-clip-text bg-gradient-primary">Services</span>
           </h2>
-          <p className="text-lg text-black dark:text-white">
+          <p className="font-bricolage text-lg text-black dark:text-white">
             Comprehensive end-to-end media solutions powered by AI for every industry
           </p>
         </div>
@@ -72,24 +72,24 @@ const Services: React.FC = () => {
                   </button>
                 ))}
               </nav>
-              <h3 className="font-heading text-lg font-semibold dark:text-white mb-4 text-black">
+              <h3 className="font-bricolagetext-lg font-semibold dark:text-white mb-4 text-black">
                 Service Categories
               </h3>
-              <nav className="flex flex-col space-y-1">
+              <nav className="flex flex-col space-y-1 font-bricolage">
                 {servicesData
                   .filter(service => activeCategory === 'all' || service.category === activeCategory)
                   .map(service => (
                     <button
                       key={service.id}
                       onClick={() => handleTabClick(service.id)}
-                      className={`flex items-center px-4 py-3 rounded-lg text-left transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-800 ${
+                      className={`flex font-bricolage items-center px-4 py-3 rounded-lg text-left transition-colors text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-secondary-800 ${
                         activeTab === service.id
                           ? 'bg-gradient-primary text-white shadow-lg scale-[1.02]'
                           : 'hover:bg-gray-100 hover:scale-[1.01]'
                       }`}
                     >
                       <span className="mr-3 transition-transform group-hover:scale-110">{service.icon}</span>
-                      <span className="font-medium">{service.title}</span>
+                      <span className="font-bricolage">{service.title}</span>
                     </button>
                   ))}
               </nav>
@@ -97,7 +97,7 @@ const Services: React.FC = () => {
           </div>
 
           <div ref={contentRef} className="lg:w-2/3 flex flex-col">
-            <div className="rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1 flex flex-col"
+            <div className="rounded-2xl py-6 md:py-8 shadow-lg border border-gray-100/10 dark:border-secondary-800 flex-1 flex flex-col font-bricolage "
             style={{
     background: "linear-gradient(153.75deg, rgba(64, 25, 103, 0.12) 7.22%, rgba(127, 50, 205, 0.12) 96.19%)"
   }}>
@@ -108,12 +108,12 @@ const Services: React.FC = () => {
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.3, ease: "easeOut" }}
-                    className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm"
+                    className="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-600/20 to-secondary-600/20 flex items-center justify-center mr-4 transform hover:scale-110 transition-transform shadow-sm font-bricolage"
                   >
                     {activeService.icon}
                   </motion.div>
                   <div className="space-y-1">
-                    <h3 className="text-2xl font-semibold font-heading text-black dark:text-white">
+                    <h3 className="text-2xl font-semibold font-bricolage font-bricolage  text-black dark:text-white">
                       {activeService.title}
                     </h3>
                   </div>
